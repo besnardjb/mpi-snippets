@@ -37,4 +37,12 @@ CS -> MPI_COMM_SELF
 mpimain -> A main with INIT and FINALIZE
 
 
+Demo
+----
 
+See a small demo here : https://www.youtube.com/watch?v=oo4NmVQ69Qk
+
+Licence
+-------
+
+This code is CECILL-C a fully LGPL compatible licence.

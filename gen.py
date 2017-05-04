@@ -59,7 +59,7 @@ int main( int argc, char *argv[])
 endsnippet
 
 snippet CS
-MPI_SELF
+MPI_COMM_SELF
 endsnippet
 
 snippet CW
