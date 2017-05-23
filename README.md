@@ -17,7 +17,7 @@ if you use bundles.
 Then add the following to your ~/.vimrc to load the definition:
 
 ```
-autocmd VimEnter * UltiSnipsAddFiletypes mpi
+autocmd FileReadPre,BufReadPre,VimEnter * UltiSnipsAddFiletypes mpi
 ```
 
 
