@@ -69,7 +69,7 @@ endsnippet
 
 
 
-f = open("mpi.snippets", "w" )
+f = open("./UltiSnips/c.snippets", "w" )
 
 f.write( IFACE );
 
