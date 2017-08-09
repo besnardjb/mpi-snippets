@@ -9,17 +9,12 @@ These definitions are to be used with a VIM snippet implementations such as
 Install
 -------
 
-Considering that you use [vim-snippets](https://github.com/honza/vim-snippets),
-copy the mpi.snippets file in the 
-*~/.vim/vim-snippets/UltiSnips* directory, or *~/.vim/bundle/vim-snippets/UltiSnips/*
-if you use bundles.
+Considering that you use [UltiSnips](https://github.com/SirVer/ultisnips.git).
+Then add the following to your ~/.vimrc to load the project with Vundle plugin:
 
-Then add the following to your ~/.vimrc to load the definition:
-
+```vi
+Plugin 'besnardjb/mpi-snippets'
 ```
-autocmd FileReadPre,BufReadPre,VimEnter * UltiSnipsAddFiletypes mpi
-```
-
 
 Use
 ---
@@ -45,4 +40,4 @@ See a small demo here : https://www.youtube.com/watch?v=oo4NmVQ69Qk
 Licence
 -------
 
-This code is CECILL-C a fully LGPL compatible licence.
+This code is CeCILL-C a fully LGPL compatible licence.
