@@ -20,8 +20,9 @@ for f in mpi_interface:
 	else:
 		rtype = "int"
 	IFACE+= "\n\"" + f + "\": {\n"
+        IFACE+= "\t\"scope\": \"c,cpp\",\n"
 	IFACE+= "\t\"prefix\": [\""+f+"\"],\n"
-	IFACE+= "\t\"description\" : \"MPI " + f.replace("MPI_", "") + " Snippet\",\n"
+        IFACE+= "\t\"description\" : \"MPI " + f.replace("MPI_", "") + " Snippet\",\n"
 	IFACE+= "\t\"body\" : [ \"" + f + "("
 	for i in range(0, len(fd)):
 		arg=fd[i]
@@ -46,6 +47,7 @@ for f in mpi_interface:
 #This is the static part
 IFACE += """
 "Main() MPI" : {
+        "scope" : "c,cpp",
 	"prefix" : ["mainmpi", "mpimain", "mpi-main" ],
 	"description": "Generate a basic MPI program",
 	"body" : [
@@ -67,12 +69,14 @@ IFACE += """
 ]},
 
 "Comm Self": {
+        "scope" : "c,cpp",
 	"prefix": ["cself", "CS"],
 	"description": "Expand to MPI_COMM_SELF",
 	"body" : "MPI_COMM_SELF"
 },
 
 "Comm World": {
+        "scope" : "c,cpp",
 	"prefix": ["cworld", "CW"],
 	"description": "Expand to MPI_COMM_WORLD",
 	"body" : "MPI_COMM_WORLD"
