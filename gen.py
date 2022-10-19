@@ -33,7 +33,7 @@ for f in mpi_interface:
 			idx=-1
 		if idx!=-1:
 			array=ctype[idx:]
-   			ctype=ctype[0:idx]
+			ctype=ctype[0:idx]
 		IFACE+=" ${" + str(i+1) + ":" + ctype + " " + name + array + "} "
 		if i < (len(fd) - 1):
 			IFACE += ","

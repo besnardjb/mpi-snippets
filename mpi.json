@@ -1,7 +1,4 @@
 {
-    "MPI_Finalize":
-    [
-    ],
     "MPI_Abort": [
         [
             "MPI_Comm",
@@ -14,11 +11,11 @@
     ],
     "MPI_Accumulate": [
         [
-            "void*",
+            "const void*",
             "origin_addr"
         ],
         [
-            "int",
+            "MPI_Count",
             "origin_count"
         ],
         [
@@ -34,7 +31,7 @@
             "target_disp"
         ],
         [
-            "int",
+            "MPI_Count",
             "target_count"
         ],
         [
@@ -72,27 +69,37 @@
             "errorcode"
         ],
         [
-            "char*",
+            "const char*",
             "string"
         ]
     ],
-    "MPI_Address": [
+    "MPI_Aint_add": [
         [
-            "void*",
-            "location"
+            "MPI_Aint",
+            "base"
         ],
         [
-            "MPI_Aint*",
-            "address"
+            "MPI_Aint",
+            "disp"
+        ]
+    ],
+    "MPI_Aint_diff": [
+        [
+            "MPI_Aint",
+            "addr1"
+        ],
+        [
+            "MPI_Aint",
+            "addr2"
         ]
     ],
     "MPI_Allgather": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "sendcount"
         ],
         [
@@ -104,7 +111,7 @@
             "recvbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "recvcount"
         ],
         [
@@ -116,13 +123,13 @@
             "comm"
         ]
     ],
-    "MPI_Allgatherv": [
+    "MPI_Allgather_init": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "sendcount"
         ],
         [
@@ -134,14 +141,8 @@
             "recvbuf"
         ],
         [
-            "int[]",
-            "recvcounts",
-			"*"
-        ],
-        [
-            "int[]",
-            "displs",
-			"*"
+            "MPI_Count",
+            "recvcount"
         ],
         [
             "MPI_Datatype",
@@ -150,6 +151,90 @@
         [
             "MPI_Comm",
             "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Allgatherv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ]
+    ],
+    "MPI_Allgatherv_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
         ]
     ],
     "MPI_Alloc_mem": [
@@ -168,7 +253,7 @@
     ],
     "MPI_Allreduce": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
@@ -176,7 +261,7 @@
             "recvbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -192,13 +277,47 @@
             "comm"
         ]
     ],
-    "MPI_Alltoall": [
+    "MPI_Allreduce_init": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
-            "int",
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Alltoall": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
             "sendcount"
         ],
         [
@@ -210,7 +329,7 @@
             "recvbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "recvcount"
         ],
         [
@@ -222,20 +341,14 @@
             "comm"
         ]
     ],
-    "MPI_Alltoallv": [
+    "MPI_Alltoall_init": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
-            "int[]",
-            "sendcounts",
-			"*"
-        ],
-        [
-            "int[]",
-            "sdispls",
-			"*"
+            "MPI_Count",
+            "sendcount"
         ],
         [
             "MPI_Datatype",
@@ -246,14 +359,54 @@
             "recvbuf"
         ],
         [
-            "int[]",
-            "recvcounts",
-			"*"
+            "MPI_Count",
+            "recvcount"
         ],
         [
-            "int[]",
-            "rdispls",
-			"*"
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Alltoallv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "sdispls"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "rdispls"
         ],
         [
             "MPI_Datatype",
@@ -264,48 +417,134 @@
             "comm"
         ]
     ],
-    "MPI_Alltoallw": [
+    "MPI_Alltoallv_init": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
-            "int[]",
-            "sendcounts",
-			"*"
+            "const MPI_Count[]",
+            "sendcounts"
         ],
         [
-            "int[]",
-            "sdispls",
-			"*"
+            "const MPI_Aint[]",
+            "sdispls"
         ],
         [
-            "MPI_Datatype[]",
-            "sendtypes",
-			"*"
+            "MPI_Datatype",
+            "sendtype"
         ],
         [
             "void*",
             "recvbuf"
         ],
         [
-            "int[]",
-            "recvcounts",
-			"*"
+            "const MPI_Count[]",
+            "recvcounts"
         ],
         [
-            "int[]",
-            "rdispls",
-			"*"
+            "const MPI_Aint[]",
+            "rdispls"
         ],
         [
-            "MPI_Datatype[]",
-            "recvtypes",
-			"*"
+            "MPI_Datatype",
+            "recvtype"
         ],
         [
             "MPI_Comm",
             "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Alltoallw": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "sdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "sendtypes"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "rdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "recvtypes"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ]
+    ],
+    "MPI_Alltoallw_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "sdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "sendtypes"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "rdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "recvtypes"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
         ]
     ],
     "MPI_Attr_delete": [
@@ -356,13 +595,27 @@
             "comm"
         ]
     ],
+    "MPI_Barrier_init": [
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
     "MPI_Bcast": [
         [
             "void*",
             "buffer"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -378,13 +631,43 @@
             "comm"
         ]
     ],
-    "MPI_Bsend": [
+    "MPI_Bcast_init": [
         [
             "void*",
-            "buf"
+            "buffer"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
         ],
         [
             "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Bsend": [
+        [
+            "const void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -406,11 +689,11 @@
     ],
     "MPI_Bsend_init": [
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -440,17 +723,17 @@
             "buffer"
         ],
         [
-            "int",
+            "MPI_Count",
             "size"
         ]
     ],
     "MPI_Buffer_detach": [
         [
             "void*",
-            "buffer"
+            "buffer_addr"
         ],
         [
-            "int*",
+            "MPI_Count*",
             "size"
         ]
     ],
@@ -475,28 +758,25 @@
         ],
         [
             "int[]",
-            "coords",
-			"maxdims"
+            "coords"
         ]
     ],
     "MPI_Cart_create": [
         [
             "MPI_Comm",
-            "old_comm"
+            "comm_old"
         ],
         [
             "int",
             "ndims"
         ],
         [
-            "int[]",
-            "dims",
-			"ndims"
+            "const int[]",
+            "dims"
         ],
         [
-            "int[]",
-            "periods",
-			"ndims"
+            "const int[]",
+            "periods"
         ],
         [
             "int",
@@ -518,18 +798,15 @@
         ],
         [
             "int[]",
-            "dims",
-			"maxdims"
+            "dims"
         ],
         [
             "int[]",
-            "periods",
-			"maxdims"
+            "periods"
         ],
         [
             "int[]",
-            "coords",
-			"maxdims"
+            "coords"
         ]
     ],
     "MPI_Cart_map": [
@@ -542,14 +819,12 @@
             "ndims"
         ],
         [
-            "int[]",
-            "dims",
-			"ndims"
+            "const int[]",
+            "dims"
         ],
         [
-            "int[]",
-            "periods",
-			"ndims"
+            "const int[]",
+            "periods"
         ],
         [
             "int*",
@@ -562,9 +837,8 @@
             "comm"
         ],
         [
-            "int[]",
-            "coords",
-			"*"
+            "const int[]",
+            "coords"
         ],
         [
             "int*",
@@ -599,13 +873,12 @@
             "comm"
         ],
         [
-            "int[]",
-            "remain_dims",
-			"*"
+            "const int[]",
+            "remain_dims"
         ],
         [
             "MPI_Comm*",
-            "new_comm"
+            "newcomm"
         ]
     ],
     "MPI_Cartdim_get": [
@@ -620,13 +893,13 @@
     ],
     "MPI_Close_port": [
         [
-            "char*",
+            "const char*",
             "port_name"
         ]
     ],
     "MPI_Comm_accept": [
         [
-            "char*",
+            "const char*",
             "port_name"
         ],
         [
@@ -672,7 +945,7 @@
     ],
     "MPI_Comm_connect": [
         [
-            "char*",
+            "const char*",
             "port_name"
         ],
         [
@@ -709,11 +982,51 @@
     "MPI_Comm_create_errhandler": [
         [
             "MPI_Comm_errhandler_function*",
-            "function"
+            "comm_errhandler_fn"
         ],
         [
             "MPI_Errhandler*",
             "errhandler"
+        ]
+    ],
+    "MPI_Comm_create_from_group": [
+        [
+            "MPI_Group",
+            "group"
+        ],
+        [
+            "const char*",
+            "stringtag"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Errhandler",
+            "errhandler"
+        ],
+        [
+            "MPI_Comm*",
+            "newcomm"
+        ]
+    ],
+    "MPI_Comm_create_group": [
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Group",
+            "group"
+        ],
+        [
+            "int",
+            "tag"
+        ],
+        [
+            "MPI_Comm*",
+            "newcomm"
         ]
     ],
     "MPI_Comm_create_keyval": [
@@ -760,6 +1073,20 @@
             "newcomm"
         ]
     ],
+    "MPI_Comm_dup_with_info": [
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Comm*",
+            "newcomm"
+        ]
+    ],
     "MPI_Comm_free": [
         [
             "MPI_Comm*",
@@ -797,7 +1124,17 @@
         ],
         [
             "MPI_Errhandler*",
-            "erhandler"
+            "errhandler"
+        ]
+    ],
+    "MPI_Comm_get_info": [
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info*",
+            "info_used"
         ]
     ],
     "MPI_Comm_get_name": [
@@ -828,6 +1165,38 @@
         [
             "MPI_Group*",
             "group"
+        ]
+    ],
+    "MPI_Comm_idup": [
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Comm*",
+            "newcomm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Comm_idup_with_info": [
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Comm*",
+            "newcomm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
         ]
     ],
     "MPI_Comm_join": [
@@ -894,13 +1263,23 @@
             "errhandler"
         ]
     ],
+    "MPI_Comm_set_info": [
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ]
+    ],
     "MPI_Comm_set_name": [
         [
             "MPI_Comm",
             "comm"
         ],
         [
-            "char*",
+            "const char*",
             "comm_name"
         ]
     ],
@@ -912,6 +1291,78 @@
         [
             "int*",
             "size"
+        ]
+    ],
+    "MPI_Comm_spawn": [
+        [
+            "const char*",
+            "command"
+        ],
+        [
+            "char*[]",
+            "argv"
+        ],
+        [
+            "int",
+            "maxprocs"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Comm*",
+            "intercomm"
+        ],
+        [
+            "int[]",
+            "array_of_errcodes"
+        ]
+    ],
+    "MPI_Comm_spawn_multiple": [
+        [
+            "int",
+            "count"
+        ],
+        [
+            "char*[]",
+            "array_of_commands"
+        ],
+        [
+            "char**[]",
+            "array_of_argv"
+        ],
+        [
+            "const int[]",
+            "array_of_maxprocs"
+        ],
+        [
+            "const MPI_Info[]",
+            "array_of_info"
+        ],
+        [
+            "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Comm*",
+            "intercomm"
+        ],
+        [
+            "int[]",
+            "array_of_errcodes"
         ]
     ],
     "MPI_Comm_split": [
@@ -932,6 +1383,28 @@
             "newcomm"
         ]
     ],
+    "MPI_Comm_split_type": [
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "int",
+            "split_type"
+        ],
+        [
+            "int",
+            "key"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Comm*",
+            "newcomm"
+        ]
+    ],
     "MPI_Comm_test_inter": [
         [
             "MPI_Comm",
@@ -940,6 +1413,36 @@
         [
             "int*",
             "flag"
+        ]
+    ],
+    "MPI_Compare_and_swap": [
+        [
+            "const void*",
+            "origin_addr"
+        ],
+        [
+            "const void*",
+            "compare_addr"
+        ],
+        [
+            "void*",
+            "result_addr"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "int",
+            "target_rank"
+        ],
+        [
+            "MPI_Aint",
+            "target_disp"
+        ],
+        [
+            "MPI_Win",
+            "win"
         ]
     ],
     "MPI_Dims_create": [
@@ -953,43 +1456,140 @@
         ],
         [
             "int[]",
-            "dims",
-			"ndims"
+            "dims"
         ]
     ],
-    "MPI_Errhandler_create": [
+    "MPI_Dist_graph_create": [
         [
-            "MPI_Handler_function*",
-            "function"
+            "MPI_Comm",
+            "comm_old"
         ],
         [
-            "MPI_Errhandler*",
-            "errhandler"
+            "int",
+            "n"
+        ],
+        [
+            "const int[]",
+            "sources"
+        ],
+        [
+            "const int[]",
+            "degrees"
+        ],
+        [
+            "const int[]",
+            "destinations"
+        ],
+        [
+            "const int[]",
+            "weights"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "int",
+            "reorder"
+        ],
+        [
+            "MPI_Comm*",
+            "comm_dist_graph"
+        ]
+    ],
+    "MPI_Dist_graph_create_adjacent": [
+        [
+            "MPI_Comm",
+            "comm_old"
+        ],
+        [
+            "int",
+            "indegree"
+        ],
+        [
+            "const int[]",
+            "sources"
+        ],
+        [
+            "const int[]",
+            "sourceweights"
+        ],
+        [
+            "int",
+            "outdegree"
+        ],
+        [
+            "const int[]",
+            "destinations"
+        ],
+        [
+            "const int[]",
+            "destweights"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "int",
+            "reorder"
+        ],
+        [
+            "MPI_Comm*",
+            "comm_dist_graph"
+        ]
+    ],
+    "MPI_Dist_graph_neighbors": [
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "int",
+            "maxindegree"
+        ],
+        [
+            "int[]",
+            "sources"
+        ],
+        [
+            "int[]",
+            "sourceweights"
+        ],
+        [
+            "int",
+            "maxoutdegree"
+        ],
+        [
+            "int[]",
+            "destinations"
+        ],
+        [
+            "int[]",
+            "destweights"
+        ]
+    ],
+    "MPI_Dist_graph_neighbors_count": [
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "int*",
+            "indegree"
+        ],
+        [
+            "int*",
+            "outdegree"
+        ],
+        [
+            "int*",
+            "weighted"
         ]
     ],
     "MPI_Errhandler_free": [
         [
             "MPI_Errhandler*",
-            "errhandler"
-        ]
-    ],
-    "MPI_Errhandler_get": [
-        [
-            "MPI_Comm",
-            "comm"
-        ],
-        [
-            "MPI_Errhandler*",
-            "errhandler"
-        ]
-    ],
-    "MPI_Errhandler_set": [
-        [
-            "MPI_Comm",
-            "comm"
-        ],
-        [
-            "MPI_Errhandler",
             "errhandler"
         ]
     ],
@@ -1019,7 +1619,7 @@
     ],
     "MPI_Exscan": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
@@ -1027,7 +1627,7 @@
             "recvbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1043,6 +1643,80 @@
             "comm"
         ]
     ],
+    "MPI_Exscan_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Fetch_and_op": [
+        [
+            "const void*",
+            "origin_addr"
+        ],
+        [
+            "void*",
+            "result_addr"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "int",
+            "target_rank"
+        ],
+        [
+            "MPI_Aint",
+            "target_disp"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Win",
+            "win"
+        ]
+    ],
+    "MPI_File_call_errhandler": [
+        [
+            "MPI_File",
+            "fh"
+        ],
+        [
+            "int",
+            "errorcode"
+        ]
+    ],
     "MPI_File_close": [
         [
             "MPI_File*",
@@ -1052,7 +1726,7 @@
     "MPI_File_create_errhandler": [
         [
             "MPI_File_errhandler_function*",
-            "function"
+            "file_errhandler_fn"
         ],
         [
             "MPI_Errhandler*",
@@ -1061,7 +1735,7 @@
     ],
     "MPI_File_delete": [
         [
-            "char*",
+            "const char*",
             "filename"
         ],
         [
@@ -1173,7 +1847,7 @@
             "datatype"
         ],
         [
-            "MPI_Aint*",
+            "MPI_Count*",
             "extent"
         ]
     ],
@@ -1209,7 +1883,29 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_File_iread_all": [
+        [
+            "MPI_File",
+            "fh"
+        ],
+        [
+            "void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -1235,7 +1931,33 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_File_iread_at_all": [
+        [
+            "MPI_File",
+            "fh"
+        ],
+        [
+            "MPI_Offset",
+            "offset"
+        ],
+        [
+            "void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -1257,7 +1979,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1275,11 +1997,33 @@
             "fh"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_File_iwrite_all": [
+        [
+            "MPI_File",
+            "fh"
+        ],
+        [
+            "const void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -1301,11 +2045,37 @@
             "offset"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_File_iwrite_at_all": [
+        [
+            "MPI_File",
+            "fh"
+        ],
+        [
+            "MPI_Offset",
+            "offset"
+        ],
+        [
+            "const void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -1323,11 +2093,11 @@
             "fh"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1345,7 +2115,7 @@
             "comm"
         ],
         [
-            "char*",
+            "const char*",
             "filename"
         ],
         [
@@ -1381,7 +2151,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1403,7 +2173,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1425,7 +2195,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1461,7 +2231,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1487,7 +2257,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1513,7 +2283,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1545,7 +2315,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1567,7 +2337,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1599,7 +2369,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1697,7 +2467,7 @@
             "filetype"
         ],
         [
-            "char*",
+            "const char*",
             "datarep"
         ],
         [
@@ -1717,11 +2487,11 @@
             "fh"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1739,11 +2509,11 @@
             "fh"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1761,11 +2531,11 @@
             "fh"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1779,7 +2549,7 @@
             "fh"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
@@ -1797,11 +2567,11 @@
             "offset"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1823,11 +2593,11 @@
             "offset"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1849,11 +2619,11 @@
             "offset"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1867,7 +2637,7 @@
             "fh"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
@@ -1881,11 +2651,11 @@
             "fh"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1903,11 +2673,11 @@
             "fh"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1921,7 +2691,7 @@
             "fh"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
@@ -1935,11 +2705,11 @@
             "fh"
         ],
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -1966,11 +2736,11 @@
     ],
     "MPI_Gather": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "sendcount"
         ],
         [
@@ -1982,7 +2752,7 @@
             "recvbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "recvcount"
         ],
         [
@@ -1998,13 +2768,13 @@
             "comm"
         ]
     ],
-    "MPI_Gatherv": [
+    "MPI_Gather_init": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "sendcount"
         ],
         [
@@ -2016,14 +2786,54 @@
             "recvbuf"
         ],
         [
-            "int[]",
-            "recvcounts",
-			"*"
+            "MPI_Count",
+            "recvcount"
         ],
         [
-            "int[]",
-            "displs",
-			"*"
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Gatherv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
         ],
         [
             "MPI_Datatype",
@@ -2038,13 +2848,59 @@
             "comm"
         ]
     ],
+    "MPI_Gatherv_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
     "MPI_Get": [
         [
             "void*",
             "origin_addr"
         ],
         [
-            "int",
+            "MPI_Count",
             "origin_count"
         ],
         [
@@ -2060,7 +2916,7 @@
             "target_disp"
         ],
         [
-            "int",
+            "MPI_Count",
             "target_count"
         ],
         [
@@ -2072,9 +2928,59 @@
             "win"
         ]
     ],
-    "MPI_Get_address": [
+    "MPI_Get_accumulate": [
+        [
+            "const void*",
+            "origin_addr"
+        ],
+        [
+            "MPI_Count",
+            "origin_count"
+        ],
+        [
+            "MPI_Datatype",
+            "origin_datatype"
+        ],
         [
             "void*",
+            "result_addr"
+        ],
+        [
+            "MPI_Count",
+            "result_count"
+        ],
+        [
+            "MPI_Datatype",
+            "result_datatype"
+        ],
+        [
+            "int",
+            "target_rank"
+        ],
+        [
+            "MPI_Aint",
+            "target_disp"
+        ],
+        [
+            "MPI_Count",
+            "target_count"
+        ],
+        [
+            "MPI_Datatype",
+            "target_datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Win",
+            "win"
+        ]
+    ],
+    "MPI_Get_address": [
+        [
+            "const void*",
             "location"
         ],
         [
@@ -2084,7 +2990,7 @@
     ],
     "MPI_Get_count": [
         [
-            "MPI_Status*",
+            "const MPI_Status*",
             "status"
         ],
         [
@@ -2092,13 +2998,13 @@
             "datatype"
         ],
         [
-            "int*",
+            "MPI_Count*",
             "count"
         ]
     ],
     "MPI_Get_elements": [
         [
-            "MPI_Status*",
+            "const MPI_Status*",
             "status"
         ],
         [
@@ -2106,8 +3012,32 @@
             "datatype"
         ],
         [
-            "int*",
+            "MPI_Count*",
             "count"
+        ]
+    ],
+    "MPI_Get_elements_x": [
+        [
+            "const MPI_Status*",
+            "status"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Count*",
+            "count"
+        ]
+    ],
+    "MPI_Get_library_version": [
+        [
+            "char*",
+            "version"
+        ],
+        [
+            "int*",
+            "resultlen"
         ]
     ],
     "MPI_Get_processor_name": [
@@ -2130,53 +3060,22 @@
             "subversion"
         ]
     ],
-    "MPI_Init": [
-        [
-            "int*",
-            "argc"
-        ],
-        [
-            "char ***",
-            "argv"
-        ]
-    ],
-    "MPI_Init_thread": [
-        [
-            "int*",
-            "argc"
-        ],
-        [
-            "char***",
-            "argv"
-        ],
-		[
-			"int",
-			"req"
-		],
-		[
-			"int*",
-			"provided"
-		]
-    ],
-
     "MPI_Graph_create": [
         [
             "MPI_Comm",
-            "comm"
+            "comm_old"
         ],
         [
             "int",
             "nnodes"
         ],
         [
-            "int[]",
-            "index",
-			"nnodes"
+            "const int[]",
+            "index"
         ],
         [
-            "int[]",
-            "edges",
-			"*"
+            "const int[]",
+            "edges"
         ],
         [
             "int",
@@ -2202,13 +3101,11 @@
         ],
         [
             "int[]",
-            "index",
-			"maxindex"
+            "index"
         ],
         [
             "int[]",
-            "edges",
-			"maxedges"
+            "edges"
         ]
     ],
     "MPI_Graph_map": [
@@ -2221,14 +3118,12 @@
             "nnodes"
         ],
         [
-            "int[]",
-            "index",
-			"nnodes"
+            "const int[]",
+            "index"
         ],
         [
-            "int[]",
-            "edges",
-			"*"
+            "const int[]",
+            "edges"
         ],
         [
             "int*",
@@ -2250,8 +3145,7 @@
         ],
         [
             "int[]",
-            "neighbors",
-			"maxneighbors"
+            "neighbors"
         ]
     ],
     "MPI_Graph_neighbors_count": [
@@ -2348,9 +3242,8 @@
             "n"
         ],
         [
-            "int[]",
-            "ranks",
-			"n"
+            "const int[]",
+            "ranks"
         ],
         [
             "MPI_Group*",
@@ -2363,6 +3256,20 @@
             "group"
         ]
     ],
+    "MPI_Group_from_session_pset": [
+        [
+            "MPI_Session",
+            "session"
+        ],
+        [
+            "const char*",
+            "pset_name"
+        ],
+        [
+            "MPI_Group*",
+            "newgroup"
+        ]
+    ],
     "MPI_Group_incl": [
         [
             "MPI_Group",
@@ -2373,9 +3280,8 @@
             "n"
         ],
         [
-            "int[]",
-            "ranks",
-			"n"
+            "const int[]",
+            "ranks"
         ],
         [
             "MPI_Group*",
@@ -2407,8 +3313,7 @@
         ],
         [
             "int[][3]",
-            "ranges",
-			"n"
+            "ranges"
         ],
         [
             "MPI_Group*",
@@ -2426,8 +3331,7 @@
         ],
         [
             "int[][3]",
-            "ranges",
-			"n"
+            "ranges"
         ],
         [
             "MPI_Group*",
@@ -2464,9 +3368,8 @@
             "n"
         ],
         [
-            "int[]",
-            "ranks1",
-			"n"
+            "const int[]",
+            "ranks1"
         ],
         [
             "MPI_Group",
@@ -2474,8 +3377,7 @@
         ],
         [
             "int[]",
-            "ranks2",
-			"n"
+            "ranks2"
         ]
     ],
     "MPI_Group_union": [
@@ -2492,13 +3394,269 @@
             "newgroup"
         ]
     ],
-    "MPI_Ibsend": [
+    "MPI_Iallgather": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
         [
             "void*",
-            "buf"
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Iallgatherv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Iallreduce": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ialltoall": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ialltoallv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "sdispls"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "rdispls"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ialltoallw": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "sdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "sendtypes"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "rdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "recvtypes"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ibarrier": [
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ibcast": [
+        [
+            "void*",
+            "buffer"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
         ],
         [
             "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ibsend": [
+        [
+            "const void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -2522,7 +3680,369 @@
             "request"
         ]
     ],
+    "MPI_Iexscan": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Igather": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Igatherv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Improbe": [
+        [
+            "int",
+            "source"
+        ],
+        [
+            "int",
+            "tag"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "int*",
+            "flag"
+        ],
+        [
+            "MPI_Message*",
+            "message"
+        ],
+        [
+            "MPI_Status*",
+            "status"
+        ]
+    ],
+    "MPI_Imrecv": [
+        [
+            "void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Message*",
+            "message"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ineighbor_allgather": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ineighbor_allgatherv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ineighbor_alltoall": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ineighbor_alltoallv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "sdispls"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "rdispls"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ineighbor_alltoallw": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "sdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "sendtypes"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "rdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "recvtypes"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
     "MPI_Info_create": [
+        [
+            "MPI_Info*",
+            "info"
+        ]
+    ],
+    "MPI_Info_create_env": [
+        [
+            "int",
+            "argc"
+        ],
+        [
+            "char[]",
+            "argv"
+        ],
         [
             "MPI_Info*",
             "info"
@@ -2534,7 +4054,7 @@
             "info"
         ],
         [
-            "char*",
+            "const char*",
             "key"
         ]
     ],
@@ -2560,7 +4080,7 @@
             "info"
         ],
         [
-            "char*",
+            "const char*",
             "key"
         ],
         [
@@ -2600,13 +4120,35 @@
             "key"
         ]
     ],
+    "MPI_Info_get_string": [
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "const char*",
+            "key"
+        ],
+        [
+            "int*",
+            "buflen"
+        ],
+        [
+            "char*",
+            "value"
+        ],
+        [
+            "int*",
+            "flag"
+        ]
+    ],
     "MPI_Info_get_valuelen": [
         [
             "MPI_Info",
             "info"
         ],
         [
-            "char*",
+            "const char*",
             "key"
         ],
         [
@@ -2624,15 +4166,43 @@
             "info"
         ],
         [
-            "char*",
+            "const char*",
             "key"
         ],
         [
-            "char*",
+            "const char*",
             "value"
         ]
     ],
-	"MPI_Initialized": [
+    "MPI_Init": [
+        [
+            "int*",
+            "argc"
+        ],
+        [
+            "char***",
+            "argv"
+        ]
+    ],
+    "MPI_Init_thread": [
+        [
+            "int*",
+            "argc"
+        ],
+        [
+            "char***",
+            "argv"
+        ],
+        [
+            "int",
+            "required"
+        ],
+        [
+            "int*",
+            "provided"
+        ]
+    ],
+    "MPI_Initialized": [
         [
             "int*",
             "flag"
@@ -2649,7 +4219,7 @@
         ],
         [
             "MPI_Comm",
-            "bridge_comm"
+            "peer_comm"
         ],
         [
             "int",
@@ -2658,6 +4228,40 @@
         [
             "int",
             "tag"
+        ],
+        [
+            "MPI_Comm*",
+            "newintercomm"
+        ]
+    ],
+    "MPI_Intercomm_create_from_groups": [
+        [
+            "MPI_Group",
+            "local_group"
+        ],
+        [
+            "int",
+            "local_leader"
+        ],
+        [
+            "MPI_Group",
+            "remote_group"
+        ],
+        [
+            "int",
+            "remote_leader"
+        ],
+        [
+            "const char*",
+            "stringtag"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Errhandler",
+            "errhandler"
         ],
         [
             "MPI_Comm*",
@@ -2675,7 +4279,7 @@
         ],
         [
             "MPI_Comm*",
-            "newintercomm"
+            "newintracomm"
         ]
     ],
     "MPI_Iprobe": [
@@ -2706,7 +4310,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -2730,13 +4334,107 @@
             "request"
         ]
     ],
-    "MPI_Irsend": [
+    "MPI_Ireduce": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
         [
             "void*",
-            "buf"
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
         ],
         [
             "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ireduce_scatter": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Ireduce_scatter_block": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Irsend": [
+        [
+            "const void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -2766,13 +4464,123 @@
             "flag"
         ]
     ],
-    "MPI_Isend": [
+    "MPI_Iscan": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
         [
             "void*",
-            "buf"
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Iscatter": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
         ],
         [
             "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Iscatterv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Isend": [
+        [
+            "const void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -2796,13 +4604,101 @@
             "request"
         ]
     ],
-    "MPI_Issend": [
+    "MPI_Isendrecv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "int",
+            "dest"
+        ],
+        [
+            "int",
+            "sendtag"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "int",
+            "source"
+        ],
+        [
+            "int",
+            "recvtag"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Isendrecv_replace": [
         [
             "void*",
             "buf"
         ],
         [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
             "int",
+            "dest"
+        ],
+        [
+            "int",
+            "sendtag"
+        ],
+        [
+            "int",
+            "source"
+        ],
+        [
+            "int",
+            "recvtag"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Issend": [
+        [
+            "const void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -2852,7 +4748,7 @@
     ],
     "MPI_Lookup_name": [
         [
-            "char*",
+            "const char*",
             "service_name"
         ],
         [
@@ -2864,10 +4760,444 @@
             "port_name"
         ]
     ],
+    "MPI_Mprobe": [
+        [
+            "int",
+            "source"
+        ],
+        [
+            "int",
+            "tag"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Message*",
+            "message"
+        ],
+        [
+            "MPI_Status*",
+            "status"
+        ]
+    ],
+    "MPI_Mrecv": [
+        [
+            "void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Message*",
+            "message"
+        ],
+        [
+            "MPI_Status*",
+            "status"
+        ]
+    ],
+    "MPI_Neighbor_allgather": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ]
+    ],
+    "MPI_Neighbor_allgather_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Neighbor_allgatherv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ]
+    ],
+    "MPI_Neighbor_allgatherv_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Neighbor_alltoall": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ]
+    ],
+    "MPI_Neighbor_alltoall_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
+            "sendcount"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Neighbor_alltoallv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "sdispls"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "rdispls"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ]
+    ],
+    "MPI_Neighbor_alltoallv_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "sdispls"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "rdispls"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Neighbor_alltoallw": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "sdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "sendtypes"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "rdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "recvtypes"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ]
+    ],
+    "MPI_Neighbor_alltoallw_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "sdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "sendtypes"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "rdispls"
+        ],
+        [
+            "const MPI_Datatype[]",
+            "recvtypes"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Op_commutative": [
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "int*",
+            "commute"
+        ]
+    ],
     "MPI_Op_create": [
         [
             "MPI_User_function*",
-            "function"
+            "user_fn"
         ],
         [
             "int",
@@ -2896,11 +5226,11 @@
     ],
     "MPI_Pack": [
         [
-            "void*",
+            "const void*",
             "inbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "incount"
         ],
         [
@@ -2912,11 +5242,11 @@
             "outbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "outsize"
         ],
         [
-            "int*",
+            "MPI_Count*",
             "position"
         ],
         [
@@ -2926,15 +5256,15 @@
     ],
     "MPI_Pack_external": [
         [
-            "char*",
+            "const char[]",
             "datarep"
         ],
         [
-            "void*",
+            "const void*",
             "inbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "incount"
         ],
         [
@@ -2946,21 +5276,21 @@
             "outbuf"
         ],
         [
-            "MPI_Aint",
+            "MPI_Count",
             "outsize"
         ],
         [
-            "MPI_Aint*",
+            "MPI_Count*",
             "position"
         ]
     ],
     "MPI_Pack_external_size": [
         [
-            "char*",
+            "const char[]",
             "datarep"
         ],
         [
-            "int",
+            "MPI_Count",
             "incount"
         ],
         [
@@ -2968,13 +5298,13 @@
             "datatype"
         ],
         [
-            "MPI_Aint*",
+            "MPI_Count*",
             "size"
         ]
     ],
     "MPI_Pack_size": [
         [
-            "int",
+            "MPI_Count",
             "incount"
         ],
         [
@@ -2986,8 +5316,108 @@
             "comm"
         ],
         [
-            "int*",
+            "MPI_Count*",
             "size"
+        ]
+    ],
+    "MPI_Parrived": [
+        [
+            "MPI_Request",
+            "request"
+        ],
+        [
+            "int",
+            "partition"
+        ],
+        [
+            "int*",
+            "flag"
+        ]
+    ],
+    "MPI_Pcontrol": [
+        [
+            "const int",
+            "level"
+        ],
+        [
+            "...",
+            ""
+        ]
+    ],
+    "MPI_Pready": [
+        [
+            "int",
+            "partition"
+        ],
+        [
+            "MPI_Request",
+            "request"
+        ]
+    ],
+    "MPI_Pready_list": [
+        [
+            "int",
+            "length"
+        ],
+        [
+            "const int[]",
+            "array_of_partitions"
+        ],
+        [
+            "MPI_Request",
+            "request"
+        ]
+    ],
+    "MPI_Pready_range": [
+        [
+            "int",
+            "partition_low"
+        ],
+        [
+            "int",
+            "partition_high"
+        ],
+        [
+            "MPI_Request",
+            "request"
+        ]
+    ],
+    "MPI_Precv_init": [
+        [
+            "void*",
+            "buf"
+        ],
+        [
+            "int",
+            "partitions"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "int",
+            "source"
+        ],
+        [
+            "int",
+            "tag"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
         ]
     ],
     "MPI_Probe": [
@@ -3008,9 +5438,47 @@
             "status"
         ]
     ],
+    "MPI_Psend_init": [
+        [
+            "const void*",
+            "buf"
+        ],
+        [
+            "int",
+            "partitions"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "int",
+            "dest"
+        ],
+        [
+            "int",
+            "tag"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
     "MPI_Publish_name": [
         [
-            "char*",
+            "const char*",
             "service_name"
         ],
         [
@@ -3018,17 +5486,17 @@
             "info"
         ],
         [
-            "char*",
+            "const char*",
             "port_name"
         ]
     ],
     "MPI_Put": [
         [
-            "void*",
+            "const void*",
             "origin_addr"
         ],
         [
-            "int",
+            "MPI_Count",
             "origin_count"
         ],
         [
@@ -3044,7 +5512,7 @@
             "target_disp"
         ],
         [
-            "int",
+            "MPI_Count",
             "target_count"
         ],
         [
@@ -3062,13 +5530,55 @@
             "provided"
         ]
     ],
+    "MPI_Raccumulate": [
+        [
+            "const void*",
+            "origin_addr"
+        ],
+        [
+            "MPI_Count",
+            "origin_count"
+        ],
+        [
+            "MPI_Datatype",
+            "origin_datatype"
+        ],
+        [
+            "int",
+            "target_rank"
+        ],
+        [
+            "MPI_Aint",
+            "target_disp"
+        ],
+        [
+            "MPI_Count",
+            "target_count"
+        ],
+        [
+            "MPI_Datatype",
+            "target_datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Win",
+            "win"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
     "MPI_Recv": [
         [
             "void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -3098,7 +5608,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -3124,7 +5634,7 @@
     ],
     "MPI_Reduce": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
@@ -3132,7 +5642,7 @@
             "recvbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -3152,9 +5662,47 @@
             "comm"
         ]
     ],
-    "MPI_Reduce_local": [
+    "MPI_Reduce_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
         [
             "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Reduce_local": [
+        [
+            "const void*",
             "inbuf"
         ],
         [
@@ -3162,7 +5710,7 @@
             "inoutbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -3176,7 +5724,7 @@
     ],
     "MPI_Reduce_scatter": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
@@ -3184,9 +5732,8 @@
             "recvbuf"
         ],
         [
-            "int[]",
-            "recvcounts",
-			"*"
+            "const MPI_Count[]",
+            "recvcounts"
         ],
         [
             "MPI_Datatype",
@@ -3201,9 +5748,103 @@
             "comm"
         ]
     ],
+    "MPI_Reduce_scatter_block": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ]
+    ],
+    "MPI_Reduce_scatter_block_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Reduce_scatter_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "recvcounts"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
     "MPI_Register_datarep": [
         [
-            "char*",
+            "const char*",
             "datarep"
         ],
         [
@@ -3243,13 +5884,143 @@
             "status"
         ]
     ],
-    "MPI_Rsend": [
+    "MPI_Rget": [
         [
             "void*",
-            "ibuf"
+            "origin_addr"
+        ],
+        [
+            "MPI_Count",
+            "origin_count"
+        ],
+        [
+            "MPI_Datatype",
+            "origin_datatype"
         ],
         [
             "int",
+            "target_rank"
+        ],
+        [
+            "MPI_Aint",
+            "target_disp"
+        ],
+        [
+            "MPI_Count",
+            "target_count"
+        ],
+        [
+            "MPI_Datatype",
+            "target_datatype"
+        ],
+        [
+            "MPI_Win",
+            "win"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Rget_accumulate": [
+        [
+            "const void*",
+            "origin_addr"
+        ],
+        [
+            "MPI_Count",
+            "origin_count"
+        ],
+        [
+            "MPI_Datatype",
+            "origin_datatype"
+        ],
+        [
+            "void*",
+            "result_addr"
+        ],
+        [
+            "MPI_Count",
+            "result_count"
+        ],
+        [
+            "MPI_Datatype",
+            "result_datatype"
+        ],
+        [
+            "int",
+            "target_rank"
+        ],
+        [
+            "MPI_Aint",
+            "target_disp"
+        ],
+        [
+            "MPI_Count",
+            "target_count"
+        ],
+        [
+            "MPI_Datatype",
+            "target_datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Win",
+            "win"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Rput": [
+        [
+            "const void*",
+            "origin_addr"
+        ],
+        [
+            "MPI_Count",
+            "origin_count"
+        ],
+        [
+            "MPI_Datatype",
+            "origin_datatype"
+        ],
+        [
+            "int",
+            "target_rank"
+        ],
+        [
+            "MPI_Aint",
+            "target_disp"
+        ],
+        [
+            "MPI_Count",
+            "target_count"
+        ],
+        [
+            "MPI_Datatype",
+            "target_datatype"
+        ],
+        [
+            "MPI_Win",
+            "win"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Rsend": [
+        [
+            "const void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -3271,11 +6042,11 @@
     ],
     "MPI_Rsend_init": [
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -3301,7 +6072,7 @@
     ],
     "MPI_Scan": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
@@ -3309,7 +6080,7 @@
             "recvbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -3325,13 +6096,47 @@
             "comm"
         ]
     ],
-    "MPI_Scatter": [
+    "MPI_Scan_init": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
-            "int",
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Op",
+            "op"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Scatter": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "MPI_Count",
             "sendcount"
         ],
         [
@@ -3343,7 +6148,7 @@
             "recvbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "recvcount"
         ],
         [
@@ -3359,20 +6164,14 @@
             "comm"
         ]
     ],
-    "MPI_Scatterv": [
+    "MPI_Scatter_init": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
-            "int[]",
-            "sendcounts",
-			"*"
-        ],
-        [
-            "int[]",
-            "displs",
-			"*"
+            "MPI_Count",
+            "sendcount"
         ],
         [
             "MPI_Datatype",
@@ -3383,7 +6182,53 @@
             "recvbuf"
         ],
         [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
+        ],
+        [
             "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Scatterv": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
+        [
+            "void*",
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
             "recvcount"
         ],
         [
@@ -3399,13 +6244,59 @@
             "comm"
         ]
     ],
-    "MPI_Send": [
+    "MPI_Scatterv_init": [
+        [
+            "const void*",
+            "sendbuf"
+        ],
+        [
+            "const MPI_Count[]",
+            "sendcounts"
+        ],
+        [
+            "const MPI_Aint[]",
+            "displs"
+        ],
+        [
+            "MPI_Datatype",
+            "sendtype"
+        ],
         [
             "void*",
-            "buf"
+            "recvbuf"
+        ],
+        [
+            "MPI_Count",
+            "recvcount"
+        ],
+        [
+            "MPI_Datatype",
+            "recvtype"
         ],
         [
             "int",
+            "root"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Request*",
+            "request"
+        ]
+    ],
+    "MPI_Send": [
+        [
+            "const void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -3427,11 +6318,11 @@
     ],
     "MPI_Send_init": [
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -3457,11 +6348,11 @@
     ],
     "MPI_Sendrecv": [
         [
-            "void*",
+            "const void*",
             "sendbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "sendcount"
         ],
         [
@@ -3481,7 +6372,7 @@
             "recvbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "recvcount"
         ],
         [
@@ -3511,7 +6402,7 @@
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -3543,13 +6434,133 @@
             "status"
         ]
     ],
-    "MPI_Ssend": [
+    "MPI_Session_call_errhandler": [
         [
-            "void*",
-            "buf"
+            "MPI_Session",
+            "session"
         ],
         [
             "int",
+            "errorcode"
+        ]
+    ],
+    "MPI_Session_create_errhandler": [
+        [
+            "MPI_Session_errhandler_function*",
+            "session_errhandler_fn"
+        ],
+        [
+            "MPI_Errhandler*",
+            "errhandler"
+        ]
+    ],
+    "MPI_Session_finalize": [
+        [
+            "MPI_Session*",
+            "session"
+        ]
+    ],
+    "MPI_Session_get_errhandler": [
+        [
+            "MPI_Session",
+            "session"
+        ],
+        [
+            "MPI_Errhandler*",
+            "errhandler"
+        ]
+    ],
+    "MPI_Session_get_info": [
+        [
+            "MPI_Session",
+            "session"
+        ],
+        [
+            "MPI_Info*",
+            "info_used"
+        ]
+    ],
+    "MPI_Session_get_nth_pset": [
+        [
+            "MPI_Session",
+            "session"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "int",
+            "n"
+        ],
+        [
+            "int*",
+            "pset_len"
+        ],
+        [
+            "char*",
+            "pset_name"
+        ]
+    ],
+    "MPI_Session_get_num_psets": [
+        [
+            "MPI_Session",
+            "session"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "int*",
+            "npset_names"
+        ]
+    ],
+    "MPI_Session_get_pset_info": [
+        [
+            "MPI_Session",
+            "session"
+        ],
+        [
+            "const char*",
+            "pset_name"
+        ],
+        [
+            "MPI_Info*",
+            "info"
+        ]
+    ],
+    "MPI_Session_init": [
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Errhandler",
+            "errhandler"
+        ],
+        [
+            "MPI_Session*",
+            "session"
+        ]
+    ],
+    "MPI_Session_set_errhandler": [
+        [
+            "MPI_Session",
+            "session"
+        ],
+        [
+            "MPI_Errhandler",
+            "errhandler"
+        ]
+    ],
+    "MPI_Ssend": [
+        [
+            "const void*",
+            "buf"
+        ],
+        [
+            "MPI_Count",
             "count"
         ],
         [
@@ -3571,11 +6582,11 @@
     ],
     "MPI_Ssend_init": [
         [
-            "void*",
+            "const void*",
             "buf"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -3612,8 +6623,7 @@
         ],
         [
             "MPI_Request[]",
-            "array_of_requests",
-			"count"
+            "array_of_requests"
         ]
     ],
     "MPI_Status_set_cancelled": [
@@ -3636,8 +6646,763 @@
             "datatype"
         ],
         [
-            "int",
+            "MPI_Count",
             "count"
+        ]
+    ],
+    "MPI_Status_set_elements_x": [
+        [
+            "MPI_Status*",
+            "status"
+        ],
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Count",
+            "count"
+        ]
+    ],
+    "MPI_T_category_changed": [
+        [
+            "int*",
+            "update_number"
+        ]
+    ],
+    "MPI_T_category_get_categories": [
+        [
+            "int",
+            "cat_index"
+        ],
+        [
+            "int",
+            "len"
+        ],
+        [
+            "int[]",
+            "indices"
+        ]
+    ],
+    "MPI_T_category_get_cvars": [
+        [
+            "int",
+            "cat_index"
+        ],
+        [
+            "int",
+            "len"
+        ],
+        [
+            "int[]",
+            "indices"
+        ]
+    ],
+    "MPI_T_category_get_events": [
+        [
+            "int",
+            "cat_index"
+        ],
+        [
+            "int",
+            "len"
+        ],
+        [
+            "int[]",
+            "indices"
+        ]
+    ],
+    "MPI_T_category_get_index": [
+        [
+            "const char*",
+            "name"
+        ],
+        [
+            "int*",
+            "cat_index"
+        ]
+    ],
+    "MPI_T_category_get_info": [
+        [
+            "int",
+            "cat_index"
+        ],
+        [
+            "char*",
+            "name"
+        ],
+        [
+            "int*",
+            "name_len"
+        ],
+        [
+            "char*",
+            "desc"
+        ],
+        [
+            "int*",
+            "desc_len"
+        ],
+        [
+            "int*",
+            "num_cvars"
+        ],
+        [
+            "int*",
+            "num_pvars"
+        ],
+        [
+            "int*",
+            "num_categories"
+        ]
+    ],
+    "MPI_T_category_get_num": [
+        [
+            "int*",
+            "num_cat"
+        ]
+    ],
+    "MPI_T_category_get_num_events": [
+        [
+            "int",
+            "cat_index"
+        ],
+        [
+            "int*",
+            "num_events"
+        ]
+    ],
+    "MPI_T_category_get_pvars": [
+        [
+            "int",
+            "cat_index"
+        ],
+        [
+            "int",
+            "len"
+        ],
+        [
+            "int[]",
+            "indices"
+        ]
+    ],
+    "MPI_T_cvar_get_index": [
+        [
+            "const char*",
+            "name"
+        ],
+        [
+            "int*",
+            "cvar_index"
+        ]
+    ],
+    "MPI_T_cvar_get_info": [
+        [
+            "int",
+            "cvar_index"
+        ],
+        [
+            "char*",
+            "name"
+        ],
+        [
+            "int*",
+            "name_len"
+        ],
+        [
+            "int*",
+            "verbosity"
+        ],
+        [
+            "MPI_Datatype*",
+            "datatype"
+        ],
+        [
+            "MPI_T_enum*",
+            "enumtype"
+        ],
+        [
+            "char*",
+            "desc"
+        ],
+        [
+            "int*",
+            "desc_len"
+        ],
+        [
+            "int*",
+            "bind"
+        ],
+        [
+            "int*",
+            "scope"
+        ]
+    ],
+    "MPI_T_cvar_get_num": [
+        [
+            "int*",
+            "num_cvar"
+        ]
+    ],
+    "MPI_T_cvar_handle_alloc": [
+        [
+            "int",
+            "cvar_index"
+        ],
+        [
+            "void*",
+            "obj_handle"
+        ],
+        [
+            "MPI_T_cvar_handle*",
+            "handle"
+        ],
+        [
+            "int*",
+            "count"
+        ]
+    ],
+    "MPI_T_cvar_handle_free": [
+        [
+            "MPI_T_cvar_handle*",
+            "handle"
+        ]
+    ],
+    "MPI_T_cvar_read": [
+        [
+            "MPI_T_cvar_handle",
+            "handle"
+        ],
+        [
+            "void*",
+            "buf"
+        ]
+    ],
+    "MPI_T_cvar_write": [
+        [
+            "MPI_T_cvar_handle",
+            "handle"
+        ],
+        [
+            "const void*",
+            "buf"
+        ]
+    ],
+    "MPI_T_enum_get_info": [
+        [
+            "MPI_T_enum",
+            "enumtype"
+        ],
+        [
+            "int*",
+            "num"
+        ],
+        [
+            "char*",
+            "name"
+        ],
+        [
+            "int*",
+            "name_len"
+        ]
+    ],
+    "MPI_T_enum_get_item": [
+        [
+            "MPI_T_enum",
+            "enumtype"
+        ],
+        [
+            "int",
+            "index"
+        ],
+        [
+            "int*",
+            "value"
+        ],
+        [
+            "char*",
+            "name"
+        ],
+        [
+            "int*",
+            "name_len"
+        ]
+    ],
+    "MPI_T_event_callback_get_info": [
+        [
+            "MPI_T_event_registration",
+            "event_registration"
+        ],
+        [
+            "MPI_T_cb_safety",
+            "cb_safety"
+        ],
+        [
+            "MPI_Info*",
+            "info_used"
+        ]
+    ],
+    "MPI_T_event_callback_set_info": [
+        [
+            "MPI_T_event_registration",
+            "event_registration"
+        ],
+        [
+            "MPI_T_cb_safety",
+            "cb_safety"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ]
+    ],
+    "MPI_T_event_copy": [
+        [
+            "MPI_T_event_instance",
+            "event_instance"
+        ],
+        [
+            "void*",
+            "buffer"
+        ]
+    ],
+    "MPI_T_event_get_index": [
+        [
+            "const char*",
+            "name"
+        ],
+        [
+            "int*",
+            "event_index"
+        ]
+    ],
+    "MPI_T_event_get_info": [
+        [
+            "int",
+            "event_index"
+        ],
+        [
+            "char*",
+            "name"
+        ],
+        [
+            "int*",
+            "name_len"
+        ],
+        [
+            "int*",
+            "verbosity"
+        ],
+        [
+            "MPI_Datatype[]",
+            "array_of_datatypes"
+        ],
+        [
+            "MPI_Aint[]",
+            "array_of_displacements"
+        ],
+        [
+            "int*",
+            "num_elements"
+        ],
+        [
+            "MPI_T_enum*",
+            "enumtype"
+        ],
+        [
+            "MPI_Info*",
+            "info"
+        ],
+        [
+            "char*",
+            "desc"
+        ],
+        [
+            "int*",
+            "desc_len"
+        ],
+        [
+            "int*",
+            "bind"
+        ]
+    ],
+    "MPI_T_event_get_num": [
+        [
+            "int*",
+            "num_events"
+        ]
+    ],
+    "MPI_T_event_get_source": [
+        [
+            "MPI_T_event_instance",
+            "event_instance"
+        ],
+        [
+            "int*",
+            "source_index"
+        ]
+    ],
+    "MPI_T_event_get_timestamp": [
+        [
+            "MPI_T_event_instance",
+            "event_instance"
+        ],
+        [
+            "MPI_Count*",
+            "event_timestamp"
+        ]
+    ],
+    "MPI_T_event_handle_alloc": [
+        [
+            "int",
+            "event_index"
+        ],
+        [
+            "void*",
+            "obj_handle"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_T_event_registration*",
+            "event_registration"
+        ]
+    ],
+    "MPI_T_event_handle_free": [
+        [
+            "MPI_T_event_registration",
+            "event_registration"
+        ],
+        [
+            "void*",
+            "user_data"
+        ],
+        [
+            "MPI_T_event_free_cb_function",
+            "free_cb_function"
+        ]
+    ],
+    "MPI_T_event_handle_get_info": [
+        [
+            "MPI_T_event_registration",
+            "event_registration"
+        ],
+        [
+            "MPI_Info*",
+            "info_used"
+        ]
+    ],
+    "MPI_T_event_handle_set_info": [
+        [
+            "MPI_T_event_registration",
+            "event_registration"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ]
+    ],
+    "MPI_T_event_read": [
+        [
+            "MPI_T_event_instance",
+            "event_instance"
+        ],
+        [
+            "int",
+            "element_index"
+        ],
+        [
+            "void*",
+            "buffer"
+        ]
+    ],
+    "MPI_T_event_register_callback": [
+        [
+            "MPI_T_event_registration",
+            "event_registration"
+        ],
+        [
+            "MPI_T_cb_safety",
+            "cb_safety"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "void*",
+            "user_data"
+        ],
+        [
+            "MPI_T_event_cb_function",
+            "event_cb_function"
+        ]
+    ],
+    "MPI_T_event_set_dropped_handler": [
+        [
+            "MPI_T_event_registration",
+            "event_registration"
+        ],
+        [
+            "MPI_T_event_dropped_cb_function",
+            "dropped_cb_function"
+        ]
+    ],
+    "MPI_T_finalize": [],
+    "MPI_T_init_thread": [
+        [
+            "int",
+            "required"
+        ],
+        [
+            "int*",
+            "provided"
+        ]
+    ],
+    "MPI_T_pvar_get_index": [
+        [
+            "const char*",
+            "name"
+        ],
+        [
+            "int",
+            "var_class"
+        ],
+        [
+            "int*",
+            "pvar_index"
+        ]
+    ],
+    "MPI_T_pvar_get_info": [
+        [
+            "int",
+            "pvar_index"
+        ],
+        [
+            "char*",
+            "name"
+        ],
+        [
+            "int*",
+            "name_len"
+        ],
+        [
+            "int*",
+            "verbosity"
+        ],
+        [
+            "int*",
+            "var_class"
+        ],
+        [
+            "MPI_Datatype*",
+            "datatype"
+        ],
+        [
+            "MPI_T_enum*",
+            "enumtype"
+        ],
+        [
+            "char*",
+            "desc"
+        ],
+        [
+            "int*",
+            "desc_len"
+        ],
+        [
+            "int*",
+            "bind"
+        ],
+        [
+            "int*",
+            "readonly"
+        ],
+        [
+            "int*",
+            "continuous"
+        ],
+        [
+            "int*",
+            "atomic"
+        ]
+    ],
+    "MPI_T_pvar_get_num": [
+        [
+            "int*",
+            "num_pvar"
+        ]
+    ],
+    "MPI_T_pvar_handle_alloc": [
+        [
+            "MPI_T_pvar_session",
+            "pe_session"
+        ],
+        [
+            "int",
+            "pvar_index"
+        ],
+        [
+            "void*",
+            "obj_handle"
+        ],
+        [
+            "MPI_T_pvar_handle*",
+            "handle"
+        ],
+        [
+            "int*",
+            "count"
+        ]
+    ],
+    "MPI_T_pvar_handle_free": [
+        [
+            "MPI_T_pvar_session",
+            "pe_session"
+        ],
+        [
+            "MPI_T_pvar_handle*",
+            "handle"
+        ]
+    ],
+    "MPI_T_pvar_read": [
+        [
+            "MPI_T_pvar_session",
+            "pe_session"
+        ],
+        [
+            "MPI_T_pvar_handle",
+            "handle"
+        ],
+        [
+            "void*",
+            "buf"
+        ]
+    ],
+    "MPI_T_pvar_readreset": [
+        [
+            "MPI_T_pvar_session",
+            "pe_session"
+        ],
+        [
+            "MPI_T_pvar_handle",
+            "handle"
+        ],
+        [
+            "void*",
+            "buf"
+        ]
+    ],
+    "MPI_T_pvar_reset": [
+        [
+            "MPI_T_pvar_session",
+            "pe_session"
+        ],
+        [
+            "MPI_T_pvar_handle",
+            "handle"
+        ]
+    ],
+    "MPI_T_pvar_session_create": [
+        [
+            "MPI_T_pvar_session*",
+            "pe_session"
+        ]
+    ],
+    "MPI_T_pvar_session_free": [
+        [
+            "MPI_T_pvar_session*",
+            "pe_session"
+        ]
+    ],
+    "MPI_T_pvar_start": [
+        [
+            "MPI_T_pvar_session",
+            "pe_session"
+        ],
+        [
+            "MPI_T_pvar_handle",
+            "handle"
+        ]
+    ],
+    "MPI_T_pvar_stop": [
+        [
+            "MPI_T_pvar_session",
+            "pe_session"
+        ],
+        [
+            "MPI_T_pvar_handle",
+            "handle"
+        ]
+    ],
+    "MPI_T_pvar_write": [
+        [
+            "MPI_T_pvar_session",
+            "pe_session"
+        ],
+        [
+            "MPI_T_pvar_handle",
+            "handle"
+        ],
+        [
+            "const void*",
+            "buf"
+        ]
+    ],
+    "MPI_T_source_get_info": [
+        [
+            "int",
+            "source_index"
+        ],
+        [
+            "char*",
+            "name"
+        ],
+        [
+            "int*",
+            "name_len"
+        ],
+        [
+            "char*",
+            "desc"
+        ],
+        [
+            "int*",
+            "desc_len"
+        ],
+        [
+            "MPI_T_source_order*",
+            "ordering"
+        ],
+        [
+            "MPI_Count*",
+            "ticks_per_second"
+        ],
+        [
+            "MPI_Count*",
+            "max_ticks"
+        ],
+        [
+            "MPI_Info*",
+            "info"
+        ]
+    ],
+    "MPI_T_source_get_num": [
+        [
+            "int*",
+            "num_sources"
+        ]
+    ],
+    "MPI_T_source_get_timestamp": [
+        [
+            "int",
+            "source_index"
+        ],
+        [
+            "MPI_Count*",
+            "timestamp"
         ]
     ],
     "MPI_Test": [
@@ -3656,7 +7421,7 @@
     ],
     "MPI_Test_cancelled": [
         [
-            "MPI_Status*",
+            "const MPI_Status*",
             "status"
         ],
         [
@@ -3671,8 +7436,7 @@
         ],
         [
             "MPI_Request[]",
-            "array_of_requests",
-			"count"
+            "array_of_requests"
         ],
         [
             "int*",
@@ -3680,8 +7444,7 @@
         ],
         [
             "MPI_Status[]",
-            "array_of_statuses",
-			"count"
+            "array_of_statuses"
         ]
     ],
     "MPI_Testany": [
@@ -3691,8 +7454,7 @@
         ],
         [
             "MPI_Request[]",
-            "array_of_requests",
-			"count"
+            "array_of_requests"
         ],
         [
             "int*",
@@ -3714,8 +7476,7 @@
         ],
         [
             "MPI_Request[]",
-            "array_of_requests",
-			"incount"
+            "array_of_requests"
         ],
         [
             "int*",
@@ -3723,13 +7484,11 @@
         ],
         [
             "int[]",
-            "array_of_indices",
-			"*"
+            "array_of_indices"
         ],
         [
             "MPI_Status[]",
-            "array_of_statuses",
-			"*"
+            "array_of_statuses"
         ]
     ],
     "MPI_Topo_test": [
@@ -3745,12 +7504,12 @@
     "MPI_Type_commit": [
         [
             "MPI_Datatype*",
-            "type"
+            "datatype"
         ]
     ],
     "MPI_Type_contiguous": [
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
@@ -3776,24 +7535,20 @@
             "ndims"
         ],
         [
-            "int[]",
-            "gsize_array",
-			"ndims"
+            "const MPI_Count[]",
+            "array_of_gsizes"
         ],
         [
-            "int[]",
-            "distrib_array",
-			"ndims"
+            "const int[]",
+            "array_of_distribs"
         ],
         [
-            "int[]",
-            "darg_array",
-			"ndims"
+            "const int[]",
+            "array_of_dargs"
         ],
         [
-            "int[]",
-            "psize_array",
-			"ndims"
+            "const int[]",
+            "array_of_psizes"
         ],
         [
             "int",
@@ -3808,20 +7563,78 @@
             "newtype"
         ]
     ],
-    "MPI_Type_create_hindexed": [
+    "MPI_Type_create_f90_complex": [
         [
             "int",
+            "p"
+        ],
+        [
+            "int",
+            "r"
+        ],
+        [
+            "MPI_Datatype*",
+            "newtype"
+        ]
+    ],
+    "MPI_Type_create_f90_integer": [
+        [
+            "int",
+            "r"
+        ],
+        [
+            "MPI_Datatype*",
+            "newtype"
+        ]
+    ],
+    "MPI_Type_create_f90_real": [
+        [
+            "int",
+            "p"
+        ],
+        [
+            "int",
+            "r"
+        ],
+        [
+            "MPI_Datatype*",
+            "newtype"
+        ]
+    ],
+    "MPI_Type_create_hindexed": [
+        [
+            "MPI_Count",
             "count"
         ],
         [
-            "int[]",
-            "array_of_blocklengths",
-			"count"
+            "const MPI_Count[]",
+            "array_of_blocklengths"
         ],
         [
-            "MPI_Aint[]",
-            "array_of_displacements",
-			"count"
+            "const MPI_Count[]",
+            "array_of_displacements"
+        ],
+        [
+            "MPI_Datatype",
+            "oldtype"
+        ],
+        [
+            "MPI_Datatype*",
+            "newtype"
+        ]
+    ],
+    "MPI_Type_create_hindexed_block": [
+        [
+            "MPI_Count",
+            "count"
+        ],
+        [
+            "MPI_Count",
+            "blocklength"
+        ],
+        [
+            "const MPI_Count[]",
+            "array_of_displacements"
         ],
         [
             "MPI_Datatype",
@@ -3834,15 +7647,15 @@
     ],
     "MPI_Type_create_hvector": [
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
-            "int",
+            "MPI_Count",
             "blocklength"
         ],
         [
-            "MPI_Aint",
+            "MPI_Count",
             "stride"
         ],
         [
@@ -3856,17 +7669,16 @@
     ],
     "MPI_Type_create_indexed_block": [
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
-            "int",
+            "MPI_Count",
             "blocklength"
         ],
         [
-            "int[]",
-            "array_of_displacements",
-			"count"
+            "const MPI_Count[]",
+            "array_of_displacements"
         ],
         [
             "MPI_Datatype",
@@ -3901,11 +7713,11 @@
             "oldtype"
         ],
         [
-            "MPI_Aint",
+            "MPI_Count",
             "lb"
         ],
         [
-            "MPI_Aint",
+            "MPI_Count",
             "extent"
         ],
         [
@@ -3915,23 +7727,20 @@
     ],
     "MPI_Type_create_struct": [
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
-            "int[]",
-            "array_of_block_lengths",
-			"count"
+            "const MPI_Count[]",
+            "array_of_blocklengths"
         ],
         [
-            "MPI_Aint[]",
-            "array_of_displacements",
-			"count"
+            "const MPI_Count[]",
+            "array_of_displacements"
         ],
         [
-            "MPI_Datatype[]",
-            "array_of_types",
-			"count"
+            "const MPI_Datatype[]",
+            "array_of_types"
         ],
         [
             "MPI_Datatype*",
@@ -3944,19 +7753,16 @@
             "ndims"
         ],
         [
-            "int[]",
-            "size_array",
-			"ndims"
+            "const MPI_Count[]",
+            "array_of_sizes"
         ],
         [
-            "int[]",
-            "subsize_array",
-			"ndims"
+            "const MPI_Count[]",
+            "array_of_subsizes"
         ],
         [
-            "int[]",
-            "start_array",
-			"ndims"
+            "const MPI_Count[]",
+            "array_of_starts"
         ],
         [
             "int",
@@ -3974,7 +7780,7 @@
     "MPI_Type_delete_attr": [
         [
             "MPI_Datatype",
-            "type"
+            "datatype"
         ],
         [
             "int",
@@ -3984,27 +7790,17 @@
     "MPI_Type_dup": [
         [
             "MPI_Datatype",
-            "type"
+            "oldtype"
         ],
         [
             "MPI_Datatype*",
             "newtype"
         ]
     ],
-    "MPI_Type_extent": [
-        [
-            "MPI_Datatype",
-            "type"
-        ],
-        [
-            "MPI_Aint*",
-            "extent"
-        ]
-    ],
     "MPI_Type_free": [
         [
             "MPI_Datatype*",
-            "type"
+            "datatype"
         ]
     ],
     "MPI_Type_free_keyval": [
@@ -4016,7 +7812,7 @@
     "MPI_Type_get_attr": [
         [
             "MPI_Datatype",
-            "type"
+            "datatype"
         ],
         [
             "int",
@@ -4034,51 +7830,60 @@
     "MPI_Type_get_contents": [
         [
             "MPI_Datatype",
-            "mtype"
+            "datatype"
         ],
         [
-            "int",
+            "MPI_Count",
             "max_integers"
         ],
         [
-            "int",
+            "MPI_Count",
             "max_addresses"
         ],
         [
-            "int",
+            "MPI_Count",
+            "max_large_counts"
+        ],
+        [
+            "MPI_Count",
             "max_datatypes"
         ],
         [
             "int[]",
-            "array_of_integers",
-			"max_integers"
+            "array_of_integers"
         ],
         [
             "MPI_Aint[]",
-            "array_of_addresses",
-			"max_addresses"
+            "array_of_addresses"
+        ],
+        [
+            "MPI_Count[]",
+            "array_of_large_counts"
         ],
         [
             "MPI_Datatype[]",
-            "array_of_datatypes",
-			"max_datatypes"
+            "array_of_datatypes"
         ]
     ],
     "MPI_Type_get_envelope": [
         [
             "MPI_Datatype",
-            "type"
+            "datatype"
         ],
         [
-            "int*",
+            "MPI_Count*",
             "num_integers"
         ],
         [
-            "int*",
+            "MPI_Count*",
             "num_addresses"
         ],
         [
-            "int*",
+            "MPI_Count*",
+            "num_large_counts"
+        ],
+        [
+            "MPI_Count*",
             "num_datatypes"
         ],
         [
@@ -4089,21 +7894,35 @@
     "MPI_Type_get_extent": [
         [
             "MPI_Datatype",
-            "type"
+            "datatype"
         ],
         [
-            "MPI_Aint*",
+            "MPI_Count*",
             "lb"
         ],
         [
-            "MPI_Aint*",
+            "MPI_Count*",
+            "extent"
+        ]
+    ],
+    "MPI_Type_get_extent_x": [
+        [
+            "MPI_Datatype",
+            "datatype"
+        ],
+        [
+            "MPI_Count*",
+            "lb"
+        ],
+        [
+            "MPI_Count*",
             "extent"
         ]
     ],
     "MPI_Type_get_name": [
         [
             "MPI_Datatype",
-            "type"
+            "datatype"
         ],
         [
             "char*",
@@ -4120,74 +7939,40 @@
             "datatype"
         ],
         [
-            "MPI_Aint*",
+            "MPI_Count*",
             "true_lb"
         ],
         [
-            "MPI_Aint*",
+            "MPI_Count*",
             "true_extent"
         ]
     ],
-    "MPI_Type_hindexed": [
-        [
-            "int",
-            "count"
-        ],
-        [
-            "int[]",
-            "array_of_blocklengths",
-			"count"
-        ],
-        [
-            "MPI_Aint[]",
-            "array_of_displacements",
-			"count"
-        ],
+    "MPI_Type_get_true_extent_x": [
         [
             "MPI_Datatype",
-            "oldtype"
+            "datatype"
         ],
         [
-            "MPI_Datatype*",
-            "newtype"
-        ]
-    ],
-    "MPI_Type_hvector": [
-        [
-            "int",
-            "count"
+            "MPI_Count*",
+            "true_lb"
         ],
         [
-            "int",
-            "blocklength"
-        ],
-        [
-            "MPI_Aint",
-            "stride"
-        ],
-        [
-            "MPI_Datatype",
-            "oldtype"
-        ],
-        [
-            "MPI_Datatype*",
-            "newtype"
+            "MPI_Count*",
+            "true_extent"
         ]
     ],
     "MPI_Type_indexed": [
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
-            "int[]",
-            "array_of_blocklengths",
-			"count"
+            "const MPI_Count[]",
+            "array_of_blocklengths"
         ],
         [
-            "int[]",
-            "array_of_displacements",
-			"count"
+            "const MPI_Count[]",
+            "array_of_displacements"
         ],
         [
             "MPI_Datatype",
@@ -4196,16 +7981,6 @@
         [
             "MPI_Datatype*",
             "newtype"
-        ]
-    ],
-    "MPI_Type_lb": [
-        [
-            "MPI_Datatype",
-            "type"
-        ],
-        [
-            "MPI_Aint*",
-            "lb"
         ]
     ],
     "MPI_Type_match_size": [
@@ -4219,13 +7994,13 @@
         ],
         [
             "MPI_Datatype*",
-            "type"
+            "datatype"
         ]
     ],
     "MPI_Type_set_attr": [
         [
             "MPI_Datatype",
-            "type"
+            "datatype"
         ],
         [
             "int",
@@ -4233,75 +8008,50 @@
         ],
         [
             "void*",
-            "attr_val"
+            "attribute_val"
         ]
     ],
     "MPI_Type_set_name": [
         [
             "MPI_Datatype",
-            "type"
+            "datatype"
         ],
         [
-            "char*",
+            "const char*",
             "type_name"
         ]
     ],
     "MPI_Type_size": [
         [
             "MPI_Datatype",
-            "type"
+            "datatype"
         ],
         [
-            "int*",
+            "MPI_Count*",
             "size"
         ]
     ],
-    "MPI_Type_struct": [
-        [
-            "int",
-            "count"
-        ],
-        [
-            "int[]",
-            "array_of_blocklengths",
-			"count"
-        ],
-        [
-            "MPI_Aint[]",
-            "array_of_displacements",
-			"count"
-        ],
-        [
-            "MPI_Datatype[]",
-            "array_of_types",
-			"count"
-        ],
-        [
-            "MPI_Datatype*",
-            "newtype"
-        ]
-    ],
-    "MPI_Type_ub": [
+    "MPI_Type_size_x": [
         [
             "MPI_Datatype",
-            "mtype"
+            "datatype"
         ],
         [
-            "MPI_Aint*",
-            "ub"
+            "MPI_Count*",
+            "size"
         ]
     ],
     "MPI_Type_vector": [
         [
-            "int",
+            "MPI_Count",
             "count"
         ],
         [
-            "int",
+            "MPI_Count",
             "blocklength"
         ],
         [
-            "int",
+            "MPI_Count",
             "stride"
         ],
         [
@@ -4315,15 +8065,15 @@
     ],
     "MPI_Unpack": [
         [
-            "void*",
+            "const void*",
             "inbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "insize"
         ],
         [
-            "int*",
+            "MPI_Count*",
             "position"
         ],
         [
@@ -4331,7 +8081,7 @@
             "outbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "outcount"
         ],
         [
@@ -4345,19 +8095,19 @@
     ],
     "MPI_Unpack_external": [
         [
-            "char*",
+            "const char[]",
             "datarep"
         ],
         [
-            "void*",
+            "const void*",
             "inbuf"
         ],
         [
-            "MPI_Aint",
+            "MPI_Count",
             "insize"
         ],
         [
-            "MPI_Aint*",
+            "MPI_Count*",
             "position"
         ],
         [
@@ -4365,7 +8115,7 @@
             "outbuf"
         ],
         [
-            "int",
+            "MPI_Count",
             "outcount"
         ],
         [
@@ -4375,7 +8125,7 @@
     ],
     "MPI_Unpublish_name": [
         [
-            "char*",
+            "const char*",
             "service_name"
         ],
         [
@@ -4383,7 +8133,7 @@
             "info"
         ],
         [
-            "char*",
+            "const char*",
             "port_name"
         ]
     ],
@@ -4404,13 +8154,11 @@
         ],
         [
             "MPI_Request[]",
-            "array_of_requests",
-			"count"
+            "array_of_requests"
         ],
         [
             "MPI_Status[]",
-            "array_of_statuses",
-			"count"
+            "array_of_statuses"
         ]
     ],
     "MPI_Waitany": [
@@ -4420,8 +8168,7 @@
         ],
         [
             "MPI_Request[]",
-            "array_of_requests",
-			"count"
+            "array_of_requests"
         ],
         [
             "int*",
@@ -4439,8 +8186,7 @@
         ],
         [
             "MPI_Request[]",
-            "array_of_requests",
-			"incount"
+            "array_of_requests"
         ],
         [
             "int*",
@@ -4448,13 +8194,77 @@
         ],
         [
             "int[]",
-            "array_of_indices",
-			"*"
+            "array_of_indices"
         ],
         [
             "MPI_Status[]",
-            "array_of_statuses",
-			"*"
+            "array_of_statuses"
+        ]
+    ],
+    "MPI_Win_allocate": [
+        [
+            "MPI_Aint",
+            "size"
+        ],
+        [
+            "MPI_Aint",
+            "disp_unit"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "void*",
+            "baseptr"
+        ],
+        [
+            "MPI_Win*",
+            "win"
+        ]
+    ],
+    "MPI_Win_allocate_shared": [
+        [
+            "MPI_Aint",
+            "size"
+        ],
+        [
+            "MPI_Aint",
+            "disp_unit"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "void*",
+            "baseptr"
+        ],
+        [
+            "MPI_Win*",
+            "win"
+        ]
+    ],
+    "MPI_Win_attach": [
+        [
+            "MPI_Win",
+            "win"
+        ],
+        [
+            "void*",
+            "base"
+        ],
+        [
+            "MPI_Aint",
+            "size"
         ]
     ],
     "MPI_Win_call_errhandler": [
@@ -4483,9 +8293,23 @@
             "size"
         ],
         [
-            "int",
+            "MPI_Aint",
             "disp_unit"
         ],
+        [
+            "MPI_Info",
+            "info"
+        ],
+        [
+            "MPI_Comm",
+            "comm"
+        ],
+        [
+            "MPI_Win*",
+            "win"
+        ]
+    ],
+    "MPI_Win_create_dynamic": [
         [
             "MPI_Info",
             "info"
@@ -4502,7 +8326,7 @@
     "MPI_Win_create_errhandler": [
         [
             "MPI_Win_errhandler_function*",
-            "function"
+            "win_errhandler_fn"
         ],
         [
             "MPI_Errhandler*",
@@ -4537,11 +8361,53 @@
             "win_keyval"
         ]
     ],
+    "MPI_Win_detach": [
+        [
+            "MPI_Win",
+            "win"
+        ],
+        [
+            "const void*",
+            "base"
+        ]
+    ],
     "MPI_Win_fence": [
         [
             "int",
             "assert"
         ],
+        [
+            "MPI_Win",
+            "win"
+        ]
+    ],
+    "MPI_Win_flush": [
+        [
+            "int",
+            "rank"
+        ],
+        [
+            "MPI_Win",
+            "win"
+        ]
+    ],
+    "MPI_Win_flush_all": [
+        [
+            "MPI_Win",
+            "win"
+        ]
+    ],
+    "MPI_Win_flush_local": [
+        [
+            "int",
+            "rank"
+        ],
+        [
+            "MPI_Win",
+            "win"
+        ]
+    ],
+    "MPI_Win_flush_local_all": [
         [
             "MPI_Win",
             "win"
@@ -4597,6 +8463,16 @@
             "group"
         ]
     ],
+    "MPI_Win_get_info": [
+        [
+            "MPI_Win",
+            "win"
+        ],
+        [
+            "MPI_Info*",
+            "info_used"
+        ]
+    ],
     "MPI_Win_get_name": [
         [
             "MPI_Win",
@@ -4620,6 +8496,16 @@
             "int",
             "rank"
         ],
+        [
+            "int",
+            "assert"
+        ],
+        [
+            "MPI_Win",
+            "win"
+        ]
+    ],
+    "MPI_Win_lock_all": [
         [
             "int",
             "assert"
@@ -4667,14 +8553,46 @@
             "errhandler"
         ]
     ],
+    "MPI_Win_set_info": [
+        [
+            "MPI_Win",
+            "win"
+        ],
+        [
+            "MPI_Info",
+            "info"
+        ]
+    ],
     "MPI_Win_set_name": [
         [
             "MPI_Win",
             "win"
         ],
         [
-            "char*",
+            "const char*",
             "win_name"
+        ]
+    ],
+    "MPI_Win_shared_query": [
+        [
+            "MPI_Win",
+            "win"
+        ],
+        [
+            "int",
+            "rank"
+        ],
+        [
+            "MPI_Aint*",
+            "size"
+        ],
+        [
+            "MPI_Aint*",
+            "disp_unit"
+        ],
+        [
+            "void*",
+            "baseptr"
         ]
     ],
     "MPI_Win_start": [
@@ -4686,6 +8604,12 @@
             "int",
             "assert"
         ],
+        [
+            "MPI_Win",
+            "win"
+        ]
+    ],
+    "MPI_Win_sync": [
         [
             "MPI_Win",
             "win"
@@ -4711,102 +8635,18 @@
             "win"
         ]
     ],
+    "MPI_Win_unlock_all": [
+        [
+            "MPI_Win",
+            "win"
+        ]
+    ],
     "MPI_Win_wait": [
         [
             "MPI_Win",
             "win"
         ]
     ],
-	"MPI_Mprobe": [
-		[
-			"int",
-			"source"
-		],
-		[
-			"int",
-			"tag"
-		],
-		[
-			"MPI_Comm",
-			"comm"
-		],
-		[
-			"MPI_Message*",
-			"message"
-		],
-		[
-			"MPI_Status*",
-			"status"
-		]
-	],
-	"MPI_Improbe": [
-		[
-			"int",
-			"source"
-		],
-		[
-			"int",
-			"tag"
-		],
-		[
-			"MPI_Comm",
-			"comm"
-		],
-		[
-			"int*",
-			"flag"
-		],
-		[
-			"MPI_Message*",
-			"message"
-		],
-		[
-			"MPI_Status*",
-			"status"
-		]
-	],
-	"MPI_Mrecv": [
-		[
-			"void*",
-			"buf"
-		],
-		[
-			"int",
-			"count"
-		],
-		[
-			"MPI_Datatype",
-			"datatype"
-		],
-		[
-			"MPI_Message*",
-			"message"
-		],
-		[
-			"MPI_Status*",
-			"status"
-		]
-	],
-	"MPI_Imrecv": [
-		[
-			"void*",
-			"buf"
-		],
-		[
-			"int",
-			"count"
-		],
-		[
-			"MPI_Datatype",
-			"datatype"
-		],
-		[
-			"MPI_Message*",
-			"message"
-		],
-		[
-			"MPI_Request*",
-			"status"
-		]
-	]
+    "MPI_Wtick": [],
+    "MPI_Wtime": []
 }

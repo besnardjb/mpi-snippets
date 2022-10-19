@@ -1,752 +1,68 @@
-snippet MPI_Start
-MPI_Start( ${1:MPI_Request* request} );
+snippet MPI_Abort
+MPI_Abort( ${1:MPI_Comm comm} , ${2:int errorcode} );
 endsnippet
-snippet MPI_File_write_all_begin
-MPI_File_write_all_begin( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} );
-endsnippet
-snippet MPI_Win_post
-MPI_Win_post( ${1:MPI_Group group} , ${2:int assert} , ${3:MPI_Win win} );
-endsnippet
-snippet MPI_Win_get_errhandler
-MPI_Win_get_errhandler( ${1:MPI_Win win} , ${2:MPI_Errhandler* errhandler} );
-endsnippet
-snippet MPI_File_get_group
-MPI_File_get_group( ${1:MPI_File fh} , ${2:MPI_Group* group} );
-endsnippet
-snippet MPI_Scan
-MPI_Scan( ${1:void* sendbuf} , ${2:void* recvbuf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} );
-endsnippet
-snippet MPI_Startall
-MPI_Startall( ${1:int count} , ${2:MPI_Request array_of_requests[]} );
-endsnippet
-snippet MPI_Attr_delete
-MPI_Attr_delete( ${1:MPI_Comm comm} , ${2:int keyval} );
-endsnippet
-snippet MPI_File_iwrite_shared
-MPI_File_iwrite_shared( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Request* request} );
-endsnippet
-snippet MPI_Comm_get_attr
-MPI_Comm_get_attr( ${1:MPI_Comm comm} , ${2:int comm_keyval} , ${3:void* attribute_val} , ${4:int* flag} );
-endsnippet
-snippet MPI_File_get_info
-MPI_File_get_info( ${1:MPI_File fh} , ${2:MPI_Info* info_used} );
-endsnippet
-snippet MPI_Type_delete_attr
-MPI_Type_delete_attr( ${1:MPI_Datatype type} , ${2:int type_keyval} );
-endsnippet
-snippet MPI_Error_class
-MPI_Error_class( ${1:int errorcode} , ${2:int* errorclass} );
-endsnippet
-snippet MPI_Free_mem
-MPI_Free_mem( ${1:void* base} );
-endsnippet
-snippet MPI_Info_dup
-MPI_Info_dup( ${1:MPI_Info info} , ${2:MPI_Info* newinfo} );
-endsnippet
-snippet MPI_Type_lb
-MPI_Type_lb( ${1:MPI_Datatype type} , ${2:MPI_Aint* lb} );
-endsnippet
-snippet MPI_Cart_get
-MPI_Cart_get( ${1:MPI_Comm comm} , ${2:int maxdims} , ${3:int dims[]} , ${4:int periods[]} , ${5:int coords[]} );
+snippet MPI_Accumulate
+MPI_Accumulate( ${1:const void* origin_addr} , ${2:MPI_Count origin_count} , ${3:MPI_Datatype origin_datatype} , ${4:int target_rank} , ${5:MPI_Aint target_disp} , ${6:MPI_Count target_count} , ${7:MPI_Datatype target_datatype} , ${8:MPI_Op op} , ${9:MPI_Win win} );
 endsnippet
 snippet MPI_Add_error_class
 MPI_Add_error_class( ${1:int* errorclass} );
 endsnippet
-snippet MPI_File_write_shared
-MPI_File_write_shared( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
-endsnippet
-snippet MPI_Buffer_detach
-MPI_Buffer_detach( ${1:void* buffer} , ${2:int* size} );
-endsnippet
-snippet MPI_File_set_size
-MPI_File_set_size( ${1:MPI_File fh} , ${2:MPI_Offset size} );
-endsnippet
-snippet MPI_Intercomm_create
-MPI_Intercomm_create( ${1:MPI_Comm local_comm} , ${2:int local_leader} , ${3:MPI_Comm bridge_comm} , ${4:int remote_leader} , ${5:int tag} , ${6:MPI_Comm* newintercomm} );
-endsnippet
-snippet MPI_File_iread_at
-MPI_File_iread_at( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:int count} , ${5:MPI_Datatype datatype} , ${6:MPI_Request* request} );
-endsnippet
-snippet MPI_Allreduce
-MPI_Allreduce( ${1:void* sendbuf} , ${2:void* recvbuf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} );
-endsnippet
-snippet MPI_Comm_create_keyval
-MPI_Comm_create_keyval( ${1:MPI_Comm_copy_attr_function* comm_copy_attr_fn} , ${2:MPI_Comm_delete_attr_function* comm_delete_attr_fn} , ${3:int* comm_keyval} , ${4:void* extra_state} );
-endsnippet
-snippet MPI_Ibsend
-MPI_Ibsend( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
-endsnippet
-snippet MPI_File_read_all_end
-MPI_File_read_all_end( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Status* status} );
-endsnippet
-snippet MPI_Comm_remote_size
-MPI_Comm_remote_size( ${1:MPI_Comm comm} , ${2:int* size} );
-endsnippet
-snippet MPI_Type_contiguous
-MPI_Type_contiguous( ${1:int count} , ${2:MPI_Datatype oldtype} , ${3:MPI_Datatype* newtype} );
-endsnippet
-snippet MPI_Type_get_name
-MPI_Type_get_name( ${1:MPI_Datatype type} , ${2:char* type_name} , ${3:int* resultlen} );
-endsnippet
-snippet MPI_Reduce
-MPI_Reduce( ${1:void* sendbuf} , ${2:void* recvbuf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:int root} , ${7:MPI_Comm comm} );
-endsnippet
-snippet MPI_Type_commit
-MPI_Type_commit( ${1:MPI_Datatype* type} );
-endsnippet
-snippet MPI_Comm_get_parent
-MPI_Comm_get_parent( ${1:MPI_Comm* parent} );
-endsnippet
-snippet MPI_Testany
-MPI_Testany( ${1:int count} , ${2:MPI_Request array_of_requests[]} , ${3:int* index} , ${4:int* flag} , ${5:MPI_Status* status} );
-endsnippet
-snippet MPI_Type_extent
-MPI_Type_extent( ${1:MPI_Datatype type} , ${2:MPI_Aint* extent} );
-endsnippet
-snippet MPI_File_preallocate
-MPI_File_preallocate( ${1:MPI_File fh} , ${2:MPI_Offset size} );
-endsnippet
-snippet MPI_File_get_position
-MPI_File_get_position( ${1:MPI_File fh} , ${2:MPI_Offset* offset} );
-endsnippet
-snippet MPI_Sendrecv_replace
-MPI_Sendrecv_replace( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int sendtag} , ${6:int source} , ${7:int recvtag} , ${8:MPI_Comm comm} , ${9:MPI_Status* status} );
-endsnippet
-snippet MPI_Type_get_extent
-MPI_Type_get_extent( ${1:MPI_Datatype type} , ${2:MPI_Aint* lb} , ${3:MPI_Aint* extent} );
-endsnippet
-snippet MPI_Keyval_create
-MPI_Keyval_create( ${1:MPI_Copy_function* copy_fn} , ${2:MPI_Delete_function* delete_fn} , ${3:int* keyval} , ${4:void* extra_state} );
-endsnippet
-snippet MPI_Mrecv
-MPI_Mrecv( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:MPI_Message* message} , ${5:MPI_Status* status} );
-endsnippet
-snippet MPI_Type_hvector
-MPI_Type_hvector( ${1:int count} , ${2:int blocklength} , ${3:MPI_Aint stride} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
-endsnippet
-snippet MPI_Group_translate_ranks
-MPI_Group_translate_ranks( ${1:MPI_Group group1} , ${2:int n} , ${3:int ranks1[]} , ${4:MPI_Group group2} , ${5:int ranks2[]} );
-endsnippet
-snippet MPI_Testsome
-MPI_Testsome( ${1:int incount} , ${2:MPI_Request array_of_requests[]} , ${3:int* outcount} , ${4:int array_of_indices[]} , ${5:MPI_Status array_of_statuses[]} );
-endsnippet
-snippet MPI_Recv_init
-MPI_Recv_init( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int source} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
-endsnippet
-snippet MPI_Win_set_name
-MPI_Win_set_name( ${1:MPI_Win win} , ${2:char* win_name} );
-endsnippet
-snippet MPI_Type_dup
-MPI_Type_dup( ${1:MPI_Datatype type} , ${2:MPI_Datatype* newtype} );
-endsnippet
-snippet MPI_Query_thread
-MPI_Query_thread( ${1:int* provided} );
-endsnippet
-snippet MPI_Comm_group
-MPI_Comm_group( ${1:MPI_Comm comm} , ${2:MPI_Group* group} );
-endsnippet
 snippet MPI_Add_error_code
 MPI_Add_error_code( ${1:int errorclass} , ${2:int* errorcode} );
 endsnippet
-snippet MPI_Type_create_resized
-MPI_Type_create_resized( ${1:MPI_Datatype oldtype} , ${2:MPI_Aint lb} , ${3:MPI_Aint extent} , ${4:MPI_Datatype* newtype} );
+snippet MPI_Add_error_string
+MPI_Add_error_string( ${1:int errorcode} , ${2:const char* string} );
 endsnippet
-snippet MPI_File_seek_shared
-MPI_File_seek_shared( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:int whence} );
+snippet MPI_Aint_add
+MPI_Aint_add( ${1:MPI_Aint base} , ${2:MPI_Aint disp} );
 endsnippet
-snippet MPI_Unpublish_name
-MPI_Unpublish_name( ${1:char* service_name} , ${2:MPI_Info info} , ${3:char* port_name} );
-endsnippet
-snippet MPI_Get_address
-MPI_Get_address( ${1:void* location} , ${2:MPI_Aint* address} );
-endsnippet
-snippet MPI_Is_thread_main
-MPI_Is_thread_main( ${1:int* flag} );
-endsnippet
-snippet MPI_Irecv
-MPI_Irecv( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int source} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
-endsnippet
-snippet MPI_Type_create_indexed_block
-MPI_Type_create_indexed_block( ${1:int count} , ${2:int blocklength} , ${3:int array_of_displacements[]} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
-endsnippet
-snippet MPI_Initialized
-MPI_Initialized( ${1:int* flag} );
-endsnippet
-snippet MPI_File_iwrite
-MPI_File_iwrite( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Request* request} );
-endsnippet
-snippet MPI_Bsend
-MPI_Bsend( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} );
-endsnippet
-snippet MPI_Group_excl
-MPI_Group_excl( ${1:MPI_Group group} , ${2:int n} , ${3:int ranks[]} , ${4:MPI_Group* newgroup} );
-endsnippet
-snippet MPI_Get_count
-MPI_Get_count( ${1:MPI_Status* status} , ${2:MPI_Datatype datatype} , ${3:int* count} );
-endsnippet
-snippet MPI_Error_string
-MPI_Error_string( ${1:int errorcode} , ${2:char* string} , ${3:int* resultlen} );
-endsnippet
-snippet MPI_Grequest_start
-MPI_Grequest_start( ${1:MPI_Grequest_query_function* query_fn} , ${2:MPI_Grequest_free_function* free_fn} , ${3:MPI_Grequest_cancel_function* cancel_fn} , ${4:void* extra_state} , ${5:MPI_Request* request} );
-endsnippet
-snippet MPI_Cartdim_get
-MPI_Cartdim_get( ${1:MPI_Comm comm} , ${2:int* ndims} );
+snippet MPI_Aint_diff
+MPI_Aint_diff( ${1:MPI_Aint addr1} , ${2:MPI_Aint addr2} );
 endsnippet
 snippet MPI_Allgather
-MPI_Allgather( ${1:void* sendbuf} , ${2:int sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:int recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} );
+MPI_Allgather( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} );
 endsnippet
-snippet MPI_Cart_coords
-MPI_Cart_coords( ${1:MPI_Comm comm} , ${2:int rank} , ${3:int maxdims} , ${4:int coords[]} );
-endsnippet
-snippet MPI_Scatterv
-MPI_Scatterv( ${1:void* sendbuf} , ${2:int sendcounts[]} , ${3:int displs[]} , ${4:MPI_Datatype sendtype} , ${5:void* recvbuf} , ${6:int recvcount} , ${7:MPI_Datatype recvtype} , ${8:int root} , ${9:MPI_Comm comm} );
-endsnippet
-snippet MPI_Issend
-MPI_Issend( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
-endsnippet
-snippet MPI_File_sync
-MPI_File_sync( ${1:MPI_File fh} );
-endsnippet
-snippet MPI_Rsend
-MPI_Rsend( ${1:void* ibuf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} );
-endsnippet
-snippet MPI_File_get_amode
-MPI_File_get_amode( ${1:MPI_File fh} , ${2:int* amode} );
-endsnippet
-snippet MPI_Abort
-MPI_Abort( ${1:MPI_Comm comm} , ${2:int errorcode} );
-endsnippet
-snippet MPI_Grequest_complete
-MPI_Grequest_complete( ${1:MPI_Request request} );
-endsnippet
-snippet MPI_Pack
-MPI_Pack( ${1:void* inbuf} , ${2:int incount} , ${3:MPI_Datatype datatype} , ${4:void* outbuf} , ${5:int outsize} , ${6:int* position} , ${7:MPI_Comm comm} );
-endsnippet
-snippet MPI_Win_set_attr
-MPI_Win_set_attr( ${1:MPI_Win win} , ${2:int win_keyval} , ${3:void* attribute_val} );
-endsnippet
-snippet MPI_Info_create
-MPI_Info_create( ${1:MPI_Info* info} );
-endsnippet
-snippet MPI_File_open
-MPI_File_open( ${1:MPI_Comm comm} , ${2:char* filename} , ${3:int amode} , ${4:MPI_Info info} , ${5:MPI_File* fh} );
-endsnippet
-snippet MPI_Gatherv
-MPI_Gatherv( ${1:void* sendbuf} , ${2:int sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:int recvcounts[]} , ${6:int displs[]} , ${7:MPI_Datatype recvtype} , ${8:int root} , ${9:MPI_Comm comm} );
-endsnippet
-snippet MPI_Type_get_attr
-MPI_Type_get_attr( ${1:MPI_Datatype type} , ${2:int type_keyval} , ${3:void* attribute_val} , ${4:int* flag} );
-endsnippet
-snippet MPI_Comm_set_name
-MPI_Comm_set_name( ${1:MPI_Comm comm} , ${2:char* comm_name} );
-endsnippet
-snippet MPI_Comm_disconnect
-MPI_Comm_disconnect( ${1:MPI_Comm* comm} );
-endsnippet
-snippet MPI_Comm_remote_group
-MPI_Comm_remote_group( ${1:MPI_Comm comm} , ${2:MPI_Group* group} );
-endsnippet
-snippet MPI_Cart_shift
-MPI_Cart_shift( ${1:MPI_Comm comm} , ${2:int direction} , ${3:int disp} , ${4:int* rank_source} , ${5:int* rank_dest} );
-endsnippet
-snippet MPI_Init_thread
-MPI_Init_thread( ${1:int* argc} , ${2:char*** argv} , ${3:int req} , ${4:int* provided} );
-endsnippet
-snippet MPI_Comm_size
-MPI_Comm_size( ${1:MPI_Comm comm} , ${2:int* size} );
-endsnippet
-snippet MPI_Type_get_envelope
-MPI_Type_get_envelope( ${1:MPI_Datatype type} , ${2:int* num_integers} , ${3:int* num_addresses} , ${4:int* num_datatypes} , ${5:int* combiner} );
-endsnippet
-snippet MPI_File_iread_shared
-MPI_File_iread_shared( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Request* request} );
-endsnippet
-snippet MPI_File_set_errhandler
-MPI_File_set_errhandler( ${1:MPI_File file} , ${2:MPI_Errhandler errhandler} );
-endsnippet
-snippet MPI_Register_datarep
-MPI_Register_datarep( ${1:char* datarep} , ${2:MPI_Datarep_conversion_function* read_conversion_fn} , ${3:MPI_Datarep_conversion_function* write_conversion_fn} , ${4:MPI_Datarep_extent_function* dtype_file_extent_fn} , ${5:void* extra_state} );
-endsnippet
-snippet MPI_File_read_ordered
-MPI_File_read_ordered( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
-endsnippet
-snippet MPI_Init
-MPI_Init( ${1:int* argc} , ${2:char *** argv} );
-endsnippet
-snippet MPI_Waitsome
-MPI_Waitsome( ${1:int incount} , ${2:MPI_Request array_of_requests[]} , ${3:int* outcount} , ${4:int array_of_indices[]} , ${5:MPI_Status array_of_statuses[]} );
-endsnippet
-snippet MPI_Group_difference
-MPI_Group_difference( ${1:MPI_Group group1} , ${2:MPI_Group group2} , ${3:MPI_Group* newgroup} );
-endsnippet
-snippet MPI_Attr_get
-MPI_Attr_get( ${1:MPI_Comm comm} , ${2:int keyval} , ${3:void* attribute_val} , ${4:int* flag} );
-endsnippet
-snippet MPI_Reduce_scatter
-MPI_Reduce_scatter( ${1:void* sendbuf} , ${2:void* recvbuf} , ${3:int recvcounts[]} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} );
-endsnippet
-snippet MPI_Group_incl
-MPI_Group_incl( ${1:MPI_Group group} , ${2:int n} , ${3:int ranks[]} , ${4:MPI_Group* newgroup} );
-endsnippet
-snippet MPI_Imrecv
-MPI_Imrecv( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:MPI_Message* message} , ${5:MPI_Request* status} );
-endsnippet
-snippet MPI_Wait
-MPI_Wait( ${1:MPI_Request* request} , ${2:MPI_Status* status} );
-endsnippet
-snippet MPI_Testall
-MPI_Testall( ${1:int count} , ${2:MPI_Request array_of_requests[]} , ${3:int* flag} , ${4:MPI_Status array_of_statuses[]} );
-endsnippet
-snippet MPI_File_set_info
-MPI_File_set_info( ${1:MPI_File fh} , ${2:MPI_Info info} );
-endsnippet
-snippet MPI_Irsend
-MPI_Irsend( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
-endsnippet
-snippet MPI_Get_version
-MPI_Get_version( ${1:int* version} , ${2:int* subversion} );
-endsnippet
-snippet MPI_Comm_create_errhandler
-MPI_Comm_create_errhandler( ${1:MPI_Comm_errhandler_function* function} , ${2:MPI_Errhandler* errhandler} );
-endsnippet
-snippet MPI_File_write_all
-MPI_File_write_all( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
-endsnippet
-snippet MPI_Comm_connect
-MPI_Comm_connect( ${1:char* port_name} , ${2:MPI_Info info} , ${3:int root} , ${4:MPI_Comm comm} , ${5:MPI_Comm* newcomm} );
-endsnippet
-snippet MPI_Group_compare
-MPI_Group_compare( ${1:MPI_Group group1} , ${2:MPI_Group group2} , ${3:int* result} );
-endsnippet
-snippet MPI_Address
-MPI_Address( ${1:void* location} , ${2:MPI_Aint* address} );
-endsnippet
-snippet MPI_Comm_compare
-MPI_Comm_compare( ${1:MPI_Comm comm1} , ${2:MPI_Comm comm2} , ${3:int* result} );
-endsnippet
-snippet MPI_Win_unlock
-MPI_Win_unlock( ${1:int rank} , ${2:MPI_Win win} );
-endsnippet
-snippet MPI_Pack_external
-MPI_Pack_external( ${1:char* datarep} , ${2:void* inbuf} , ${3:int incount} , ${4:MPI_Datatype datatype} , ${5:void* outbuf} , ${6:MPI_Aint outsize} , ${7:MPI_Aint* position} );
-endsnippet
-snippet MPI_Request_free
-MPI_Request_free( ${1:MPI_Request* request} );
-endsnippet
-snippet MPI_Topo_test
-MPI_Topo_test( ${1:MPI_Comm comm} , ${2:int* status} );
-endsnippet
-snippet MPI_File_read
-MPI_File_read( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
-endsnippet
-snippet MPI_Buffer_attach
-MPI_Buffer_attach( ${1:void* buffer} , ${2:int size} );
-endsnippet
-snippet MPI_Win_call_errhandler
-MPI_Win_call_errhandler( ${1:MPI_Win win} , ${2:int errorcode} );
-endsnippet
-snippet MPI_Win_get_group
-MPI_Win_get_group( ${1:MPI_Win win} , ${2:MPI_Group* group} );
-endsnippet
-snippet MPI_Errhandler_create
-MPI_Errhandler_create( ${1:MPI_Handler_function* function} , ${2:MPI_Errhandler* errhandler} );
-endsnippet
-snippet MPI_Cart_create
-MPI_Cart_create( ${1:MPI_Comm old_comm} , ${2:int ndims} , ${3:int dims[]} , ${4:int periods[]} , ${5:int reorder} , ${6:MPI_Comm* comm_cart} );
-endsnippet
-snippet MPI_Status_set_cancelled
-MPI_Status_set_cancelled( ${1:MPI_Status* status} , ${2:int flag} );
-endsnippet
-snippet MPI_Win_get_attr
-MPI_Win_get_attr( ${1:MPI_Win win} , ${2:int win_keyval} , ${3:void* attribute_val} , ${4:int* flag} );
-endsnippet
-snippet MPI_Type_struct
-MPI_Type_struct( ${1:int count} , ${2:int array_of_blocklengths[]} , ${3:MPI_Aint array_of_displacements[]} , ${4:MPI_Datatype array_of_types[]} , ${5:MPI_Datatype* newtype} );
-endsnippet
-snippet MPI_Graph_neighbors_count
-MPI_Graph_neighbors_count( ${1:MPI_Comm comm} , ${2:int rank} , ${3:int* nneighbors} );
-endsnippet
-snippet MPI_File_get_view
-MPI_File_get_view( ${1:MPI_File fh} , ${2:MPI_Offset* disp} , ${3:MPI_Datatype* etype} , ${4:MPI_Datatype* filetype} , ${5:char* datarep} );
+snippet MPI_Allgather_init
+MPI_Allgather_init( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} , ${8:MPI_Info info} , ${9:MPI_Request* request} );
 endsnippet
 snippet MPI_Allgatherv
-MPI_Allgatherv( ${1:void* sendbuf} , ${2:int sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:int recvcounts[]} , ${6:int displs[]} , ${7:MPI_Datatype recvtype} , ${8:MPI_Comm comm} );
+MPI_Allgatherv( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:const MPI_Count recvcounts[]} , ${6:const MPI_Aint displs[]} , ${7:MPI_Datatype recvtype} , ${8:MPI_Comm comm} );
 endsnippet
-snippet MPI_Sendrecv
-MPI_Sendrecv( ${1:void* sendbuf} , ${2:int sendcount} , ${3:MPI_Datatype sendtype} , ${4:int dest} , ${5:int sendtag} , ${6:void* recvbuf} , ${7:int recvcount} , ${8:MPI_Datatype recvtype} , ${9:int source} , ${10:int recvtag} , ${11:MPI_Comm comm} , ${12:MPI_Status* status} );
-endsnippet
-snippet MPI_File_get_position_shared
-MPI_File_get_position_shared( ${1:MPI_File fh} , ${2:MPI_Offset* offset} );
-endsnippet
-snippet MPI_Graph_neighbors
-MPI_Graph_neighbors( ${1:MPI_Comm comm} , ${2:int rank} , ${3:int maxneighbors} , ${4:int neighbors[]} );
-endsnippet
-snippet MPI_Dims_create
-MPI_Dims_create( ${1:int nnodes} , ${2:int ndims} , ${3:int dims[]} );
-endsnippet
-snippet MPI_File_iread
-MPI_File_iread( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Request* request} );
-endsnippet
-snippet MPI_Scatter
-MPI_Scatter( ${1:void* sendbuf} , ${2:int sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:int recvcount} , ${6:MPI_Datatype recvtype} , ${7:int root} , ${8:MPI_Comm comm} );
-endsnippet
-snippet MPI_File_get_byte_offset
-MPI_File_get_byte_offset( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:MPI_Offset* disp} );
-endsnippet
-snippet MPI_Comm_free_keyval
-MPI_Comm_free_keyval( ${1:int* comm_keyval} );
-endsnippet
-snippet MPI_Op_create
-MPI_Op_create( ${1:MPI_User_function* function} , ${2:int commute} , ${3:MPI_Op* op} );
-endsnippet
-snippet MPI_File_seek
-MPI_File_seek( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:int whence} );
-endsnippet
-snippet MPI_Add_error_string
-MPI_Add_error_string( ${1:int errorcode} , ${2:char* string} );
-endsnippet
-snippet MPI_Mprobe
-MPI_Mprobe( ${1:int source} , ${2:int tag} , ${3:MPI_Comm comm} , ${4:MPI_Message* message} , ${5:MPI_Status* status} );
-endsnippet
-snippet MPI_Ssend_init
-MPI_Ssend_init( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
-endsnippet
-snippet MPI_Rsend_init
-MPI_Rsend_init( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
-endsnippet
-snippet MPI_Info_free
-MPI_Info_free( ${1:MPI_Info* info} );
-endsnippet
-snippet MPI_Publish_name
-MPI_Publish_name( ${1:char* service_name} , ${2:MPI_Info info} , ${3:char* port_name} );
-endsnippet
-snippet MPI_Bcast
-MPI_Bcast( ${1:void* buffer} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int root} , ${5:MPI_Comm comm} );
-endsnippet
-snippet MPI_Get_processor_name
-MPI_Get_processor_name( ${1:char* name} , ${2:int* resultlen} );
-endsnippet
-snippet MPI_Info_set
-MPI_Info_set( ${1:MPI_Info info} , ${2:char* key} , ${3:char* value} );
-endsnippet
-snippet MPI_File_write_ordered_end
-MPI_File_write_ordered_end( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Status* status} );
-endsnippet
-snippet MPI_Graph_create
-MPI_Graph_create( ${1:MPI_Comm comm} , ${2:int nnodes} , ${3:int index[]} , ${4:int edges[]} , ${5:int reorder} , ${6:MPI_Comm* comm_graph} );
-endsnippet
-snippet MPI_Comm_free
-MPI_Comm_free( ${1:MPI_Comm* comm} );
-endsnippet
-snippet MPI_File_write_at_all
-MPI_File_write_at_all( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:int count} , ${5:MPI_Datatype datatype} , ${6:MPI_Status* status} );
-endsnippet
-snippet MPI_Errhandler_get
-MPI_Errhandler_get( ${1:MPI_Comm comm} , ${2:MPI_Errhandler* errhandler} );
-endsnippet
-snippet MPI_Pack_size
-MPI_Pack_size( ${1:int incount} , ${2:MPI_Datatype datatype} , ${3:MPI_Comm comm} , ${4:int* size} );
-endsnippet
-snippet MPI_Comm_call_errhandler
-MPI_Comm_call_errhandler( ${1:MPI_Comm comm} , ${2:int errorcode} );
-endsnippet
-snippet MPI_Comm_test_inter
-MPI_Comm_test_inter( ${1:MPI_Comm comm} , ${2:int* flag} );
-endsnippet
-snippet MPI_Intercomm_merge
-MPI_Intercomm_merge( ${1:MPI_Comm intercomm} , ${2:int high} , ${3:MPI_Comm* newintercomm} );
-endsnippet
-snippet MPI_Win_complete
-MPI_Win_complete( ${1:MPI_Win win} );
-endsnippet
-snippet MPI_File_get_type_extent
-MPI_File_get_type_extent( ${1:MPI_File fh} , ${2:MPI_Datatype datatype} , ${3:MPI_Aint* extent} );
-endsnippet
-snippet MPI_Graph_map
-MPI_Graph_map( ${1:MPI_Comm comm} , ${2:int nnodes} , ${3:int index[]} , ${4:int edges[]} , ${5:int* newrank} );
-endsnippet
-snippet MPI_File_read_all_begin
-MPI_File_read_all_begin( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} );
-endsnippet
-snippet MPI_Info_get_valuelen
-MPI_Info_get_valuelen( ${1:MPI_Info info} , ${2:char* key} , ${3:int* valuelen} , ${4:int* flag} );
-endsnippet
-snippet MPI_Put
-MPI_Put( ${1:void* origin_addr} , ${2:int origin_count} , ${3:MPI_Datatype origin_datatype} , ${4:int target_rank} , ${5:MPI_Aint target_disp} , ${6:int target_count} , ${7:MPI_Datatype target_datatype} , ${8:MPI_Win win} );
-endsnippet
-snippet MPI_File_read_at_all
-MPI_File_read_at_all( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:int count} , ${5:MPI_Datatype datatype} , ${6:MPI_Status* status} );
-endsnippet
-snippet MPI_File_read_ordered_end
-MPI_File_read_ordered_end( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Status* status} );
-endsnippet
-snippet MPI_Isend
-MPI_Isend( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
-endsnippet
-snippet MPI_Type_set_attr
-MPI_Type_set_attr( ${1:MPI_Datatype type} , ${2:int type_keyval} , ${3:void* attr_val} );
-endsnippet
-snippet MPI_Group_rank
-MPI_Group_rank( ${1:MPI_Group group} , ${2:int* rank} );
-endsnippet
-snippet MPI_Alltoall
-MPI_Alltoall( ${1:void* sendbuf} , ${2:int sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:int recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} );
-endsnippet
-snippet MPI_File_create_errhandler
-MPI_File_create_errhandler( ${1:MPI_File_errhandler_function* function} , ${2:MPI_Errhandler* errhandler} );
-endsnippet
-snippet MPI_Info_get
-MPI_Info_get( ${1:MPI_Info info} , ${2:char* key} , ${3:int valuelen} , ${4:char* value} , ${5:int* flag} );
-endsnippet
-snippet MPI_File_iwrite_at
-MPI_File_iwrite_at( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:int count} , ${5:MPI_Datatype datatype} , ${6:MPI_Request* request} );
-endsnippet
-snippet MPI_Group_intersection
-MPI_Group_intersection( ${1:MPI_Group group1} , ${2:MPI_Group group2} , ${3:MPI_Group* newgroup} );
-endsnippet
-snippet MPI_Type_free_keyval
-MPI_Type_free_keyval( ${1:int* type_keyval} );
-endsnippet
-snippet MPI_Type_create_struct
-MPI_Type_create_struct( ${1:int count} , ${2:int array_of_block_lengths[]} , ${3:MPI_Aint array_of_displacements[]} , ${4:MPI_Datatype array_of_types[]} , ${5:MPI_Datatype* newtype} );
-endsnippet
-snippet MPI_Type_get_contents
-MPI_Type_get_contents( ${1:MPI_Datatype mtype} , ${2:int max_integers} , ${3:int max_addresses} , ${4:int max_datatypes} , ${5:int array_of_integers[]} , ${6:MPI_Aint array_of_addresses[]} , ${7:MPI_Datatype array_of_datatypes[]} );
-endsnippet
-snippet MPI_Reduce_local
-MPI_Reduce_local( ${1:void* inbuf} , ${2:void* inoutbuf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} );
-endsnippet
-snippet MPI_Group_union
-MPI_Group_union( ${1:MPI_Group group1} , ${2:MPI_Group group2} , ${3:MPI_Group* newgroup} );
-endsnippet
-snippet MPI_Type_free
-MPI_Type_free( ${1:MPI_Datatype* type} );
-endsnippet
-snippet MPI_Info_get_nthkey
-MPI_Info_get_nthkey( ${1:MPI_Info info} , ${2:int n} , ${3:char* key} );
-endsnippet
-snippet MPI_Win_get_name
-MPI_Win_get_name( ${1:MPI_Win win} , ${2:char* win_name} , ${3:int* resultlen} );
-endsnippet
-snippet MPI_File_write_at_all_begin
-MPI_File_write_at_all_begin( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:int count} , ${5:MPI_Datatype datatype} );
-endsnippet
-snippet MPI_Unpack_external
-MPI_Unpack_external( ${1:char* datarep} , ${2:void* inbuf} , ${3:MPI_Aint insize} , ${4:MPI_Aint* position} , ${5:void* outbuf} , ${6:int outcount} , ${7:MPI_Datatype datatype} );
-endsnippet
-snippet MPI_Errhandler_set
-MPI_Errhandler_set( ${1:MPI_Comm comm} , ${2:MPI_Errhandler errhandler} );
-endsnippet
-snippet MPI_File_read_at_all_begin
-MPI_File_read_at_all_begin( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:int count} , ${5:MPI_Datatype datatype} );
-endsnippet
-snippet MPI_Comm_get_errhandler
-MPI_Comm_get_errhandler( ${1:MPI_Comm comm} , ${2:MPI_Errhandler* erhandler} );
-endsnippet
-snippet MPI_Test_cancelled
-MPI_Test_cancelled( ${1:MPI_Status* status} , ${2:int* flag} );
-endsnippet
-snippet MPI_Win_lock
-MPI_Win_lock( ${1:int lock_type} , ${2:int rank} , ${3:int assert} , ${4:MPI_Win win} );
-endsnippet
-snippet MPI_Win_create
-MPI_Win_create( ${1:void* base} , ${2:MPI_Aint size} , ${3:int disp_unit} , ${4:MPI_Info info} , ${5:MPI_Comm comm} , ${6:MPI_Win* win} );
-endsnippet
-snippet MPI_Test
-MPI_Test( ${1:MPI_Request* request} , ${2:int* flag} , ${3:MPI_Status* status} );
-endsnippet
-snippet MPI_Type_create_hvector
-MPI_Type_create_hvector( ${1:int count} , ${2:int blocklength} , ${3:MPI_Aint stride} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
-endsnippet
-snippet MPI_File_write_all_end
-MPI_File_write_all_end( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Status* status} );
-endsnippet
-snippet MPI_Info_get_nkeys
-MPI_Info_get_nkeys( ${1:MPI_Info info} , ${2:int* nkeys} );
-endsnippet
-snippet MPI_Win_start
-MPI_Win_start( ${1:MPI_Group group} , ${2:int assert} , ${3:MPI_Win win} );
-endsnippet
-snippet MPI_File_get_size
-MPI_File_get_size( ${1:MPI_File fh} , ${2:MPI_Offset* size} );
-endsnippet
-snippet MPI_Finalized
-MPI_Finalized( ${1:int* flag} );
-endsnippet
-snippet MPI_Win_free_keyval
-MPI_Win_free_keyval( ${1:int* win_keyval} );
-endsnippet
-snippet MPI_Waitany
-MPI_Waitany( ${1:int count} , ${2:MPI_Request array_of_requests[]} , ${3:int* index} , ${4:MPI_Status* status} );
-endsnippet
-snippet MPI_Open_port
-MPI_Open_port( ${1:MPI_Info info} , ${2:char* port_name} );
-endsnippet
-snippet MPI_Type_indexed
-MPI_Type_indexed( ${1:int count} , ${2:int array_of_blocklengths[]} , ${3:int array_of_displacements[]} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
-endsnippet
-snippet MPI_Send_init
-MPI_Send_init( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
-endsnippet
-snippet MPI_Gather
-MPI_Gather( ${1:void* sendbuf} , ${2:int sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:int recvcount} , ${6:MPI_Datatype recvtype} , ${7:int root} , ${8:MPI_Comm comm} );
-endsnippet
-snippet MPI_Type_vector
-MPI_Type_vector( ${1:int count} , ${2:int blocklength} , ${3:int stride} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
-endsnippet
-snippet MPI_Get_elements
-MPI_Get_elements( ${1:MPI_Status* status} , ${2:MPI_Datatype datatype} , ${3:int* count} );
-endsnippet
-snippet MPI_File_write
-MPI_File_write( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
-endsnippet
-snippet MPI_File_read_at_all_end
-MPI_File_read_at_all_end( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Status* status} );
-endsnippet
-snippet MPI_Probe
-MPI_Probe( ${1:int source} , ${2:int tag} , ${3:MPI_Comm comm} , ${4:MPI_Status* status} );
-endsnippet
-snippet MPI_File_set_view
-MPI_File_set_view( ${1:MPI_File fh} , ${2:MPI_Offset disp} , ${3:MPI_Datatype etype} , ${4:MPI_Datatype filetype} , ${5:char* datarep} , ${6:MPI_Info info} );
-endsnippet
-snippet MPI_Unpack
-MPI_Unpack( ${1:void* inbuf} , ${2:int insize} , ${3:int* position} , ${4:void* outbuf} , ${5:int outcount} , ${6:MPI_Datatype datatype} , ${7:MPI_Comm comm} );
-endsnippet
-snippet MPI_Type_ub
-MPI_Type_ub( ${1:MPI_Datatype mtype} , ${2:MPI_Aint* ub} );
-endsnippet
-snippet MPI_Status_set_elements
-MPI_Status_set_elements( ${1:MPI_Status* status} , ${2:MPI_Datatype datatype} , ${3:int count} );
-endsnippet
-snippet MPI_Win_delete_attr
-MPI_Win_delete_attr( ${1:MPI_Win win} , ${2:int win_keyval} );
-endsnippet
-snippet MPI_Type_hindexed
-MPI_Type_hindexed( ${1:int count} , ${2:int array_of_blocklengths[]} , ${3:MPI_Aint array_of_displacements[]} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
-endsnippet
-snippet MPI_File_set_atomicity
-MPI_File_set_atomicity( ${1:MPI_File fh} , ${2:int flag} );
-endsnippet
-snippet MPI_Group_range_incl
-MPI_Group_range_incl( ${1:MPI_Group group} , ${2:int n} , ${3:int ranges[][3]} , ${4:MPI_Group* newgroup} );
-endsnippet
-snippet MPI_Get
-MPI_Get( ${1:void* origin_addr} , ${2:int origin_count} , ${3:MPI_Datatype origin_datatype} , ${4:int target_rank} , ${5:MPI_Aint target_disp} , ${6:int target_count} , ${7:MPI_Datatype target_datatype} , ${8:MPI_Win win} );
-endsnippet
-snippet MPI_Iprobe
-MPI_Iprobe( ${1:int source} , ${2:int tag} , ${3:MPI_Comm comm} , ${4:int* flag} , ${5:MPI_Status* status} );
-endsnippet
-snippet MPI_File_write_at_all_end
-MPI_File_write_at_all_end( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Status* status} );
-endsnippet
-snippet MPI_Type_get_true_extent
-MPI_Type_get_true_extent( ${1:MPI_Datatype datatype} , ${2:MPI_Aint* true_lb} , ${3:MPI_Aint* true_extent} );
-endsnippet
-snippet MPI_Graph_get
-MPI_Graph_get( ${1:MPI_Comm comm} , ${2:int maxindex} , ${3:int maxedges} , ${4:int index[]} , ${5:int edges[]} );
-endsnippet
-snippet MPI_Info_delete
-MPI_Info_delete( ${1:MPI_Info info} , ${2:char* key} );
-endsnippet
-snippet MPI_Cart_rank
-MPI_Cart_rank( ${1:MPI_Comm comm} , ${2:int coords[]} , ${3:int* rank} );
-endsnippet
-snippet MPI_Finalize
-MPI_Finalize();
-endsnippet
-snippet MPI_Comm_create
-MPI_Comm_create( ${1:MPI_Comm comm} , ${2:MPI_Group group} , ${3:MPI_Comm* newcomm} );
-endsnippet
-snippet MPI_Pack_external_size
-MPI_Pack_external_size( ${1:char* datarep} , ${2:int incount} , ${3:MPI_Datatype datatype} , ${4:MPI_Aint* size} );
-endsnippet
-snippet MPI_Comm_join
-MPI_Comm_join( ${1:int fd} , ${2:MPI_Comm* intercomm} );
-endsnippet
-snippet MPI_File_read_at
-MPI_File_read_at( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:int count} , ${5:MPI_Datatype datatype} , ${6:MPI_Status* status} );
-endsnippet
-snippet MPI_Keyval_free
-MPI_Keyval_free( ${1:int* keyval} );
-endsnippet
-snippet MPI_Win_wait
-MPI_Win_wait( ${1:MPI_Win win} );
+snippet MPI_Allgatherv_init
+MPI_Allgatherv_init( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:const MPI_Count recvcounts[]} , ${6:const MPI_Aint displs[]} , ${7:MPI_Datatype recvtype} , ${8:MPI_Comm comm} , ${9:MPI_Info info} , ${10:MPI_Request* request} );
 endsnippet
 snippet MPI_Alloc_mem
 MPI_Alloc_mem( ${1:MPI_Aint size} , ${2:MPI_Info info} , ${3:void* baseptr} );
 endsnippet
-snippet MPI_Improbe
-MPI_Improbe( ${1:int source} , ${2:int tag} , ${3:MPI_Comm comm} , ${4:int* flag} , ${5:MPI_Message* message} , ${6:MPI_Status* status} );
+snippet MPI_Allreduce
+MPI_Allreduce( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} );
 endsnippet
-snippet MPI_Type_size
-MPI_Type_size( ${1:MPI_Datatype type} , ${2:int* size} );
+snippet MPI_Allreduce_init
+MPI_Allreduce_init( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} , ${7:MPI_Info info} , ${8:MPI_Request* request} );
 endsnippet
-snippet MPI_Lookup_name
-MPI_Lookup_name( ${1:char* service_name} , ${2:MPI_Info info} , ${3:char* port_name} );
+snippet MPI_Alltoall
+MPI_Alltoall( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} );
 endsnippet
-snippet MPI_File_get_atomicity
-MPI_File_get_atomicity( ${1:MPI_File fh} , ${2:int* flag} );
+snippet MPI_Alltoall_init
+MPI_Alltoall_init( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} , ${8:MPI_Info info} , ${9:MPI_Request* request} );
 endsnippet
-snippet MPI_File_read_shared
-MPI_File_read_shared( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
+snippet MPI_Alltoallv
+MPI_Alltoallv( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:MPI_Datatype sendtype} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:MPI_Datatype recvtype} , ${9:MPI_Comm comm} );
 endsnippet
-snippet MPI_Type_create_darray
-MPI_Type_create_darray( ${1:int size} , ${2:int rank} , ${3:int ndims} , ${4:int gsize_array[]} , ${5:int distrib_array[]} , ${6:int darg_array[]} , ${7:int psize_array[]} , ${8:int order} , ${9:MPI_Datatype oldtype} , ${10:MPI_Datatype* newtype} );
+snippet MPI_Alltoallv_init
+MPI_Alltoallv_init( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:MPI_Datatype sendtype} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:MPI_Datatype recvtype} , ${9:MPI_Comm comm} , ${10:MPI_Info info} , ${11:MPI_Request* request} );
 endsnippet
-snippet MPI_Win_create_errhandler
-MPI_Win_create_errhandler( ${1:MPI_Win_errhandler_function* function} , ${2:MPI_Errhandler* errhandler} );
+snippet MPI_Alltoallw
+MPI_Alltoallw( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:const MPI_Datatype sendtypes[]} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:const MPI_Datatype recvtypes[]} , ${9:MPI_Comm comm} );
 endsnippet
-snippet MPI_Cart_map
-MPI_Cart_map( ${1:MPI_Comm comm} , ${2:int ndims} , ${3:int dims[]} , ${4:int periods[]} , ${5:int* newrank} );
+snippet MPI_Alltoallw_init
+MPI_Alltoallw_init( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:const MPI_Datatype sendtypes[]} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:const MPI_Datatype recvtypes[]} , ${9:MPI_Comm comm} , ${10:MPI_Info info} , ${11:MPI_Request* request} );
 endsnippet
-snippet MPI_File_write_at
-MPI_File_write_at( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:int count} , ${5:MPI_Datatype datatype} , ${6:MPI_Status* status} );
+snippet MPI_Attr_delete
+MPI_Attr_delete( ${1:MPI_Comm comm} , ${2:int keyval} );
 endsnippet
-snippet MPI_Comm_accept
-MPI_Comm_accept( ${1:char* port_name} , ${2:MPI_Info info} , ${3:int root} , ${4:MPI_Comm comm} , ${5:MPI_Comm* newcomm} );
-endsnippet
-snippet MPI_Type_set_name
-MPI_Type_set_name( ${1:MPI_Datatype type} , ${2:char* type_name} );
-endsnippet
-snippet MPI_Close_port
-MPI_Close_port( ${1:char* port_name} );
-endsnippet
-snippet MPI_File_close
-MPI_File_close( ${1:MPI_File* fh} );
-endsnippet
-snippet MPI_Type_create_subarray
-MPI_Type_create_subarray( ${1:int ndims} , ${2:int size_array[]} , ${3:int subsize_array[]} , ${4:int start_array[]} , ${5:int order} , ${6:MPI_Datatype oldtype} , ${7:MPI_Datatype* newtype} );
-endsnippet
-snippet MPI_File_delete
-MPI_File_delete( ${1:char* filename} , ${2:MPI_Info info} );
-endsnippet
-snippet MPI_Comm_set_attr
-MPI_Comm_set_attr( ${1:MPI_Comm comm} , ${2:int comm_keyval} , ${3:void* attribute_val} );
-endsnippet
-snippet MPI_File_read_all
-MPI_File_read_all( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
-endsnippet
-snippet MPI_Recv
-MPI_Recv( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int source} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Status* status} );
-endsnippet
-snippet MPI_Comm_dup
-MPI_Comm_dup( ${1:MPI_Comm comm} , ${2:MPI_Comm* newcomm} );
-endsnippet
-snippet MPI_Waitall
-MPI_Waitall( ${1:int count} , ${2:MPI_Request array_of_requests[]} , ${3:MPI_Status array_of_statuses[]} );
-endsnippet
-snippet MPI_Comm_delete_attr
-MPI_Comm_delete_attr( ${1:MPI_Comm comm} , ${2:int comm_keyval} );
-endsnippet
-snippet MPI_Ssend
-MPI_Ssend( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} );
-endsnippet
-snippet MPI_Group_size
-MPI_Group_size( ${1:MPI_Group group} , ${2:int* size} );
-endsnippet
-snippet MPI_File_get_errhandler
-MPI_File_get_errhandler( ${1:MPI_File file} , ${2:MPI_Errhandler* errhandler} );
+snippet MPI_Attr_get
+MPI_Attr_get( ${1:MPI_Comm comm} , ${2:int keyval} , ${3:void* attribute_val} , ${4:int* flag} );
 endsnippet
 snippet MPI_Attr_put
 MPI_Attr_put( ${1:MPI_Comm comm} , ${2:int keyval} , ${3:void* attribute_val} );
@@ -754,92 +70,1286 @@ endsnippet
 snippet MPI_Barrier
 MPI_Barrier( ${1:MPI_Comm comm} );
 endsnippet
-snippet MPI_Win_free
-MPI_Win_free( ${1:MPI_Win* win} );
+snippet MPI_Barrier_init
+MPI_Barrier_init( ${1:MPI_Comm comm} , ${2:MPI_Info info} , ${3:MPI_Request* request} );
 endsnippet
-snippet MPI_Alltoallw
-MPI_Alltoallw( ${1:void* sendbuf} , ${2:int sendcounts[]} , ${3:int sdispls[]} , ${4:MPI_Datatype sendtypes[]} , ${5:void* recvbuf} , ${6:int recvcounts[]} , ${7:int rdispls[]} , ${8:MPI_Datatype recvtypes[]} , ${9:MPI_Comm comm} );
+snippet MPI_Bcast
+MPI_Bcast( ${1:void* buffer} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int root} , ${5:MPI_Comm comm} );
 endsnippet
-snippet MPI_Alltoallv
-MPI_Alltoallv( ${1:void* sendbuf} , ${2:int sendcounts[]} , ${3:int sdispls[]} , ${4:MPI_Datatype sendtype} , ${5:void* recvbuf} , ${6:int recvcounts[]} , ${7:int rdispls[]} , ${8:MPI_Datatype recvtype} , ${9:MPI_Comm comm} );
+snippet MPI_Bcast_init
+MPI_Bcast_init( ${1:void* buffer} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int root} , ${5:MPI_Comm comm} , ${6:MPI_Info info} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Bsend
+MPI_Bsend( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} );
 endsnippet
 snippet MPI_Bsend_init
-MPI_Bsend_init( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+MPI_Bsend_init( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
 endsnippet
-snippet MPI_Exscan
-MPI_Exscan( ${1:void* sendbuf} , ${2:void* recvbuf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} );
+snippet MPI_Buffer_attach
+MPI_Buffer_attach( ${1:void* buffer} , ${2:MPI_Count size} );
 endsnippet
-snippet MPI_Op_free
-MPI_Op_free( ${1:MPI_Op* op} );
-endsnippet
-snippet MPI_Win_set_errhandler
-MPI_Win_set_errhandler( ${1:MPI_Win win} , ${2:MPI_Errhandler errhandler} );
-endsnippet
-snippet MPI_Accumulate
-MPI_Accumulate( ${1:void* origin_addr} , ${2:int origin_count} , ${3:MPI_Datatype origin_datatype} , ${4:int target_rank} , ${5:MPI_Aint target_disp} , ${6:int target_count} , ${7:MPI_Datatype target_datatype} , ${8:MPI_Op op} , ${9:MPI_Win win} );
-endsnippet
-snippet MPI_Comm_get_name
-MPI_Comm_get_name( ${1:MPI_Comm comm} , ${2:char* comm_name} , ${3:int* resultlen} );
-endsnippet
-snippet MPI_Cart_sub
-MPI_Cart_sub( ${1:MPI_Comm comm} , ${2:int remain_dims[]} , ${3:MPI_Comm* new_comm} );
-endsnippet
-snippet MPI_File_write_ordered
-MPI_File_write_ordered( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
-endsnippet
-snippet MPI_Group_range_excl
-MPI_Group_range_excl( ${1:MPI_Group group} , ${2:int n} , ${3:int ranges[][3]} , ${4:MPI_Group* newgroup} );
-endsnippet
-snippet MPI_Comm_split
-MPI_Comm_split( ${1:MPI_Comm comm} , ${2:int color} , ${3:int key} , ${4:MPI_Comm* newcomm} );
-endsnippet
-snippet MPI_Comm_set_errhandler
-MPI_Comm_set_errhandler( ${1:MPI_Comm comm} , ${2:MPI_Errhandler errhandler} );
-endsnippet
-snippet MPI_Request_get_status
-MPI_Request_get_status( ${1:MPI_Request request} , ${2:int* flag} , ${3:MPI_Status* status} );
-endsnippet
-snippet MPI_Group_free
-MPI_Group_free( ${1:MPI_Group* group} );
-endsnippet
-snippet MPI_Type_create_keyval
-MPI_Type_create_keyval( ${1:MPI_Type_copy_attr_function* type_copy_attr_fn} , ${2:MPI_Type_delete_attr_function* type_delete_attr_fn} , ${3:int* type_keyval} , ${4:void* extra_state} );
-endsnippet
-snippet MPI_File_write_ordered_begin
-MPI_File_write_ordered_begin( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} );
-endsnippet
-snippet MPI_File_read_ordered_begin
-MPI_File_read_ordered_begin( ${1:MPI_File fh} , ${2:void* buf} , ${3:int count} , ${4:MPI_Datatype datatype} );
-endsnippet
-snippet MPI_Graphdims_get
-MPI_Graphdims_get( ${1:MPI_Comm comm} , ${2:int* nnodes} , ${3:int* nedges} );
-endsnippet
-snippet MPI_Comm_rank
-MPI_Comm_rank( ${1:MPI_Comm comm} , ${2:int* rank} );
+snippet MPI_Buffer_detach
+MPI_Buffer_detach( ${1:void* buffer_addr} , ${2:MPI_Count* size} );
 endsnippet
 snippet MPI_Cancel
 MPI_Cancel( ${1:MPI_Request* request} );
 endsnippet
-snippet MPI_Win_fence
-MPI_Win_fence( ${1:int assert} , ${2:MPI_Win win} );
+snippet MPI_Cart_coords
+MPI_Cart_coords( ${1:MPI_Comm comm} , ${2:int rank} , ${3:int maxdims} , ${4:int coords[]} );
 endsnippet
-snippet MPI_Win_create_keyval
-MPI_Win_create_keyval( ${1:MPI_Win_copy_attr_function* win_copy_attr_fn} , ${2:MPI_Win_delete_attr_function* win_delete_attr_fn} , ${3:int* win_keyval} , ${4:void* extra_state} );
+snippet MPI_Cart_create
+MPI_Cart_create( ${1:MPI_Comm comm_old} , ${2:int ndims} , ${3:const int dims[]} , ${4:const int periods[]} , ${5:int reorder} , ${6:MPI_Comm* comm_cart} );
+endsnippet
+snippet MPI_Cart_get
+MPI_Cart_get( ${1:MPI_Comm comm} , ${2:int maxdims} , ${3:int dims[]} , ${4:int periods[]} , ${5:int coords[]} );
+endsnippet
+snippet MPI_Cart_map
+MPI_Cart_map( ${1:MPI_Comm comm} , ${2:int ndims} , ${3:const int dims[]} , ${4:const int periods[]} , ${5:int* newrank} );
+endsnippet
+snippet MPI_Cart_rank
+MPI_Cart_rank( ${1:MPI_Comm comm} , ${2:const int coords[]} , ${3:int* rank} );
+endsnippet
+snippet MPI_Cart_shift
+MPI_Cart_shift( ${1:MPI_Comm comm} , ${2:int direction} , ${3:int disp} , ${4:int* rank_source} , ${5:int* rank_dest} );
+endsnippet
+snippet MPI_Cart_sub
+MPI_Cart_sub( ${1:MPI_Comm comm} , ${2:const int remain_dims[]} , ${3:MPI_Comm* newcomm} );
+endsnippet
+snippet MPI_Cartdim_get
+MPI_Cartdim_get( ${1:MPI_Comm comm} , ${2:int* ndims} );
+endsnippet
+snippet MPI_Close_port
+MPI_Close_port( ${1:const char* port_name} );
+endsnippet
+snippet MPI_Comm_accept
+MPI_Comm_accept( ${1:const char* port_name} , ${2:MPI_Info info} , ${3:int root} , ${4:MPI_Comm comm} , ${5:MPI_Comm* newcomm} );
+endsnippet
+snippet MPI_Comm_call_errhandler
+MPI_Comm_call_errhandler( ${1:MPI_Comm comm} , ${2:int errorcode} );
+endsnippet
+snippet MPI_Comm_compare
+MPI_Comm_compare( ${1:MPI_Comm comm1} , ${2:MPI_Comm comm2} , ${3:int* result} );
+endsnippet
+snippet MPI_Comm_connect
+MPI_Comm_connect( ${1:const char* port_name} , ${2:MPI_Info info} , ${3:int root} , ${4:MPI_Comm comm} , ${5:MPI_Comm* newcomm} );
+endsnippet
+snippet MPI_Comm_create
+MPI_Comm_create( ${1:MPI_Comm comm} , ${2:MPI_Group group} , ${3:MPI_Comm* newcomm} );
+endsnippet
+snippet MPI_Comm_create_errhandler
+MPI_Comm_create_errhandler( ${1:MPI_Comm_errhandler_function* comm_errhandler_fn} , ${2:MPI_Errhandler* errhandler} );
+endsnippet
+snippet MPI_Comm_create_from_group
+MPI_Comm_create_from_group( ${1:MPI_Group group} , ${2:const char* stringtag} , ${3:MPI_Info info} , ${4:MPI_Errhandler errhandler} , ${5:MPI_Comm* newcomm} );
+endsnippet
+snippet MPI_Comm_create_group
+MPI_Comm_create_group( ${1:MPI_Comm comm} , ${2:MPI_Group group} , ${3:int tag} , ${4:MPI_Comm* newcomm} );
+endsnippet
+snippet MPI_Comm_create_keyval
+MPI_Comm_create_keyval( ${1:MPI_Comm_copy_attr_function* comm_copy_attr_fn} , ${2:MPI_Comm_delete_attr_function* comm_delete_attr_fn} , ${3:int* comm_keyval} , ${4:void* extra_state} );
+endsnippet
+snippet MPI_Comm_delete_attr
+MPI_Comm_delete_attr( ${1:MPI_Comm comm} , ${2:int comm_keyval} );
+endsnippet
+snippet MPI_Comm_disconnect
+MPI_Comm_disconnect( ${1:MPI_Comm* comm} );
+endsnippet
+snippet MPI_Comm_dup
+MPI_Comm_dup( ${1:MPI_Comm comm} , ${2:MPI_Comm* newcomm} );
+endsnippet
+snippet MPI_Comm_dup_with_info
+MPI_Comm_dup_with_info( ${1:MPI_Comm comm} , ${2:MPI_Info info} , ${3:MPI_Comm* newcomm} );
+endsnippet
+snippet MPI_Comm_free
+MPI_Comm_free( ${1:MPI_Comm* comm} );
+endsnippet
+snippet MPI_Comm_free_keyval
+MPI_Comm_free_keyval( ${1:int* comm_keyval} );
+endsnippet
+snippet MPI_Comm_get_attr
+MPI_Comm_get_attr( ${1:MPI_Comm comm} , ${2:int comm_keyval} , ${3:void* attribute_val} , ${4:int* flag} );
+endsnippet
+snippet MPI_Comm_get_errhandler
+MPI_Comm_get_errhandler( ${1:MPI_Comm comm} , ${2:MPI_Errhandler* errhandler} );
+endsnippet
+snippet MPI_Comm_get_info
+MPI_Comm_get_info( ${1:MPI_Comm comm} , ${2:MPI_Info* info_used} );
+endsnippet
+snippet MPI_Comm_get_name
+MPI_Comm_get_name( ${1:MPI_Comm comm} , ${2:char* comm_name} , ${3:int* resultlen} );
+endsnippet
+snippet MPI_Comm_get_parent
+MPI_Comm_get_parent( ${1:MPI_Comm* parent} );
+endsnippet
+snippet MPI_Comm_group
+MPI_Comm_group( ${1:MPI_Comm comm} , ${2:MPI_Group* group} );
+endsnippet
+snippet MPI_Comm_idup
+MPI_Comm_idup( ${1:MPI_Comm comm} , ${2:MPI_Comm* newcomm} , ${3:MPI_Request* request} );
+endsnippet
+snippet MPI_Comm_idup_with_info
+MPI_Comm_idup_with_info( ${1:MPI_Comm comm} , ${2:MPI_Info info} , ${3:MPI_Comm* newcomm} , ${4:MPI_Request* request} );
+endsnippet
+snippet MPI_Comm_join
+MPI_Comm_join( ${1:int fd} , ${2:MPI_Comm* intercomm} );
+endsnippet
+snippet MPI_Comm_rank
+MPI_Comm_rank( ${1:MPI_Comm comm} , ${2:int* rank} );
+endsnippet
+snippet MPI_Comm_remote_group
+MPI_Comm_remote_group( ${1:MPI_Comm comm} , ${2:MPI_Group* group} );
+endsnippet
+snippet MPI_Comm_remote_size
+MPI_Comm_remote_size( ${1:MPI_Comm comm} , ${2:int* size} );
+endsnippet
+snippet MPI_Comm_set_attr
+MPI_Comm_set_attr( ${1:MPI_Comm comm} , ${2:int comm_keyval} , ${3:void* attribute_val} );
+endsnippet
+snippet MPI_Comm_set_errhandler
+MPI_Comm_set_errhandler( ${1:MPI_Comm comm} , ${2:MPI_Errhandler errhandler} );
+endsnippet
+snippet MPI_Comm_set_info
+MPI_Comm_set_info( ${1:MPI_Comm comm} , ${2:MPI_Info info} );
+endsnippet
+snippet MPI_Comm_set_name
+MPI_Comm_set_name( ${1:MPI_Comm comm} , ${2:const char* comm_name} );
+endsnippet
+snippet MPI_Comm_size
+MPI_Comm_size( ${1:MPI_Comm comm} , ${2:int* size} );
+endsnippet
+snippet MPI_Comm_spawn
+MPI_Comm_spawn( ${1:const char* command} , ${2:char* argv[]} , ${3:int maxprocs} , ${4:MPI_Info info} , ${5:int root} , ${6:MPI_Comm comm} , ${7:MPI_Comm* intercomm} , ${8:int array_of_errcodes[]} );
+endsnippet
+snippet MPI_Comm_spawn_multiple
+MPI_Comm_spawn_multiple( ${1:int count} , ${2:char* array_of_commands[]} , ${3:char** array_of_argv[]} , ${4:const int array_of_maxprocs[]} , ${5:const MPI_Info array_of_info[]} , ${6:int root} , ${7:MPI_Comm comm} , ${8:MPI_Comm* intercomm} , ${9:int array_of_errcodes[]} );
+endsnippet
+snippet MPI_Comm_split
+MPI_Comm_split( ${1:MPI_Comm comm} , ${2:int color} , ${3:int key} , ${4:MPI_Comm* newcomm} );
+endsnippet
+snippet MPI_Comm_split_type
+MPI_Comm_split_type( ${1:MPI_Comm comm} , ${2:int split_type} , ${3:int key} , ${4:MPI_Info info} , ${5:MPI_Comm* newcomm} );
+endsnippet
+snippet MPI_Comm_test_inter
+MPI_Comm_test_inter( ${1:MPI_Comm comm} , ${2:int* flag} );
+endsnippet
+snippet MPI_Compare_and_swap
+MPI_Compare_and_swap( ${1:const void* origin_addr} , ${2:const void* compare_addr} , ${3:void* result_addr} , ${4:MPI_Datatype datatype} , ${5:int target_rank} , ${6:MPI_Aint target_disp} , ${7:MPI_Win win} );
+endsnippet
+snippet MPI_Dims_create
+MPI_Dims_create( ${1:int nnodes} , ${2:int ndims} , ${3:int dims[]} );
+endsnippet
+snippet MPI_Dist_graph_create
+MPI_Dist_graph_create( ${1:MPI_Comm comm_old} , ${2:int n} , ${3:const int sources[]} , ${4:const int degrees[]} , ${5:const int destinations[]} , ${6:const int weights[]} , ${7:MPI_Info info} , ${8:int reorder} , ${9:MPI_Comm* comm_dist_graph} );
+endsnippet
+snippet MPI_Dist_graph_create_adjacent
+MPI_Dist_graph_create_adjacent( ${1:MPI_Comm comm_old} , ${2:int indegree} , ${3:const int sources[]} , ${4:const int sourceweights[]} , ${5:int outdegree} , ${6:const int destinations[]} , ${7:const int destweights[]} , ${8:MPI_Info info} , ${9:int reorder} , ${10:MPI_Comm* comm_dist_graph} );
+endsnippet
+snippet MPI_Dist_graph_neighbors
+MPI_Dist_graph_neighbors( ${1:MPI_Comm comm} , ${2:int maxindegree} , ${3:int sources[]} , ${4:int sourceweights[]} , ${5:int maxoutdegree} , ${6:int destinations[]} , ${7:int destweights[]} );
+endsnippet
+snippet MPI_Dist_graph_neighbors_count
+MPI_Dist_graph_neighbors_count( ${1:MPI_Comm comm} , ${2:int* indegree} , ${3:int* outdegree} , ${4:int* weighted} );
 endsnippet
 snippet MPI_Errhandler_free
 MPI_Errhandler_free( ${1:MPI_Errhandler* errhandler} );
 endsnippet
+snippet MPI_Error_class
+MPI_Error_class( ${1:int errorcode} , ${2:int* errorclass} );
+endsnippet
+snippet MPI_Error_string
+MPI_Error_string( ${1:int errorcode} , ${2:char* string} , ${3:int* resultlen} );
+endsnippet
+snippet MPI_Exscan
+MPI_Exscan( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} );
+endsnippet
+snippet MPI_Exscan_init
+MPI_Exscan_init( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} , ${7:MPI_Info info} , ${8:MPI_Request* request} );
+endsnippet
+snippet MPI_Fetch_and_op
+MPI_Fetch_and_op( ${1:const void* origin_addr} , ${2:void* result_addr} , ${3:MPI_Datatype datatype} , ${4:int target_rank} , ${5:MPI_Aint target_disp} , ${6:MPI_Op op} , ${7:MPI_Win win} );
+endsnippet
+snippet MPI_File_call_errhandler
+MPI_File_call_errhandler( ${1:MPI_File fh} , ${2:int errorcode} );
+endsnippet
+snippet MPI_File_close
+MPI_File_close( ${1:MPI_File* fh} );
+endsnippet
+snippet MPI_File_create_errhandler
+MPI_File_create_errhandler( ${1:MPI_File_errhandler_function* file_errhandler_fn} , ${2:MPI_Errhandler* errhandler} );
+endsnippet
+snippet MPI_File_delete
+MPI_File_delete( ${1:const char* filename} , ${2:MPI_Info info} );
+endsnippet
+snippet MPI_File_get_amode
+MPI_File_get_amode( ${1:MPI_File fh} , ${2:int* amode} );
+endsnippet
+snippet MPI_File_get_atomicity
+MPI_File_get_atomicity( ${1:MPI_File fh} , ${2:int* flag} );
+endsnippet
+snippet MPI_File_get_byte_offset
+MPI_File_get_byte_offset( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:MPI_Offset* disp} );
+endsnippet
+snippet MPI_File_get_errhandler
+MPI_File_get_errhandler( ${1:MPI_File file} , ${2:MPI_Errhandler* errhandler} );
+endsnippet
+snippet MPI_File_get_group
+MPI_File_get_group( ${1:MPI_File fh} , ${2:MPI_Group* group} );
+endsnippet
+snippet MPI_File_get_info
+MPI_File_get_info( ${1:MPI_File fh} , ${2:MPI_Info* info_used} );
+endsnippet
+snippet MPI_File_get_position
+MPI_File_get_position( ${1:MPI_File fh} , ${2:MPI_Offset* offset} );
+endsnippet
+snippet MPI_File_get_position_shared
+MPI_File_get_position_shared( ${1:MPI_File fh} , ${2:MPI_Offset* offset} );
+endsnippet
+snippet MPI_File_get_size
+MPI_File_get_size( ${1:MPI_File fh} , ${2:MPI_Offset* size} );
+endsnippet
+snippet MPI_File_get_type_extent
+MPI_File_get_type_extent( ${1:MPI_File fh} , ${2:MPI_Datatype datatype} , ${3:MPI_Count* extent} );
+endsnippet
+snippet MPI_File_get_view
+MPI_File_get_view( ${1:MPI_File fh} , ${2:MPI_Offset* disp} , ${3:MPI_Datatype* etype} , ${4:MPI_Datatype* filetype} , ${5:char* datarep} );
+endsnippet
+snippet MPI_File_iread
+MPI_File_iread( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Request* request} );
+endsnippet
+snippet MPI_File_iread_all
+MPI_File_iread_all( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Request* request} );
+endsnippet
+snippet MPI_File_iread_at
+MPI_File_iread_at( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:MPI_Count count} , ${5:MPI_Datatype datatype} , ${6:MPI_Request* request} );
+endsnippet
+snippet MPI_File_iread_at_all
+MPI_File_iread_at_all( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:MPI_Count count} , ${5:MPI_Datatype datatype} , ${6:MPI_Request* request} );
+endsnippet
+snippet MPI_File_iread_shared
+MPI_File_iread_shared( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Request* request} );
+endsnippet
+snippet MPI_File_iwrite
+MPI_File_iwrite( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Request* request} );
+endsnippet
+snippet MPI_File_iwrite_all
+MPI_File_iwrite_all( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Request* request} );
+endsnippet
+snippet MPI_File_iwrite_at
+MPI_File_iwrite_at( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:const void* buf} , ${4:MPI_Count count} , ${5:MPI_Datatype datatype} , ${6:MPI_Request* request} );
+endsnippet
+snippet MPI_File_iwrite_at_all
+MPI_File_iwrite_at_all( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:const void* buf} , ${4:MPI_Count count} , ${5:MPI_Datatype datatype} , ${6:MPI_Request* request} );
+endsnippet
+snippet MPI_File_iwrite_shared
+MPI_File_iwrite_shared( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Request* request} );
+endsnippet
+snippet MPI_File_open
+MPI_File_open( ${1:MPI_Comm comm} , ${2:const char* filename} , ${3:int amode} , ${4:MPI_Info info} , ${5:MPI_File* fh} );
+endsnippet
+snippet MPI_File_preallocate
+MPI_File_preallocate( ${1:MPI_File fh} , ${2:MPI_Offset size} );
+endsnippet
+snippet MPI_File_read
+MPI_File_read( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_File_read_all
+MPI_File_read_all( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_File_read_all_begin
+MPI_File_read_all_begin( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} );
+endsnippet
+snippet MPI_File_read_all_end
+MPI_File_read_all_end( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Status* status} );
+endsnippet
+snippet MPI_File_read_at
+MPI_File_read_at( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:MPI_Count count} , ${5:MPI_Datatype datatype} , ${6:MPI_Status* status} );
+endsnippet
+snippet MPI_File_read_at_all
+MPI_File_read_at_all( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:MPI_Count count} , ${5:MPI_Datatype datatype} , ${6:MPI_Status* status} );
+endsnippet
+snippet MPI_File_read_at_all_begin
+MPI_File_read_at_all_begin( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:void* buf} , ${4:MPI_Count count} , ${5:MPI_Datatype datatype} );
+endsnippet
+snippet MPI_File_read_at_all_end
+MPI_File_read_at_all_end( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Status* status} );
+endsnippet
+snippet MPI_File_read_ordered
+MPI_File_read_ordered( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_File_read_ordered_begin
+MPI_File_read_ordered_begin( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} );
+endsnippet
+snippet MPI_File_read_ordered_end
+MPI_File_read_ordered_end( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Status* status} );
+endsnippet
+snippet MPI_File_read_shared
+MPI_File_read_shared( ${1:MPI_File fh} , ${2:void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_File_seek
+MPI_File_seek( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:int whence} );
+endsnippet
+snippet MPI_File_seek_shared
+MPI_File_seek_shared( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:int whence} );
+endsnippet
+snippet MPI_File_set_atomicity
+MPI_File_set_atomicity( ${1:MPI_File fh} , ${2:int flag} );
+endsnippet
+snippet MPI_File_set_errhandler
+MPI_File_set_errhandler( ${1:MPI_File file} , ${2:MPI_Errhandler errhandler} );
+endsnippet
+snippet MPI_File_set_info
+MPI_File_set_info( ${1:MPI_File fh} , ${2:MPI_Info info} );
+endsnippet
+snippet MPI_File_set_size
+MPI_File_set_size( ${1:MPI_File fh} , ${2:MPI_Offset size} );
+endsnippet
+snippet MPI_File_set_view
+MPI_File_set_view( ${1:MPI_File fh} , ${2:MPI_Offset disp} , ${3:MPI_Datatype etype} , ${4:MPI_Datatype filetype} , ${5:const char* datarep} , ${6:MPI_Info info} );
+endsnippet
+snippet MPI_File_sync
+MPI_File_sync( ${1:MPI_File fh} );
+endsnippet
+snippet MPI_File_write
+MPI_File_write( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_File_write_all
+MPI_File_write_all( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_File_write_all_begin
+MPI_File_write_all_begin( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} );
+endsnippet
+snippet MPI_File_write_all_end
+MPI_File_write_all_end( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Status* status} );
+endsnippet
+snippet MPI_File_write_at
+MPI_File_write_at( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:const void* buf} , ${4:MPI_Count count} , ${5:MPI_Datatype datatype} , ${6:MPI_Status* status} );
+endsnippet
+snippet MPI_File_write_at_all
+MPI_File_write_at_all( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:const void* buf} , ${4:MPI_Count count} , ${5:MPI_Datatype datatype} , ${6:MPI_Status* status} );
+endsnippet
+snippet MPI_File_write_at_all_begin
+MPI_File_write_at_all_begin( ${1:MPI_File fh} , ${2:MPI_Offset offset} , ${3:const void* buf} , ${4:MPI_Count count} , ${5:MPI_Datatype datatype} );
+endsnippet
+snippet MPI_File_write_at_all_end
+MPI_File_write_at_all_end( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Status* status} );
+endsnippet
+snippet MPI_File_write_ordered
+MPI_File_write_ordered( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_File_write_ordered_begin
+MPI_File_write_ordered_begin( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} );
+endsnippet
+snippet MPI_File_write_ordered_end
+MPI_File_write_ordered_end( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Status* status} );
+endsnippet
+snippet MPI_File_write_shared
+MPI_File_write_shared( ${1:MPI_File fh} , ${2:const void* buf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_Finalize
+MPI_Finalize();
+endsnippet
+snippet MPI_Finalized
+MPI_Finalized( ${1:int* flag} );
+endsnippet
+snippet MPI_Free_mem
+MPI_Free_mem( ${1:void* base} );
+endsnippet
+snippet MPI_Gather
+MPI_Gather( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:int root} , ${8:MPI_Comm comm} );
+endsnippet
+snippet MPI_Gather_init
+MPI_Gather_init( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:int root} , ${8:MPI_Comm comm} , ${9:MPI_Info info} , ${10:MPI_Request* request} );
+endsnippet
+snippet MPI_Gatherv
+MPI_Gatherv( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:const MPI_Count recvcounts[]} , ${6:const MPI_Aint displs[]} , ${7:MPI_Datatype recvtype} , ${8:int root} , ${9:MPI_Comm comm} );
+endsnippet
+snippet MPI_Gatherv_init
+MPI_Gatherv_init( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:const MPI_Count recvcounts[]} , ${6:const MPI_Aint displs[]} , ${7:MPI_Datatype recvtype} , ${8:int root} , ${9:MPI_Comm comm} , ${10:MPI_Info info} , ${11:MPI_Request* request} );
+endsnippet
+snippet MPI_Get
+MPI_Get( ${1:void* origin_addr} , ${2:MPI_Count origin_count} , ${3:MPI_Datatype origin_datatype} , ${4:int target_rank} , ${5:MPI_Aint target_disp} , ${6:MPI_Count target_count} , ${7:MPI_Datatype target_datatype} , ${8:MPI_Win win} );
+endsnippet
+snippet MPI_Get_accumulate
+MPI_Get_accumulate( ${1:const void* origin_addr} , ${2:MPI_Count origin_count} , ${3:MPI_Datatype origin_datatype} , ${4:void* result_addr} , ${5:MPI_Count result_count} , ${6:MPI_Datatype result_datatype} , ${7:int target_rank} , ${8:MPI_Aint target_disp} , ${9:MPI_Count target_count} , ${10:MPI_Datatype target_datatype} , ${11:MPI_Op op} , ${12:MPI_Win win} );
+endsnippet
+snippet MPI_Get_address
+MPI_Get_address( ${1:const void* location} , ${2:MPI_Aint* address} );
+endsnippet
+snippet MPI_Get_count
+MPI_Get_count( ${1:const MPI_Status* status} , ${2:MPI_Datatype datatype} , ${3:MPI_Count* count} );
+endsnippet
+snippet MPI_Get_elements
+MPI_Get_elements( ${1:const MPI_Status* status} , ${2:MPI_Datatype datatype} , ${3:MPI_Count* count} );
+endsnippet
+snippet MPI_Get_elements_x
+MPI_Get_elements_x( ${1:const MPI_Status* status} , ${2:MPI_Datatype datatype} , ${3:MPI_Count* count} );
+endsnippet
+snippet MPI_Get_library_version
+MPI_Get_library_version( ${1:char* version} , ${2:int* resultlen} );
+endsnippet
+snippet MPI_Get_processor_name
+MPI_Get_processor_name( ${1:char* name} , ${2:int* resultlen} );
+endsnippet
+snippet MPI_Get_version
+MPI_Get_version( ${1:int* version} , ${2:int* subversion} );
+endsnippet
+snippet MPI_Graph_create
+MPI_Graph_create( ${1:MPI_Comm comm_old} , ${2:int nnodes} , ${3:const int index[]} , ${4:const int edges[]} , ${5:int reorder} , ${6:MPI_Comm* comm_graph} );
+endsnippet
+snippet MPI_Graph_get
+MPI_Graph_get( ${1:MPI_Comm comm} , ${2:int maxindex} , ${3:int maxedges} , ${4:int index[]} , ${5:int edges[]} );
+endsnippet
+snippet MPI_Graph_map
+MPI_Graph_map( ${1:MPI_Comm comm} , ${2:int nnodes} , ${3:const int index[]} , ${4:const int edges[]} , ${5:int* newrank} );
+endsnippet
+snippet MPI_Graph_neighbors
+MPI_Graph_neighbors( ${1:MPI_Comm comm} , ${2:int rank} , ${3:int maxneighbors} , ${4:int neighbors[]} );
+endsnippet
+snippet MPI_Graph_neighbors_count
+MPI_Graph_neighbors_count( ${1:MPI_Comm comm} , ${2:int rank} , ${3:int* nneighbors} );
+endsnippet
+snippet MPI_Graphdims_get
+MPI_Graphdims_get( ${1:MPI_Comm comm} , ${2:int* nnodes} , ${3:int* nedges} );
+endsnippet
+snippet MPI_Grequest_complete
+MPI_Grequest_complete( ${1:MPI_Request request} );
+endsnippet
+snippet MPI_Grequest_start
+MPI_Grequest_start( ${1:MPI_Grequest_query_function* query_fn} , ${2:MPI_Grequest_free_function* free_fn} , ${3:MPI_Grequest_cancel_function* cancel_fn} , ${4:void* extra_state} , ${5:MPI_Request* request} );
+endsnippet
+snippet MPI_Group_compare
+MPI_Group_compare( ${1:MPI_Group group1} , ${2:MPI_Group group2} , ${3:int* result} );
+endsnippet
+snippet MPI_Group_difference
+MPI_Group_difference( ${1:MPI_Group group1} , ${2:MPI_Group group2} , ${3:MPI_Group* newgroup} );
+endsnippet
+snippet MPI_Group_excl
+MPI_Group_excl( ${1:MPI_Group group} , ${2:int n} , ${3:const int ranks[]} , ${4:MPI_Group* newgroup} );
+endsnippet
+snippet MPI_Group_free
+MPI_Group_free( ${1:MPI_Group* group} );
+endsnippet
+snippet MPI_Group_from_session_pset
+MPI_Group_from_session_pset( ${1:MPI_Session session} , ${2:const char* pset_name} , ${3:MPI_Group* newgroup} );
+endsnippet
+snippet MPI_Group_incl
+MPI_Group_incl( ${1:MPI_Group group} , ${2:int n} , ${3:const int ranks[]} , ${4:MPI_Group* newgroup} );
+endsnippet
+snippet MPI_Group_intersection
+MPI_Group_intersection( ${1:MPI_Group group1} , ${2:MPI_Group group2} , ${3:MPI_Group* newgroup} );
+endsnippet
+snippet MPI_Group_range_excl
+MPI_Group_range_excl( ${1:MPI_Group group} , ${2:int n} , ${3:int ranges[][3]} , ${4:MPI_Group* newgroup} );
+endsnippet
+snippet MPI_Group_range_incl
+MPI_Group_range_incl( ${1:MPI_Group group} , ${2:int n} , ${3:int ranges[][3]} , ${4:MPI_Group* newgroup} );
+endsnippet
+snippet MPI_Group_rank
+MPI_Group_rank( ${1:MPI_Group group} , ${2:int* rank} );
+endsnippet
+snippet MPI_Group_size
+MPI_Group_size( ${1:MPI_Group group} , ${2:int* size} );
+endsnippet
+snippet MPI_Group_translate_ranks
+MPI_Group_translate_ranks( ${1:MPI_Group group1} , ${2:int n} , ${3:const int ranks1[]} , ${4:MPI_Group group2} , ${5:int ranks2[]} );
+endsnippet
+snippet MPI_Group_union
+MPI_Group_union( ${1:MPI_Group group1} , ${2:MPI_Group group2} , ${3:MPI_Group* newgroup} );
+endsnippet
+snippet MPI_Iallgather
+MPI_Iallgather( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} , ${8:MPI_Request* request} );
+endsnippet
+snippet MPI_Iallgatherv
+MPI_Iallgatherv( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:const MPI_Count recvcounts[]} , ${6:const MPI_Aint displs[]} , ${7:MPI_Datatype recvtype} , ${8:MPI_Comm comm} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Iallreduce
+MPI_Iallreduce( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Ialltoall
+MPI_Ialltoall( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} , ${8:MPI_Request* request} );
+endsnippet
+snippet MPI_Ialltoallv
+MPI_Ialltoallv( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:MPI_Datatype sendtype} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:MPI_Datatype recvtype} , ${9:MPI_Comm comm} , ${10:MPI_Request* request} );
+endsnippet
+snippet MPI_Ialltoallw
+MPI_Ialltoallw( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:const MPI_Datatype sendtypes[]} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:const MPI_Datatype recvtypes[]} , ${9:MPI_Comm comm} , ${10:MPI_Request* request} );
+endsnippet
+snippet MPI_Ibarrier
+MPI_Ibarrier( ${1:MPI_Comm comm} , ${2:MPI_Request* request} );
+endsnippet
+snippet MPI_Ibcast
+MPI_Ibcast( ${1:void* buffer} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int root} , ${5:MPI_Comm comm} , ${6:MPI_Request* request} );
+endsnippet
+snippet MPI_Ibsend
+MPI_Ibsend( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Iexscan
+MPI_Iexscan( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Igather
+MPI_Igather( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:int root} , ${8:MPI_Comm comm} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Igatherv
+MPI_Igatherv( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:const MPI_Count recvcounts[]} , ${6:const MPI_Aint displs[]} , ${7:MPI_Datatype recvtype} , ${8:int root} , ${9:MPI_Comm comm} , ${10:MPI_Request* request} );
+endsnippet
+snippet MPI_Improbe
+MPI_Improbe( ${1:int source} , ${2:int tag} , ${3:MPI_Comm comm} , ${4:int* flag} , ${5:MPI_Message* message} , ${6:MPI_Status* status} );
+endsnippet
+snippet MPI_Imrecv
+MPI_Imrecv( ${1:void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:MPI_Message* message} , ${5:MPI_Request* request} );
+endsnippet
+snippet MPI_Ineighbor_allgather
+MPI_Ineighbor_allgather( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} , ${8:MPI_Request* request} );
+endsnippet
+snippet MPI_Ineighbor_allgatherv
+MPI_Ineighbor_allgatherv( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:const MPI_Count recvcounts[]} , ${6:const MPI_Aint displs[]} , ${7:MPI_Datatype recvtype} , ${8:MPI_Comm comm} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Ineighbor_alltoall
+MPI_Ineighbor_alltoall( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} , ${8:MPI_Request* request} );
+endsnippet
+snippet MPI_Ineighbor_alltoallv
+MPI_Ineighbor_alltoallv( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:MPI_Datatype sendtype} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:MPI_Datatype recvtype} , ${9:MPI_Comm comm} , ${10:MPI_Request* request} );
+endsnippet
+snippet MPI_Ineighbor_alltoallw
+MPI_Ineighbor_alltoallw( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:const MPI_Datatype sendtypes[]} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:const MPI_Datatype recvtypes[]} , ${9:MPI_Comm comm} , ${10:MPI_Request* request} );
+endsnippet
+snippet MPI_Info_create
+MPI_Info_create( ${1:MPI_Info* info} );
+endsnippet
+snippet MPI_Info_create_env
+MPI_Info_create_env( ${1:int argc} , ${2:char argv[]} , ${3:MPI_Info* info} );
+endsnippet
+snippet MPI_Info_delete
+MPI_Info_delete( ${1:MPI_Info info} , ${2:const char* key} );
+endsnippet
+snippet MPI_Info_dup
+MPI_Info_dup( ${1:MPI_Info info} , ${2:MPI_Info* newinfo} );
+endsnippet
+snippet MPI_Info_free
+MPI_Info_free( ${1:MPI_Info* info} );
+endsnippet
+snippet MPI_Info_get
+MPI_Info_get( ${1:MPI_Info info} , ${2:const char* key} , ${3:int valuelen} , ${4:char* value} , ${5:int* flag} );
+endsnippet
+snippet MPI_Info_get_nkeys
+MPI_Info_get_nkeys( ${1:MPI_Info info} , ${2:int* nkeys} );
+endsnippet
+snippet MPI_Info_get_nthkey
+MPI_Info_get_nthkey( ${1:MPI_Info info} , ${2:int n} , ${3:char* key} );
+endsnippet
+snippet MPI_Info_get_string
+MPI_Info_get_string( ${1:MPI_Info info} , ${2:const char* key} , ${3:int* buflen} , ${4:char* value} , ${5:int* flag} );
+endsnippet
+snippet MPI_Info_get_valuelen
+MPI_Info_get_valuelen( ${1:MPI_Info info} , ${2:const char* key} , ${3:int* valuelen} , ${4:int* flag} );
+endsnippet
+snippet MPI_Info_set
+MPI_Info_set( ${1:MPI_Info info} , ${2:const char* key} , ${3:const char* value} );
+endsnippet
+snippet MPI_Init
+MPI_Init( ${1:int* argc} , ${2:char*** argv} );
+endsnippet
+snippet MPI_Init_thread
+MPI_Init_thread( ${1:int* argc} , ${2:char*** argv} , ${3:int required} , ${4:int* provided} );
+endsnippet
+snippet MPI_Initialized
+MPI_Initialized( ${1:int* flag} );
+endsnippet
+snippet MPI_Intercomm_create
+MPI_Intercomm_create( ${1:MPI_Comm local_comm} , ${2:int local_leader} , ${3:MPI_Comm peer_comm} , ${4:int remote_leader} , ${5:int tag} , ${6:MPI_Comm* newintercomm} );
+endsnippet
+snippet MPI_Intercomm_create_from_groups
+MPI_Intercomm_create_from_groups( ${1:MPI_Group local_group} , ${2:int local_leader} , ${3:MPI_Group remote_group} , ${4:int remote_leader} , ${5:const char* stringtag} , ${6:MPI_Info info} , ${7:MPI_Errhandler errhandler} , ${8:MPI_Comm* newintercomm} );
+endsnippet
+snippet MPI_Intercomm_merge
+MPI_Intercomm_merge( ${1:MPI_Comm intercomm} , ${2:int high} , ${3:MPI_Comm* newintracomm} );
+endsnippet
+snippet MPI_Iprobe
+MPI_Iprobe( ${1:int source} , ${2:int tag} , ${3:MPI_Comm comm} , ${4:int* flag} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_Irecv
+MPI_Irecv( ${1:void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int source} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Ireduce
+MPI_Ireduce( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:int root} , ${7:MPI_Comm comm} , ${8:MPI_Request* request} );
+endsnippet
+snippet MPI_Ireduce_scatter
+MPI_Ireduce_scatter( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:const MPI_Count recvcounts[]} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Ireduce_scatter_block
+MPI_Ireduce_scatter_block( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count recvcount} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Irsend
+MPI_Irsend( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Is_thread_main
+MPI_Is_thread_main( ${1:int* flag} );
+endsnippet
+snippet MPI_Iscan
+MPI_Iscan( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Iscatter
+MPI_Iscatter( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:int root} , ${8:MPI_Comm comm} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Iscatterv
+MPI_Iscatterv( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint displs[]} , ${4:MPI_Datatype sendtype} , ${5:void* recvbuf} , ${6:MPI_Count recvcount} , ${7:MPI_Datatype recvtype} , ${8:int root} , ${9:MPI_Comm comm} , ${10:MPI_Request* request} );
+endsnippet
+snippet MPI_Isend
+MPI_Isend( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Isendrecv
+MPI_Isendrecv( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:int dest} , ${5:int sendtag} , ${6:void* recvbuf} , ${7:MPI_Count recvcount} , ${8:MPI_Datatype recvtype} , ${9:int source} , ${10:int recvtag} , ${11:MPI_Comm comm} , ${12:MPI_Request* request} );
+endsnippet
+snippet MPI_Isendrecv_replace
+MPI_Isendrecv_replace( ${1:void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int sendtag} , ${6:int source} , ${7:int recvtag} , ${8:MPI_Comm comm} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Issend
+MPI_Issend( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Keyval_create
+MPI_Keyval_create( ${1:MPI_Copy_function* copy_fn} , ${2:MPI_Delete_function* delete_fn} , ${3:int* keyval} , ${4:void* extra_state} );
+endsnippet
+snippet MPI_Keyval_free
+MPI_Keyval_free( ${1:int* keyval} );
+endsnippet
+snippet MPI_Lookup_name
+MPI_Lookup_name( ${1:const char* service_name} , ${2:MPI_Info info} , ${3:char* port_name} );
+endsnippet
+snippet MPI_Mprobe
+MPI_Mprobe( ${1:int source} , ${2:int tag} , ${3:MPI_Comm comm} , ${4:MPI_Message* message} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_Mrecv
+MPI_Mrecv( ${1:void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:MPI_Message* message} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_Neighbor_allgather
+MPI_Neighbor_allgather( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} );
+endsnippet
+snippet MPI_Neighbor_allgather_init
+MPI_Neighbor_allgather_init( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} , ${8:MPI_Info info} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Neighbor_allgatherv
+MPI_Neighbor_allgatherv( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:const MPI_Count recvcounts[]} , ${6:const MPI_Aint displs[]} , ${7:MPI_Datatype recvtype} , ${8:MPI_Comm comm} );
+endsnippet
+snippet MPI_Neighbor_allgatherv_init
+MPI_Neighbor_allgatherv_init( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:const MPI_Count recvcounts[]} , ${6:const MPI_Aint displs[]} , ${7:MPI_Datatype recvtype} , ${8:MPI_Comm comm} , ${9:MPI_Info info} , ${10:MPI_Request* request} );
+endsnippet
+snippet MPI_Neighbor_alltoall
+MPI_Neighbor_alltoall( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} );
+endsnippet
+snippet MPI_Neighbor_alltoall_init
+MPI_Neighbor_alltoall_init( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:MPI_Comm comm} , ${8:MPI_Info info} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Neighbor_alltoallv
+MPI_Neighbor_alltoallv( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:MPI_Datatype sendtype} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:MPI_Datatype recvtype} , ${9:MPI_Comm comm} );
+endsnippet
+snippet MPI_Neighbor_alltoallv_init
+MPI_Neighbor_alltoallv_init( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:MPI_Datatype sendtype} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:MPI_Datatype recvtype} , ${9:MPI_Comm comm} , ${10:MPI_Info info} , ${11:MPI_Request* request} );
+endsnippet
+snippet MPI_Neighbor_alltoallw
+MPI_Neighbor_alltoallw( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:const MPI_Datatype sendtypes[]} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:const MPI_Datatype recvtypes[]} , ${9:MPI_Comm comm} );
+endsnippet
+snippet MPI_Neighbor_alltoallw_init
+MPI_Neighbor_alltoallw_init( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint sdispls[]} , ${4:const MPI_Datatype sendtypes[]} , ${5:void* recvbuf} , ${6:const MPI_Count recvcounts[]} , ${7:const MPI_Aint rdispls[]} , ${8:const MPI_Datatype recvtypes[]} , ${9:MPI_Comm comm} , ${10:MPI_Info info} , ${11:MPI_Request* request} );
+endsnippet
+snippet MPI_Op_commutative
+MPI_Op_commutative( ${1:MPI_Op op} , ${2:int* commute} );
+endsnippet
+snippet MPI_Op_create
+MPI_Op_create( ${1:MPI_User_function* user_fn} , ${2:int commute} , ${3:MPI_Op* op} );
+endsnippet
+snippet MPI_Op_free
+MPI_Op_free( ${1:MPI_Op* op} );
+endsnippet
+snippet MPI_Open_port
+MPI_Open_port( ${1:MPI_Info info} , ${2:char* port_name} );
+endsnippet
+snippet MPI_Pack
+MPI_Pack( ${1:const void* inbuf} , ${2:MPI_Count incount} , ${3:MPI_Datatype datatype} , ${4:void* outbuf} , ${5:MPI_Count outsize} , ${6:MPI_Count* position} , ${7:MPI_Comm comm} );
+endsnippet
+snippet MPI_Pack_external
+MPI_Pack_external( ${1:const char datarep[]} , ${2:const void* inbuf} , ${3:MPI_Count incount} , ${4:MPI_Datatype datatype} , ${5:void* outbuf} , ${6:MPI_Count outsize} , ${7:MPI_Count* position} );
+endsnippet
+snippet MPI_Pack_external_size
+MPI_Pack_external_size( ${1:const char datarep[]} , ${2:MPI_Count incount} , ${3:MPI_Datatype datatype} , ${4:MPI_Count* size} );
+endsnippet
+snippet MPI_Pack_size
+MPI_Pack_size( ${1:MPI_Count incount} , ${2:MPI_Datatype datatype} , ${3:MPI_Comm comm} , ${4:MPI_Count* size} );
+endsnippet
+snippet MPI_Parrived
+MPI_Parrived( ${1:MPI_Request request} , ${2:int partition} , ${3:int* flag} );
+endsnippet
+snippet MPI_Pcontrol
+MPI_Pcontrol( ${1:const int level} , ${2:... } );
+endsnippet
+snippet MPI_Pready
+MPI_Pready( ${1:int partition} , ${2:MPI_Request request} );
+endsnippet
+snippet MPI_Pready_list
+MPI_Pready_list( ${1:int length} , ${2:const int array_of_partitions[]} , ${3:MPI_Request request} );
+endsnippet
+snippet MPI_Pready_range
+MPI_Pready_range( ${1:int partition_low} , ${2:int partition_high} , ${3:MPI_Request request} );
+endsnippet
+snippet MPI_Precv_init
+MPI_Precv_init( ${1:void* buf} , ${2:int partitions} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:int source} , ${6:int tag} , ${7:MPI_Comm comm} , ${8:MPI_Info info} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Probe
+MPI_Probe( ${1:int source} , ${2:int tag} , ${3:MPI_Comm comm} , ${4:MPI_Status* status} );
+endsnippet
+snippet MPI_Psend_init
+MPI_Psend_init( ${1:const void* buf} , ${2:int partitions} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:int dest} , ${6:int tag} , ${7:MPI_Comm comm} , ${8:MPI_Info info} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Publish_name
+MPI_Publish_name( ${1:const char* service_name} , ${2:MPI_Info info} , ${3:const char* port_name} );
+endsnippet
+snippet MPI_Put
+MPI_Put( ${1:const void* origin_addr} , ${2:MPI_Count origin_count} , ${3:MPI_Datatype origin_datatype} , ${4:int target_rank} , ${5:MPI_Aint target_disp} , ${6:MPI_Count target_count} , ${7:MPI_Datatype target_datatype} , ${8:MPI_Win win} );
+endsnippet
+snippet MPI_Query_thread
+MPI_Query_thread( ${1:int* provided} );
+endsnippet
+snippet MPI_Raccumulate
+MPI_Raccumulate( ${1:const void* origin_addr} , ${2:MPI_Count origin_count} , ${3:MPI_Datatype origin_datatype} , ${4:int target_rank} , ${5:MPI_Aint target_disp} , ${6:MPI_Count target_count} , ${7:MPI_Datatype target_datatype} , ${8:MPI_Op op} , ${9:MPI_Win win} , ${10:MPI_Request* request} );
+endsnippet
+snippet MPI_Recv
+MPI_Recv( ${1:void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int source} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Status* status} );
+endsnippet
+snippet MPI_Recv_init
+MPI_Recv_init( ${1:void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int source} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Reduce
+MPI_Reduce( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:int root} , ${7:MPI_Comm comm} );
+endsnippet
+snippet MPI_Reduce_init
+MPI_Reduce_init( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:int root} , ${7:MPI_Comm comm} , ${8:MPI_Info info} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Reduce_local
+MPI_Reduce_local( ${1:const void* inbuf} , ${2:void* inoutbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} );
+endsnippet
+snippet MPI_Reduce_scatter
+MPI_Reduce_scatter( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:const MPI_Count recvcounts[]} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} );
+endsnippet
+snippet MPI_Reduce_scatter_block
+MPI_Reduce_scatter_block( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count recvcount} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} );
+endsnippet
+snippet MPI_Reduce_scatter_block_init
+MPI_Reduce_scatter_block_init( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count recvcount} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} , ${7:MPI_Info info} , ${8:MPI_Request* request} );
+endsnippet
+snippet MPI_Reduce_scatter_init
+MPI_Reduce_scatter_init( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:const MPI_Count recvcounts[]} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} , ${7:MPI_Info info} , ${8:MPI_Request* request} );
+endsnippet
+snippet MPI_Register_datarep
+MPI_Register_datarep( ${1:const char* datarep} , ${2:MPI_Datarep_conversion_function* read_conversion_fn} , ${3:MPI_Datarep_conversion_function* write_conversion_fn} , ${4:MPI_Datarep_extent_function* dtype_file_extent_fn} , ${5:void* extra_state} );
+endsnippet
+snippet MPI_Request_free
+MPI_Request_free( ${1:MPI_Request* request} );
+endsnippet
+snippet MPI_Request_get_status
+MPI_Request_get_status( ${1:MPI_Request request} , ${2:int* flag} , ${3:MPI_Status* status} );
+endsnippet
+snippet MPI_Rget
+MPI_Rget( ${1:void* origin_addr} , ${2:MPI_Count origin_count} , ${3:MPI_Datatype origin_datatype} , ${4:int target_rank} , ${5:MPI_Aint target_disp} , ${6:MPI_Count target_count} , ${7:MPI_Datatype target_datatype} , ${8:MPI_Win win} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Rget_accumulate
+MPI_Rget_accumulate( ${1:const void* origin_addr} , ${2:MPI_Count origin_count} , ${3:MPI_Datatype origin_datatype} , ${4:void* result_addr} , ${5:MPI_Count result_count} , ${6:MPI_Datatype result_datatype} , ${7:int target_rank} , ${8:MPI_Aint target_disp} , ${9:MPI_Count target_count} , ${10:MPI_Datatype target_datatype} , ${11:MPI_Op op} , ${12:MPI_Win win} , ${13:MPI_Request* request} );
+endsnippet
+snippet MPI_Rput
+MPI_Rput( ${1:const void* origin_addr} , ${2:MPI_Count origin_count} , ${3:MPI_Datatype origin_datatype} , ${4:int target_rank} , ${5:MPI_Aint target_disp} , ${6:MPI_Count target_count} , ${7:MPI_Datatype target_datatype} , ${8:MPI_Win win} , ${9:MPI_Request* request} );
+endsnippet
+snippet MPI_Rsend
+MPI_Rsend( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} );
+endsnippet
+snippet MPI_Rsend_init
+MPI_Rsend_init( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Scan
+MPI_Scan( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} );
+endsnippet
+snippet MPI_Scan_init
+MPI_Scan_init( ${1:const void* sendbuf} , ${2:void* recvbuf} , ${3:MPI_Count count} , ${4:MPI_Datatype datatype} , ${5:MPI_Op op} , ${6:MPI_Comm comm} , ${7:MPI_Info info} , ${8:MPI_Request* request} );
+endsnippet
+snippet MPI_Scatter
+MPI_Scatter( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:int root} , ${8:MPI_Comm comm} );
+endsnippet
+snippet MPI_Scatter_init
+MPI_Scatter_init( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:void* recvbuf} , ${5:MPI_Count recvcount} , ${6:MPI_Datatype recvtype} , ${7:int root} , ${8:MPI_Comm comm} , ${9:MPI_Info info} , ${10:MPI_Request* request} );
+endsnippet
+snippet MPI_Scatterv
+MPI_Scatterv( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint displs[]} , ${4:MPI_Datatype sendtype} , ${5:void* recvbuf} , ${6:MPI_Count recvcount} , ${7:MPI_Datatype recvtype} , ${8:int root} , ${9:MPI_Comm comm} );
+endsnippet
+snippet MPI_Scatterv_init
+MPI_Scatterv_init( ${1:const void* sendbuf} , ${2:const MPI_Count sendcounts[]} , ${3:const MPI_Aint displs[]} , ${4:MPI_Datatype sendtype} , ${5:void* recvbuf} , ${6:MPI_Count recvcount} , ${7:MPI_Datatype recvtype} , ${8:int root} , ${9:MPI_Comm comm} , ${10:MPI_Info info} , ${11:MPI_Request* request} );
+endsnippet
+snippet MPI_Send
+MPI_Send( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} );
+endsnippet
+snippet MPI_Send_init
+MPI_Send_init( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Sendrecv
+MPI_Sendrecv( ${1:const void* sendbuf} , ${2:MPI_Count sendcount} , ${3:MPI_Datatype sendtype} , ${4:int dest} , ${5:int sendtag} , ${6:void* recvbuf} , ${7:MPI_Count recvcount} , ${8:MPI_Datatype recvtype} , ${9:int source} , ${10:int recvtag} , ${11:MPI_Comm comm} , ${12:MPI_Status* status} );
+endsnippet
+snippet MPI_Sendrecv_replace
+MPI_Sendrecv_replace( ${1:void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int sendtag} , ${6:int source} , ${7:int recvtag} , ${8:MPI_Comm comm} , ${9:MPI_Status* status} );
+endsnippet
+snippet MPI_Session_call_errhandler
+MPI_Session_call_errhandler( ${1:MPI_Session session} , ${2:int errorcode} );
+endsnippet
+snippet MPI_Session_create_errhandler
+MPI_Session_create_errhandler( ${1:MPI_Session_errhandler_function* session_errhandler_fn} , ${2:MPI_Errhandler* errhandler} );
+endsnippet
+snippet MPI_Session_finalize
+MPI_Session_finalize( ${1:MPI_Session* session} );
+endsnippet
+snippet MPI_Session_get_errhandler
+MPI_Session_get_errhandler( ${1:MPI_Session session} , ${2:MPI_Errhandler* errhandler} );
+endsnippet
+snippet MPI_Session_get_info
+MPI_Session_get_info( ${1:MPI_Session session} , ${2:MPI_Info* info_used} );
+endsnippet
+snippet MPI_Session_get_nth_pset
+MPI_Session_get_nth_pset( ${1:MPI_Session session} , ${2:MPI_Info info} , ${3:int n} , ${4:int* pset_len} , ${5:char* pset_name} );
+endsnippet
+snippet MPI_Session_get_num_psets
+MPI_Session_get_num_psets( ${1:MPI_Session session} , ${2:MPI_Info info} , ${3:int* npset_names} );
+endsnippet
+snippet MPI_Session_get_pset_info
+MPI_Session_get_pset_info( ${1:MPI_Session session} , ${2:const char* pset_name} , ${3:MPI_Info* info} );
+endsnippet
+snippet MPI_Session_init
+MPI_Session_init( ${1:MPI_Info info} , ${2:MPI_Errhandler errhandler} , ${3:MPI_Session* session} );
+endsnippet
+snippet MPI_Session_set_errhandler
+MPI_Session_set_errhandler( ${1:MPI_Session session} , ${2:MPI_Errhandler errhandler} );
+endsnippet
+snippet MPI_Ssend
+MPI_Ssend( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} );
+endsnippet
+snippet MPI_Ssend_init
+MPI_Ssend_init( ${1:const void* buf} , ${2:MPI_Count count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} , ${7:MPI_Request* request} );
+endsnippet
+snippet MPI_Start
+MPI_Start( ${1:MPI_Request* request} );
+endsnippet
+snippet MPI_Startall
+MPI_Startall( ${1:int count} , ${2:MPI_Request array_of_requests[]} );
+endsnippet
+snippet MPI_Status_set_cancelled
+MPI_Status_set_cancelled( ${1:MPI_Status* status} , ${2:int flag} );
+endsnippet
+snippet MPI_Status_set_elements
+MPI_Status_set_elements( ${1:MPI_Status* status} , ${2:MPI_Datatype datatype} , ${3:MPI_Count count} );
+endsnippet
+snippet MPI_Status_set_elements_x
+MPI_Status_set_elements_x( ${1:MPI_Status* status} , ${2:MPI_Datatype datatype} , ${3:MPI_Count count} );
+endsnippet
+snippet MPI_T_category_changed
+MPI_T_category_changed( ${1:int* update_number} );
+endsnippet
+snippet MPI_T_category_get_categories
+MPI_T_category_get_categories( ${1:int cat_index} , ${2:int len} , ${3:int indices[]} );
+endsnippet
+snippet MPI_T_category_get_cvars
+MPI_T_category_get_cvars( ${1:int cat_index} , ${2:int len} , ${3:int indices[]} );
+endsnippet
+snippet MPI_T_category_get_events
+MPI_T_category_get_events( ${1:int cat_index} , ${2:int len} , ${3:int indices[]} );
+endsnippet
+snippet MPI_T_category_get_index
+MPI_T_category_get_index( ${1:const char* name} , ${2:int* cat_index} );
+endsnippet
+snippet MPI_T_category_get_info
+MPI_T_category_get_info( ${1:int cat_index} , ${2:char* name} , ${3:int* name_len} , ${4:char* desc} , ${5:int* desc_len} , ${6:int* num_cvars} , ${7:int* num_pvars} , ${8:int* num_categories} );
+endsnippet
+snippet MPI_T_category_get_num
+MPI_T_category_get_num( ${1:int* num_cat} );
+endsnippet
+snippet MPI_T_category_get_num_events
+MPI_T_category_get_num_events( ${1:int cat_index} , ${2:int* num_events} );
+endsnippet
+snippet MPI_T_category_get_pvars
+MPI_T_category_get_pvars( ${1:int cat_index} , ${2:int len} , ${3:int indices[]} );
+endsnippet
+snippet MPI_T_cvar_get_index
+MPI_T_cvar_get_index( ${1:const char* name} , ${2:int* cvar_index} );
+endsnippet
+snippet MPI_T_cvar_get_info
+MPI_T_cvar_get_info( ${1:int cvar_index} , ${2:char* name} , ${3:int* name_len} , ${4:int* verbosity} , ${5:MPI_Datatype* datatype} , ${6:MPI_T_enum* enumtype} , ${7:char* desc} , ${8:int* desc_len} , ${9:int* bind} , ${10:int* scope} );
+endsnippet
+snippet MPI_T_cvar_get_num
+MPI_T_cvar_get_num( ${1:int* num_cvar} );
+endsnippet
+snippet MPI_T_cvar_handle_alloc
+MPI_T_cvar_handle_alloc( ${1:int cvar_index} , ${2:void* obj_handle} , ${3:MPI_T_cvar_handle* handle} , ${4:int* count} );
+endsnippet
+snippet MPI_T_cvar_handle_free
+MPI_T_cvar_handle_free( ${1:MPI_T_cvar_handle* handle} );
+endsnippet
+snippet MPI_T_cvar_read
+MPI_T_cvar_read( ${1:MPI_T_cvar_handle handle} , ${2:void* buf} );
+endsnippet
+snippet MPI_T_cvar_write
+MPI_T_cvar_write( ${1:MPI_T_cvar_handle handle} , ${2:const void* buf} );
+endsnippet
+snippet MPI_T_enum_get_info
+MPI_T_enum_get_info( ${1:MPI_T_enum enumtype} , ${2:int* num} , ${3:char* name} , ${4:int* name_len} );
+endsnippet
+snippet MPI_T_enum_get_item
+MPI_T_enum_get_item( ${1:MPI_T_enum enumtype} , ${2:int index} , ${3:int* value} , ${4:char* name} , ${5:int* name_len} );
+endsnippet
+snippet MPI_T_event_callback_get_info
+MPI_T_event_callback_get_info( ${1:MPI_T_event_registration event_registration} , ${2:MPI_T_cb_safety cb_safety} , ${3:MPI_Info* info_used} );
+endsnippet
+snippet MPI_T_event_callback_set_info
+MPI_T_event_callback_set_info( ${1:MPI_T_event_registration event_registration} , ${2:MPI_T_cb_safety cb_safety} , ${3:MPI_Info info} );
+endsnippet
+snippet MPI_T_event_copy
+MPI_T_event_copy( ${1:MPI_T_event_instance event_instance} , ${2:void* buffer} );
+endsnippet
+snippet MPI_T_event_get_index
+MPI_T_event_get_index( ${1:const char* name} , ${2:int* event_index} );
+endsnippet
+snippet MPI_T_event_get_info
+MPI_T_event_get_info( ${1:int event_index} , ${2:char* name} , ${3:int* name_len} , ${4:int* verbosity} , ${5:MPI_Datatype array_of_datatypes[]} , ${6:MPI_Aint array_of_displacements[]} , ${7:int* num_elements} , ${8:MPI_T_enum* enumtype} , ${9:MPI_Info* info} , ${10:char* desc} , ${11:int* desc_len} , ${12:int* bind} );
+endsnippet
+snippet MPI_T_event_get_num
+MPI_T_event_get_num( ${1:int* num_events} );
+endsnippet
+snippet MPI_T_event_get_source
+MPI_T_event_get_source( ${1:MPI_T_event_instance event_instance} , ${2:int* source_index} );
+endsnippet
+snippet MPI_T_event_get_timestamp
+MPI_T_event_get_timestamp( ${1:MPI_T_event_instance event_instance} , ${2:MPI_Count* event_timestamp} );
+endsnippet
+snippet MPI_T_event_handle_alloc
+MPI_T_event_handle_alloc( ${1:int event_index} , ${2:void* obj_handle} , ${3:MPI_Info info} , ${4:MPI_T_event_registration* event_registration} );
+endsnippet
+snippet MPI_T_event_handle_free
+MPI_T_event_handle_free( ${1:MPI_T_event_registration event_registration} , ${2:void* user_data} , ${3:MPI_T_event_free_cb_function free_cb_function} );
+endsnippet
+snippet MPI_T_event_handle_get_info
+MPI_T_event_handle_get_info( ${1:MPI_T_event_registration event_registration} , ${2:MPI_Info* info_used} );
+endsnippet
+snippet MPI_T_event_handle_set_info
+MPI_T_event_handle_set_info( ${1:MPI_T_event_registration event_registration} , ${2:MPI_Info info} );
+endsnippet
+snippet MPI_T_event_read
+MPI_T_event_read( ${1:MPI_T_event_instance event_instance} , ${2:int element_index} , ${3:void* buffer} );
+endsnippet
+snippet MPI_T_event_register_callback
+MPI_T_event_register_callback( ${1:MPI_T_event_registration event_registration} , ${2:MPI_T_cb_safety cb_safety} , ${3:MPI_Info info} , ${4:void* user_data} , ${5:MPI_T_event_cb_function event_cb_function} );
+endsnippet
+snippet MPI_T_event_set_dropped_handler
+MPI_T_event_set_dropped_handler( ${1:MPI_T_event_registration event_registration} , ${2:MPI_T_event_dropped_cb_function dropped_cb_function} );
+endsnippet
+snippet MPI_T_finalize
+MPI_T_finalize();
+endsnippet
+snippet MPI_T_init_thread
+MPI_T_init_thread( ${1:int required} , ${2:int* provided} );
+endsnippet
+snippet MPI_T_pvar_get_index
+MPI_T_pvar_get_index( ${1:const char* name} , ${2:int var_class} , ${3:int* pvar_index} );
+endsnippet
+snippet MPI_T_pvar_get_info
+MPI_T_pvar_get_info( ${1:int pvar_index} , ${2:char* name} , ${3:int* name_len} , ${4:int* verbosity} , ${5:int* var_class} , ${6:MPI_Datatype* datatype} , ${7:MPI_T_enum* enumtype} , ${8:char* desc} , ${9:int* desc_len} , ${10:int* bind} , ${11:int* readonly} , ${12:int* continuous} , ${13:int* atomic} );
+endsnippet
+snippet MPI_T_pvar_get_num
+MPI_T_pvar_get_num( ${1:int* num_pvar} );
+endsnippet
+snippet MPI_T_pvar_handle_alloc
+MPI_T_pvar_handle_alloc( ${1:MPI_T_pvar_session pe_session} , ${2:int pvar_index} , ${3:void* obj_handle} , ${4:MPI_T_pvar_handle* handle} , ${5:int* count} );
+endsnippet
+snippet MPI_T_pvar_handle_free
+MPI_T_pvar_handle_free( ${1:MPI_T_pvar_session pe_session} , ${2:MPI_T_pvar_handle* handle} );
+endsnippet
+snippet MPI_T_pvar_read
+MPI_T_pvar_read( ${1:MPI_T_pvar_session pe_session} , ${2:MPI_T_pvar_handle handle} , ${3:void* buf} );
+endsnippet
+snippet MPI_T_pvar_readreset
+MPI_T_pvar_readreset( ${1:MPI_T_pvar_session pe_session} , ${2:MPI_T_pvar_handle handle} , ${3:void* buf} );
+endsnippet
+snippet MPI_T_pvar_reset
+MPI_T_pvar_reset( ${1:MPI_T_pvar_session pe_session} , ${2:MPI_T_pvar_handle handle} );
+endsnippet
+snippet MPI_T_pvar_session_create
+MPI_T_pvar_session_create( ${1:MPI_T_pvar_session* pe_session} );
+endsnippet
+snippet MPI_T_pvar_session_free
+MPI_T_pvar_session_free( ${1:MPI_T_pvar_session* pe_session} );
+endsnippet
+snippet MPI_T_pvar_start
+MPI_T_pvar_start( ${1:MPI_T_pvar_session pe_session} , ${2:MPI_T_pvar_handle handle} );
+endsnippet
+snippet MPI_T_pvar_stop
+MPI_T_pvar_stop( ${1:MPI_T_pvar_session pe_session} , ${2:MPI_T_pvar_handle handle} );
+endsnippet
+snippet MPI_T_pvar_write
+MPI_T_pvar_write( ${1:MPI_T_pvar_session pe_session} , ${2:MPI_T_pvar_handle handle} , ${3:const void* buf} );
+endsnippet
+snippet MPI_T_source_get_info
+MPI_T_source_get_info( ${1:int source_index} , ${2:char* name} , ${3:int* name_len} , ${4:char* desc} , ${5:int* desc_len} , ${6:MPI_T_source_order* ordering} , ${7:MPI_Count* ticks_per_second} , ${8:MPI_Count* max_ticks} , ${9:MPI_Info* info} );
+endsnippet
+snippet MPI_T_source_get_num
+MPI_T_source_get_num( ${1:int* num_sources} );
+endsnippet
+snippet MPI_T_source_get_timestamp
+MPI_T_source_get_timestamp( ${1:int source_index} , ${2:MPI_Count* timestamp} );
+endsnippet
+snippet MPI_Test
+MPI_Test( ${1:MPI_Request* request} , ${2:int* flag} , ${3:MPI_Status* status} );
+endsnippet
+snippet MPI_Test_cancelled
+MPI_Test_cancelled( ${1:const MPI_Status* status} , ${2:int* flag} );
+endsnippet
+snippet MPI_Testall
+MPI_Testall( ${1:int count} , ${2:MPI_Request array_of_requests[]} , ${3:int* flag} , ${4:MPI_Status array_of_statuses[]} );
+endsnippet
+snippet MPI_Testany
+MPI_Testany( ${1:int count} , ${2:MPI_Request array_of_requests[]} , ${3:int* index} , ${4:int* flag} , ${5:MPI_Status* status} );
+endsnippet
+snippet MPI_Testsome
+MPI_Testsome( ${1:int incount} , ${2:MPI_Request array_of_requests[]} , ${3:int* outcount} , ${4:int array_of_indices[]} , ${5:MPI_Status array_of_statuses[]} );
+endsnippet
+snippet MPI_Topo_test
+MPI_Topo_test( ${1:MPI_Comm comm} , ${2:int* status} );
+endsnippet
+snippet MPI_Type_commit
+MPI_Type_commit( ${1:MPI_Datatype* datatype} );
+endsnippet
+snippet MPI_Type_contiguous
+MPI_Type_contiguous( ${1:MPI_Count count} , ${2:MPI_Datatype oldtype} , ${3:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_create_darray
+MPI_Type_create_darray( ${1:int size} , ${2:int rank} , ${3:int ndims} , ${4:const MPI_Count array_of_gsizes[]} , ${5:const int array_of_distribs[]} , ${6:const int array_of_dargs[]} , ${7:const int array_of_psizes[]} , ${8:int order} , ${9:MPI_Datatype oldtype} , ${10:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_create_f90_complex
+MPI_Type_create_f90_complex( ${1:int p} , ${2:int r} , ${3:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_create_f90_integer
+MPI_Type_create_f90_integer( ${1:int r} , ${2:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_create_f90_real
+MPI_Type_create_f90_real( ${1:int p} , ${2:int r} , ${3:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_create_hindexed
+MPI_Type_create_hindexed( ${1:MPI_Count count} , ${2:const MPI_Count array_of_blocklengths[]} , ${3:const MPI_Count array_of_displacements[]} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_create_hindexed_block
+MPI_Type_create_hindexed_block( ${1:MPI_Count count} , ${2:MPI_Count blocklength} , ${3:const MPI_Count array_of_displacements[]} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_create_hvector
+MPI_Type_create_hvector( ${1:MPI_Count count} , ${2:MPI_Count blocklength} , ${3:MPI_Count stride} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_create_indexed_block
+MPI_Type_create_indexed_block( ${1:MPI_Count count} , ${2:MPI_Count blocklength} , ${3:const MPI_Count array_of_displacements[]} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_create_keyval
+MPI_Type_create_keyval( ${1:MPI_Type_copy_attr_function* type_copy_attr_fn} , ${2:MPI_Type_delete_attr_function* type_delete_attr_fn} , ${3:int* type_keyval} , ${4:void* extra_state} );
+endsnippet
+snippet MPI_Type_create_resized
+MPI_Type_create_resized( ${1:MPI_Datatype oldtype} , ${2:MPI_Count lb} , ${3:MPI_Count extent} , ${4:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_create_struct
+MPI_Type_create_struct( ${1:MPI_Count count} , ${2:const MPI_Count array_of_blocklengths[]} , ${3:const MPI_Count array_of_displacements[]} , ${4:const MPI_Datatype array_of_types[]} , ${5:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_create_subarray
+MPI_Type_create_subarray( ${1:int ndims} , ${2:const MPI_Count array_of_sizes[]} , ${3:const MPI_Count array_of_subsizes[]} , ${4:const MPI_Count array_of_starts[]} , ${5:int order} , ${6:MPI_Datatype oldtype} , ${7:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_delete_attr
+MPI_Type_delete_attr( ${1:MPI_Datatype datatype} , ${2:int type_keyval} );
+endsnippet
+snippet MPI_Type_dup
+MPI_Type_dup( ${1:MPI_Datatype oldtype} , ${2:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_free
+MPI_Type_free( ${1:MPI_Datatype* datatype} );
+endsnippet
+snippet MPI_Type_free_keyval
+MPI_Type_free_keyval( ${1:int* type_keyval} );
+endsnippet
+snippet MPI_Type_get_attr
+MPI_Type_get_attr( ${1:MPI_Datatype datatype} , ${2:int type_keyval} , ${3:void* attribute_val} , ${4:int* flag} );
+endsnippet
+snippet MPI_Type_get_contents
+MPI_Type_get_contents( ${1:MPI_Datatype datatype} , ${2:MPI_Count max_integers} , ${3:MPI_Count max_addresses} , ${4:MPI_Count max_large_counts} , ${5:MPI_Count max_datatypes} , ${6:int array_of_integers[]} , ${7:MPI_Aint array_of_addresses[]} , ${8:MPI_Count array_of_large_counts[]} , ${9:MPI_Datatype array_of_datatypes[]} );
+endsnippet
+snippet MPI_Type_get_envelope
+MPI_Type_get_envelope( ${1:MPI_Datatype datatype} , ${2:MPI_Count* num_integers} , ${3:MPI_Count* num_addresses} , ${4:MPI_Count* num_large_counts} , ${5:MPI_Count* num_datatypes} , ${6:int* combiner} );
+endsnippet
+snippet MPI_Type_get_extent
+MPI_Type_get_extent( ${1:MPI_Datatype datatype} , ${2:MPI_Count* lb} , ${3:MPI_Count* extent} );
+endsnippet
+snippet MPI_Type_get_extent_x
+MPI_Type_get_extent_x( ${1:MPI_Datatype datatype} , ${2:MPI_Count* lb} , ${3:MPI_Count* extent} );
+endsnippet
+snippet MPI_Type_get_name
+MPI_Type_get_name( ${1:MPI_Datatype datatype} , ${2:char* type_name} , ${3:int* resultlen} );
+endsnippet
+snippet MPI_Type_get_true_extent
+MPI_Type_get_true_extent( ${1:MPI_Datatype datatype} , ${2:MPI_Count* true_lb} , ${3:MPI_Count* true_extent} );
+endsnippet
+snippet MPI_Type_get_true_extent_x
+MPI_Type_get_true_extent_x( ${1:MPI_Datatype datatype} , ${2:MPI_Count* true_lb} , ${3:MPI_Count* true_extent} );
+endsnippet
+snippet MPI_Type_indexed
+MPI_Type_indexed( ${1:MPI_Count count} , ${2:const MPI_Count array_of_blocklengths[]} , ${3:const MPI_Count array_of_displacements[]} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Type_match_size
+MPI_Type_match_size( ${1:int typeclass} , ${2:int size} , ${3:MPI_Datatype* datatype} );
+endsnippet
+snippet MPI_Type_set_attr
+MPI_Type_set_attr( ${1:MPI_Datatype datatype} , ${2:int type_keyval} , ${3:void* attribute_val} );
+endsnippet
+snippet MPI_Type_set_name
+MPI_Type_set_name( ${1:MPI_Datatype datatype} , ${2:const char* type_name} );
+endsnippet
+snippet MPI_Type_size
+MPI_Type_size( ${1:MPI_Datatype datatype} , ${2:MPI_Count* size} );
+endsnippet
+snippet MPI_Type_size_x
+MPI_Type_size_x( ${1:MPI_Datatype datatype} , ${2:MPI_Count* size} );
+endsnippet
+snippet MPI_Type_vector
+MPI_Type_vector( ${1:MPI_Count count} , ${2:MPI_Count blocklength} , ${3:MPI_Count stride} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
+endsnippet
+snippet MPI_Unpack
+MPI_Unpack( ${1:const void* inbuf} , ${2:MPI_Count insize} , ${3:MPI_Count* position} , ${4:void* outbuf} , ${5:MPI_Count outcount} , ${6:MPI_Datatype datatype} , ${7:MPI_Comm comm} );
+endsnippet
+snippet MPI_Unpack_external
+MPI_Unpack_external( ${1:const char datarep[]} , ${2:const void* inbuf} , ${3:MPI_Count insize} , ${4:MPI_Count* position} , ${5:void* outbuf} , ${6:MPI_Count outcount} , ${7:MPI_Datatype datatype} );
+endsnippet
+snippet MPI_Unpublish_name
+MPI_Unpublish_name( ${1:const char* service_name} , ${2:MPI_Info info} , ${3:const char* port_name} );
+endsnippet
+snippet MPI_Wait
+MPI_Wait( ${1:MPI_Request* request} , ${2:MPI_Status* status} );
+endsnippet
+snippet MPI_Waitall
+MPI_Waitall( ${1:int count} , ${2:MPI_Request array_of_requests[]} , ${3:MPI_Status array_of_statuses[]} );
+endsnippet
+snippet MPI_Waitany
+MPI_Waitany( ${1:int count} , ${2:MPI_Request array_of_requests[]} , ${3:int* index} , ${4:MPI_Status* status} );
+endsnippet
+snippet MPI_Waitsome
+MPI_Waitsome( ${1:int incount} , ${2:MPI_Request array_of_requests[]} , ${3:int* outcount} , ${4:int array_of_indices[]} , ${5:MPI_Status array_of_statuses[]} );
+endsnippet
+snippet MPI_Win_allocate
+MPI_Win_allocate( ${1:MPI_Aint size} , ${2:MPI_Aint disp_unit} , ${3:MPI_Info info} , ${4:MPI_Comm comm} , ${5:void* baseptr} , ${6:MPI_Win* win} );
+endsnippet
+snippet MPI_Win_allocate_shared
+MPI_Win_allocate_shared( ${1:MPI_Aint size} , ${2:MPI_Aint disp_unit} , ${3:MPI_Info info} , ${4:MPI_Comm comm} , ${5:void* baseptr} , ${6:MPI_Win* win} );
+endsnippet
+snippet MPI_Win_attach
+MPI_Win_attach( ${1:MPI_Win win} , ${2:void* base} , ${3:MPI_Aint size} );
+endsnippet
+snippet MPI_Win_call_errhandler
+MPI_Win_call_errhandler( ${1:MPI_Win win} , ${2:int errorcode} );
+endsnippet
+snippet MPI_Win_complete
+MPI_Win_complete( ${1:MPI_Win win} );
+endsnippet
+snippet MPI_Win_create
+MPI_Win_create( ${1:void* base} , ${2:MPI_Aint size} , ${3:MPI_Aint disp_unit} , ${4:MPI_Info info} , ${5:MPI_Comm comm} , ${6:MPI_Win* win} );
+endsnippet
+snippet MPI_Win_create_dynamic
+MPI_Win_create_dynamic( ${1:MPI_Info info} , ${2:MPI_Comm comm} , ${3:MPI_Win* win} );
+endsnippet
+snippet MPI_Win_create_errhandler
+MPI_Win_create_errhandler( ${1:MPI_Win_errhandler_function* win_errhandler_fn} , ${2:MPI_Errhandler* errhandler} );
+endsnippet
+snippet MPI_Win_create_keyval
+MPI_Win_create_keyval( ${1:MPI_Win_copy_attr_function* win_copy_attr_fn} , ${2:MPI_Win_delete_attr_function* win_delete_attr_fn} , ${3:int* win_keyval} , ${4:void* extra_state} );
+endsnippet
+snippet MPI_Win_delete_attr
+MPI_Win_delete_attr( ${1:MPI_Win win} , ${2:int win_keyval} );
+endsnippet
+snippet MPI_Win_detach
+MPI_Win_detach( ${1:MPI_Win win} , ${2:const void* base} );
+endsnippet
+snippet MPI_Win_fence
+MPI_Win_fence( ${1:int assert} , ${2:MPI_Win win} );
+endsnippet
+snippet MPI_Win_flush
+MPI_Win_flush( ${1:int rank} , ${2:MPI_Win win} );
+endsnippet
+snippet MPI_Win_flush_all
+MPI_Win_flush_all( ${1:MPI_Win win} );
+endsnippet
+snippet MPI_Win_flush_local
+MPI_Win_flush_local( ${1:int rank} , ${2:MPI_Win win} );
+endsnippet
+snippet MPI_Win_flush_local_all
+MPI_Win_flush_local_all( ${1:MPI_Win win} );
+endsnippet
+snippet MPI_Win_free
+MPI_Win_free( ${1:MPI_Win* win} );
+endsnippet
+snippet MPI_Win_free_keyval
+MPI_Win_free_keyval( ${1:int* win_keyval} );
+endsnippet
+snippet MPI_Win_get_attr
+MPI_Win_get_attr( ${1:MPI_Win win} , ${2:int win_keyval} , ${3:void* attribute_val} , ${4:int* flag} );
+endsnippet
+snippet MPI_Win_get_errhandler
+MPI_Win_get_errhandler( ${1:MPI_Win win} , ${2:MPI_Errhandler* errhandler} );
+endsnippet
+snippet MPI_Win_get_group
+MPI_Win_get_group( ${1:MPI_Win win} , ${2:MPI_Group* group} );
+endsnippet
+snippet MPI_Win_get_info
+MPI_Win_get_info( ${1:MPI_Win win} , ${2:MPI_Info* info_used} );
+endsnippet
+snippet MPI_Win_get_name
+MPI_Win_get_name( ${1:MPI_Win win} , ${2:char* win_name} , ${3:int* resultlen} );
+endsnippet
+snippet MPI_Win_lock
+MPI_Win_lock( ${1:int lock_type} , ${2:int rank} , ${3:int assert} , ${4:MPI_Win win} );
+endsnippet
+snippet MPI_Win_lock_all
+MPI_Win_lock_all( ${1:int assert} , ${2:MPI_Win win} );
+endsnippet
+snippet MPI_Win_post
+MPI_Win_post( ${1:MPI_Group group} , ${2:int assert} , ${3:MPI_Win win} );
+endsnippet
+snippet MPI_Win_set_attr
+MPI_Win_set_attr( ${1:MPI_Win win} , ${2:int win_keyval} , ${3:void* attribute_val} );
+endsnippet
+snippet MPI_Win_set_errhandler
+MPI_Win_set_errhandler( ${1:MPI_Win win} , ${2:MPI_Errhandler errhandler} );
+endsnippet
+snippet MPI_Win_set_info
+MPI_Win_set_info( ${1:MPI_Win win} , ${2:MPI_Info info} );
+endsnippet
+snippet MPI_Win_set_name
+MPI_Win_set_name( ${1:MPI_Win win} , ${2:const char* win_name} );
+endsnippet
+snippet MPI_Win_shared_query
+MPI_Win_shared_query( ${1:MPI_Win win} , ${2:int rank} , ${3:MPI_Aint* size} , ${4:MPI_Aint* disp_unit} , ${5:void* baseptr} );
+endsnippet
+snippet MPI_Win_start
+MPI_Win_start( ${1:MPI_Group group} , ${2:int assert} , ${3:MPI_Win win} );
+endsnippet
+snippet MPI_Win_sync
+MPI_Win_sync( ${1:MPI_Win win} );
+endsnippet
 snippet MPI_Win_test
 MPI_Win_test( ${1:MPI_Win win} , ${2:int* flag} );
 endsnippet
-snippet MPI_Type_create_hindexed
-MPI_Type_create_hindexed( ${1:int count} , ${2:int array_of_blocklengths[]} , ${3:MPI_Aint array_of_displacements[]} , ${4:MPI_Datatype oldtype} , ${5:MPI_Datatype* newtype} );
+snippet MPI_Win_unlock
+MPI_Win_unlock( ${1:int rank} , ${2:MPI_Win win} );
 endsnippet
-snippet MPI_Type_match_size
-MPI_Type_match_size( ${1:int typeclass} , ${2:int size} , ${3:MPI_Datatype* type} );
+snippet MPI_Win_unlock_all
+MPI_Win_unlock_all( ${1:MPI_Win win} );
 endsnippet
-snippet MPI_Send
-MPI_Send( ${1:void* buf} , ${2:int count} , ${3:MPI_Datatype datatype} , ${4:int dest} , ${5:int tag} , ${6:MPI_Comm comm} );
+snippet MPI_Win_wait
+MPI_Win_wait( ${1:MPI_Win win} );
+endsnippet
+snippet MPI_Wtick
+MPI_Wtick();
+endsnippet
+snippet MPI_Wtime
+MPI_Wtime();
 endsnippet
 
 snippet mainmpi
@@ -851,7 +1361,7 @@ int main( int argc, char *argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-        ${1:printf("Rank: %d/%d\n", rank, size);}
+	${1:printf("Rank: %d/%d\n", rank, size);}
 
 	MPI_Finalize();
 
